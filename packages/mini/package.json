@@ -2,7 +2,7 @@
   "name": "mini",
   "version": "1.0.0",
   "private": true,
-  "description": "HD商城小程序",
+  "description": "HD 商城",
   "templateInfo": {
     "name": "default",
     "typescript": true,
