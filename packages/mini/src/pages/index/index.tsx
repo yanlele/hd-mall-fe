@@ -3,6 +3,7 @@ import { View, Button, Text } from '@tarojs/components';
 import './index.less';
 import { RootState, Dispatch } from '../../store';
 import { connect } from 'react-redux';
+import { AtButton } from 'taro-ui';
 
 const mapState = (state: RootState) => ({
   dolphins: state.dolphins,
@@ -31,17 +32,21 @@ class Index extends Component<Props> {
     return (
       <View >
         <view style={{ width: 120 }}>
-          <View><Text>Dolphins</Text></View>
-          <View><Text>{this.props.dolphins}</Text></View>
-          <Button onClick={this.props.incrementDolphins}>+1</Button>
-          <Button onClick={this.props.incrementDolphinsAsync}>Async +1</Button>
+          <View>
+            <Text className="at-article__h2">Dolphins</Text>
+          </View>
+          <View>
+            <Text className="at-article__h3">{this.props.dolphins}</Text>
+          </View>
+          <AtButton size='small' onClick={this.props.incrementDolphins}>+1</AtButton>
+          <AtButton size='small' onClick={this.props.incrementDolphinsAsync}>Async +1</AtButton>
         </view>
         <View style={{ width: 200 }}>
           <View><Text>Sharks</Text></View>
           <View><Text>{this.props.sharks}</Text></View>
-          <Button onClick={this.props.incrementSharks}>+1</Button>
-          <Button onClick={this.props.incrementSharksAsync}>Async +1</Button>
-          <Button onClick={this.props.incrementSharksAsync2}>Async +2</Button>
+          <AtButton size='small' onClick={this.props.incrementSharks}>+1</AtButton>
+          <AtButton size='small' onClick={this.props.incrementSharksAsync}>Async +1</AtButton>
+          <AtButton size='small' onClick={this.props.incrementSharksAsync2}>Async +2</AtButton>
         </View>
         <View>
           <Text>Using Rematch Models</Text>
