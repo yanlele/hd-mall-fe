@@ -1,3 +1,5 @@
+const path = require('path');
+
 const config = {
   projectName: 'mini',
   date: '2020-11-8',
