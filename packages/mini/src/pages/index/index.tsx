@@ -30,27 +30,31 @@ class Index extends Component<Props> {
 
   render() {
     return (
-      <View >
-        <view style={{ width: 120 }}>
+      <View className="indexContainer">
+        <view>
           <View>
             <Text className="at-article__h2">Dolphins</Text>
           </View>
           <View>
             <Text className="at-article__h3">{this.props.dolphins}</Text>
           </View>
-          <AtButton size='small' onClick={this.props.incrementDolphins}>+1</AtButton>
-          <AtButton size='small' onClick={this.props.incrementDolphinsAsync}>Async +1</AtButton>
+          <View className="at-row">
+            <AtButton className="at-col-6" size='small' onClick={this.props.incrementDolphins}>+1</AtButton>
+            <AtButton className="at-col-6" size='small' onClick={this.props.incrementDolphinsAsync}>Async +1</AtButton>
+          </View>
         </view>
-        <View style={{ width: 200 }}>
+        <View>
           <View>
             <Text className="at-article__h2">Sharks</Text>
           </View>
           <View>
             <Text className="at-article__h3">{this.props.sharks}</Text>
           </View>
-          <AtButton size='small' onClick={this.props.incrementSharks}>+1</AtButton>
-          <AtButton size='small' onClick={this.props.incrementSharksAsync}>Async +1</AtButton>
-          <AtButton size='small' onClick={this.props.incrementSharksAsync2}>Async +2</AtButton>
+          <View className="at-row">
+            <AtButton className="at-col-4" size='small' onClick={this.props.incrementSharks}>+1</AtButton>
+            <AtButton className="at-col-4" size='small' onClick={this.props.incrementSharksAsync}>Async +1</AtButton>
+            <AtButton className="at-col-4" size='small' onClick={this.props.incrementSharksAsync2}>Async +2</AtButton>
+          </View>
         </View>
         <View>
           <Text>Using Rematch Models</Text>
