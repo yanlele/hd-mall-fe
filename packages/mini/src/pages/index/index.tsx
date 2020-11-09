@@ -56,7 +56,7 @@ class Index extends Component<Props> {
             <AtButton className="at-col-4" size='small' onClick={this.props.incrementSharksAsync2}>Async +2</AtButton>
           </View>
         </View>
-        <View>
+        <View className="navigateButton">
           <Text>Using Rematch Models</Text>
         </View>
       </View>
