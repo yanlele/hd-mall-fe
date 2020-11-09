@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import './app.less';
-import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
-import { store } from './store';
+import 'taro-ui/dist/style/index.scss';
+import { store } from '@src/store'; // 全局引入一次即可
 
 class App extends Component {
 

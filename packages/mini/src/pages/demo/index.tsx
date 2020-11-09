@@ -7,7 +7,7 @@ const Demo: FC = () => {
 
   useEffect(() => {
     setParamsName(getCurrentInstance().router?.params.name as string);
-  }, [])
+  }, []);
 
   return (
     <View>

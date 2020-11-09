@@ -1,12 +1,6 @@
-import { Models } from '@rematch/core';
-import { dolphins } from './dolphins';
-import { sharks } from './sharks';
-import questions from './questions';
-
-export interface RootModel extends Models<RootModel> {
-  dolphins: typeof dolphins;
-  sharks: typeof sharks;
-  questions: typeof questions;
-}
+import { RootModel } from '@src/models/interface';
+import { dolphins } from '@src/models/dolphins';
+import questions from '@src/models/questions';
+import { sharks } from '@src/models/sharks';
 
 export const models: RootModel = { dolphins, sharks, questions };

@@ -1,7 +1,7 @@
-import { createModel } from '@rematch/core'
-import { RootModel } from '.'
+import { createModel } from '@rematch/core';
+import { RootModel } from '@src/models/interface';
 
-type QuestionType = 'boolean' | 'multiple' | 'mixed'
+type QuestionType = 'boolean' | 'multiple' | 'mixed';
 type QuestionsState = {
   questions: number[]
   amount: number
@@ -16,18 +16,18 @@ const questions = createModel<RootModel>()({
   } as QuestionsState,
   reducers: {
     setQuestions(state, payload: Array<number>) {
-      return { ...state, questions: payload }
+      return { ...state, questions: payload };
     },
   },
   effects: (dispatch) => ({
     async loadQuestions({ categoryId }: { categoryId: string }) {
       console.log(categoryId);
-      dispatch.questions.setQuestions([1, 2])
+      dispatch.questions.setQuestions([1, 2]);
     },
     async otherLoadQuestion() {
-      dispatch.questions.loadQuestions({ categoryId: '1' })
+      dispatch.questions.loadQuestions({ categoryId: '1' });
     },
   }),
-})
+});
 
-export default questions
+export default questions;

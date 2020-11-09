@@ -1,10 +1,10 @@
 import React, { FC, useEffect } from 'react';
 import { View, Text } from '@tarojs/components';
-import './index.less';
-import { RootState, Dispatch } from '../../store';
+import { RootState, Dispatch } from '@src/store';
 import { connect } from 'react-redux';
 import { AtButton } from 'taro-ui';
 import { navigateTo } from '@tarojs/taro';
+import './style.less';
 
 const mapState = (state: RootState) => ({
   dolphins: state.dolphins,
