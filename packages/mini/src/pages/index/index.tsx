@@ -24,11 +24,11 @@ type StateProps = ReturnType<typeof mapState>
 type DispatchProps = ReturnType<typeof mapDispatch>
 type Props = StateProps & DispatchProps
 
-const Index:FC<Props> = props =>  {
+const Index: FC<Props> = props => {
 
   useEffect(() => {
     console.log('this.props', props);
-  }, [])
+  }, []);
 
   return (
     <View className="indexPageContainer">
@@ -40,8 +40,8 @@ const Index:FC<Props> = props =>  {
           <Text className="at-article__h3">{props.dolphins}</Text>
         </View>
         <View className="at-row">
-          <AtButton className="at-col-6" size='small' onClick={props.incrementDolphins}>+1</AtButton>
-          <AtButton className="at-col-6" size='small' onClick={props.incrementDolphinsAsync}>Async +1</AtButton>
+          <AtButton className="at-col-6" size="small" onClick={props.incrementDolphins}>+1</AtButton>
+          <AtButton className="at-col-6" size="small" onClick={props.incrementDolphinsAsync}>Async +1</AtButton>
         </View>
       </view>
       <View>
@@ -52,22 +52,23 @@ const Index:FC<Props> = props =>  {
           <Text className="at-article__h3">{props.sharks}</Text>
         </View>
         <View className="at-row">
-          <AtButton className="at-col-4" size='small' onClick={props.incrementSharks}>+1</AtButton>
-          <AtButton className="at-col-4" size='small' onClick={props.incrementSharksAsync}>Async +1</AtButton>
-          <AtButton className="at-col-4" size='small' onClick={props.incrementSharksAsync2}>Async +2</AtButton>
+          <AtButton className="at-col-4" size="small" onClick={props.incrementSharks}>+1</AtButton>
+          <AtButton className="at-col-4" size="small" onClick={props.incrementSharksAsync}>Async +1</AtButton>
+          <AtButton className="at-col-4" size="small" onClick={props.incrementSharksAsync2}>Async +2</AtButton>
         </View>
       </View>
       <View className="navigateButton">
         <AtButton
           onClick={() => navigateTo({
-            url: '/pages/demo/index?name=yanle'
+            url: '/pages/demo/index?name=yanle',
           })}
-          type="primary">
+          type="primary"
+        >
           页面跳转
         </AtButton>
       </View>
     </View>
   );
-}
+};
 
 export default connect(mapState, mapDispatch)(Index);
