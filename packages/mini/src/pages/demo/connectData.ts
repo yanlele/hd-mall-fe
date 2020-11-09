@@ -7,7 +7,9 @@ export const demoMapState = (state: RootState) => ({
 
 export const demoMapDispatch = (dispatch: Dispatch) => ({
   incrementDolphins: () => dispatch.dolphins.increment(1),
-  incrementDolphinsAsync: dispatch.dolphins.incrementAsync,
+  subtractDolphinsAction: () => dispatch.dolphins.subtract(1),
+  incrementDolphinsAsync: () => dispatch.dolphins.incrementAsync(1),
+  subtractDolphinsAsync: () => dispatch.dolphins.incrementAsync(-1),
   incrementSharks: () => dispatch.sharks.increment(1),
   incrementSharksAsync: () => dispatch.sharks.incrementAsync(1),
   incrementSharksAsync2: () =>

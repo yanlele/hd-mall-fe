@@ -29,9 +29,9 @@ const Demo: FC<DemoProps> = props => {
         </View>
         <View className="at-row at-row--wrap">
           <AtButton className="at-col-6" size="small" onClick={props.incrementDolphins}>+1</AtButton>
+          <AtButton className="at-col-6" size="small" onClick={props.subtractDolphinsAction}>-1</AtButton>
           <AtButton className="at-col-6" size="small" onClick={props.incrementDolphinsAsync}>Async +1</AtButton>
-          <AtButton className="at-col-6" size="small" onClick={props.incrementDolphins}>+1</AtButton>
-          <AtButton className="at-col-6" size="small" onClick={props.incrementDolphinsAsync}>Async +1</AtButton>
+          <AtButton className="at-col-6" size="small" onClick={props.subtractDolphinsAsync}>Async -1</AtButton>
         </View>
       </view>
       <View>
