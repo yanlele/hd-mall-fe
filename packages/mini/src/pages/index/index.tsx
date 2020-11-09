@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button, Text } from '@tarojs/components';
+import { View, Text } from '@tarojs/components';
 import './index.less';
 import { RootState, Dispatch } from '../../store';
 import { connect } from 'react-redux';
@@ -42,8 +42,12 @@ class Index extends Component<Props> {
           <AtButton size='small' onClick={this.props.incrementDolphinsAsync}>Async +1</AtButton>
         </view>
         <View style={{ width: 200 }}>
-          <View><Text>Sharks</Text></View>
-          <View><Text>{this.props.sharks}</Text></View>
+          <View>
+            <Text className="at-article__h2">Sharks</Text>
+          </View>
+          <View>
+            <Text className="at-article__h3">{this.props.sharks}</Text>
+          </View>
           <AtButton size='small' onClick={this.props.incrementSharks}>+1</AtButton>
           <AtButton size='small' onClick={this.props.incrementSharksAsync}>Async +1</AtButton>
           <AtButton size='small' onClick={this.props.incrementSharksAsync2}>Async +2</AtButton>
