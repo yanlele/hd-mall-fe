@@ -1,10 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { getCurrentInstance } from '@tarojs/taro';
-import { Text, View, Swiper, SwiperItem } from '@tarojs/components';
+import { Text, View, Swiper, SwiperItem, Image } from '@tarojs/components';
 import { DemoProps } from '@src/pages/demo/interface';
 import { AtButton } from 'taro-ui';
 import { connect } from 'react-redux';
 import { demoMapDispatch, demoMapState } from '@src/pages/demo/connectData';
+import image01 from '@src/static/img/01.jpg';
+import image02 from '@src/static/img/02.jpg';
+import image03 from '@src/static/img/03.jpg';
 import './style.less';
 
 const Demo: FC<DemoProps> = props => {
@@ -59,15 +62,23 @@ const Demo: FC<DemoProps> = props => {
         autoplay
       >
         <SwiperItem>
-          <View className='demo-text-1'>1</View>
+          <View className='demo-text-1'>
+            <Image className="image" src={image01} />
+          </View>
         </SwiperItem>
         <SwiperItem>
-          <View className='demo-text-2'>2</View>
+          <View className='demo-text-2'>
+            <Image className="image" src={image02} />
+          </View>
         </SwiperItem>
         <SwiperItem>
-          <View className='demo-text-3'>3</View>
+          <View className='demo-text-3'>
+            <Image className="image" src={image03} />
+          </View>
         </SwiperItem>
       </Swiper>
+
+      <View>13123123123</View>
     </View>
   );
 };
