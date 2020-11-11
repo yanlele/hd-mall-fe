@@ -53,36 +53,26 @@ const Demo: FC<DemoProps> = props => {
       <View>
         <Text className="paramsName">{paramsName}</Text>
       </View>
-      <View style={{ borderRadius: '35px' }}>
-        <Swiper
-          indicatorColor='#999'
-          indicatorActiveColor='#333'
-          circular
-          indicatorDots
-          autoplay
-          skipHiddenItemLayout
-        >
-          <SwiperItem>
-            <View>
-              <Image className="image" src={image01} />
-            </View>
-          </SwiperItem>
-          <SwiperItem>
-            <View>
-              <Image className="image" src={image02} />
-            </View>
-          </SwiperItem>
-          <SwiperItem>
-            <View>
-              <Image className="image" src={image03} />
-            </View>
-          </SwiperItem>
-        </Swiper>
-      </View>
 
-      <View style={{ borderRadius: '35px' }}>
-        <Image className="image" src={image01} />
-      </View>
+      <Swiper
+        className="swiperContainer"
+        indicatorColor='#999'
+        indicatorActiveColor='#333'
+        circular
+        indicatorDots
+        autoplay
+        skipHiddenItemLayout
+      >
+        <SwiperItem>
+          <Image className="image" src={image01} />
+        </SwiperItem>
+        <SwiperItem>
+          <Image className="image" src={image02} />
+        </SwiperItem>
+        <SwiperItem>
+          <Image className="image" src={image03} />
+        </SwiperItem>
+      </Swiper>
     </View>
   );
 };
