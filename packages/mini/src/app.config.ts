@@ -2,6 +2,7 @@ export default {
   pages: [
     'pages/index/index',
     'pages/demo/index',
+    'pages/home/index',
   ],
   window: {
     backgroundTextStyle: 'light',

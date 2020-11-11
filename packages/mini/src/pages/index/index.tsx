@@ -7,16 +7,26 @@ import './style.less';
 const Index: FC = () => {
   return (
     <View className="indexPageContainer">
-      <View className="navigateButton">
-        <AtButton
-          onClick={() => navigateTo({
-            url: '/pages/demo/index?name=yanle',
-          })}
-          type="primary"
-        >
-          页面跳转
-        </AtButton>
-      </View>
+      <AtButton
+        className="navigateButton"
+        size="small"
+        onClick={() => navigateTo({
+          url: '/pages/demo/index?name=yanle',
+        })}
+        type="primary"
+      >
+        Demo
+      </AtButton>
+
+      <AtButton
+        className="navigateButton"
+        size="small"
+        onClick={() => navigateTo({
+          url: '/pages/home/index',
+        })}
+      >
+        Home
+      </AtButton>
     </View>
   );
 };
