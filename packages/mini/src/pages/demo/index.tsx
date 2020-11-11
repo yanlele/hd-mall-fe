@@ -53,32 +53,36 @@ const Demo: FC<DemoProps> = props => {
       <View>
         <Text className="paramsName">{paramsName}</Text>
       </View>
-      <Swiper
-        className='test-h'
-        indicatorColor='#999'
-        indicatorActiveColor='#333'
-        circular
-        indicatorDots
-        autoplay
-      >
-        <SwiperItem>
-          <View className='demo-text-1'>
-            <Image className="image" src={image01} />
-          </View>
-        </SwiperItem>
-        <SwiperItem>
-          <View className='demo-text-2'>
-            <Image className="image" src={image02} />
-          </View>
-        </SwiperItem>
-        <SwiperItem>
-          <View className='demo-text-3'>
-            <Image className="image" src={image03} />
-          </View>
-        </SwiperItem>
-      </Swiper>
+      <View style={{ borderRadius: '35px' }}>
+        <Swiper
+          indicatorColor='#999'
+          indicatorActiveColor='#333'
+          circular
+          indicatorDots
+          autoplay
+          skipHiddenItemLayout
+        >
+          <SwiperItem>
+            <View>
+              <Image className="image" src={image01} />
+            </View>
+          </SwiperItem>
+          <SwiperItem>
+            <View>
+              <Image className="image" src={image02} />
+            </View>
+          </SwiperItem>
+          <SwiperItem>
+            <View>
+              <Image className="image" src={image03} />
+            </View>
+          </SwiperItem>
+        </Swiper>
+      </View>
 
-      <View>13123123123</View>
+      <View style={{ borderRadius: '35px' }}>
+        <Image className="image" src={image01} />
+      </View>
     </View>
   );
 };
