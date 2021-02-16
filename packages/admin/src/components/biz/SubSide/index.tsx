@@ -4,6 +4,9 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import React from 'react';
 import { SubSideProps } from '@src/components/biz/SubSide/interface';
 import styles from './style.less';
+import { withRouter } from 'react-router';
+import { MenuClickEventHandler } from 'rc-menu/lib/interface';
+import { Path } from 'history';
 
 // const { SubMenu } = Menu;
 
@@ -25,6 +28,10 @@ class SubSide extends React.Component<SubSideProps> {
     });
   };
 
+  handleOnClick: MenuClickEventHandler = e => {
+    if (get(e, 'key')) this.props.history.push(get(e, 'key') as Path);
+  };
+
   render() {
     const list = this.props.pageRouteConfig;
 
@@ -34,6 +41,7 @@ class SubSide extends React.Component<SubSideProps> {
           {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
         </Button>
         <Menu
+          onClick={this.handleOnClick}
           defaultSelectedKeys={[get(list, '0.path')]}
           mode="inline"
           theme="dark"
@@ -60,4 +68,4 @@ class SubSide extends React.Component<SubSideProps> {
   }
 }
 
-export default SubSide;
+export default withRouter(SubSide);
