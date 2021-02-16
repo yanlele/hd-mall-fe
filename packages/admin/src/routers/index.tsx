@@ -19,8 +19,8 @@ const routes = (
         <Switch>
           <div className={styles.content}>
             {pageRouteConfig.map((route, index) => {
-              const { path, exact, component, title } = route;
-              return <Route key={index} exact={exact} path={path} component={component} title={title} />;
+              const { path, exact, component } = route;
+              return <Route key={index} exact={exact} path={path} component={component} />;
             })}
           </div>
         </Switch>

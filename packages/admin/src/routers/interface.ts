@@ -15,3 +15,11 @@ export interface StaticRoutes {
   title: string;
   metas?: any[];
 }
+
+export interface Pages {
+  [key: string]: Function;
+}
+
+export interface ExportPages {
+  [key: string]: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
+}
