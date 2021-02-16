@@ -18,7 +18,8 @@ export default function(options: AxiosRequestConfig) {
 
         if (data.code === 10002) {
           setTimeout(() => {
-            window.HistoryRouter.push('/category');
+            // todo 需要跳转到登录页面
+            window?.HistoryRouter?.push('/category');
           }, 3000);
         }
 
