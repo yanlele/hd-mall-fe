@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { message } from 'antd';
 
 export default function(options: AxiosRequestConfig) {
   const DefaultParams = {
@@ -11,6 +12,18 @@ export default function(options: AxiosRequestConfig) {
     const { headers, data } = response;
     const contentType = headers['content-type'];
     if (contentType && contentType.indexOf('application/json') !== -1) {
+      if (data.code != 0) {
+        //
+        message.error({ content: data.message, key: data.code });
+
+        if (data.code === 10002) {
+          setTimeout(() => {
+            window.HistoryRouter.push('/category');
+          }, 3000);
+        }
+
+        return Promise.reject(data);
+      }
       return Promise.resolve(data);
     }
     return Promise.reject(new Error('the response is not JSON'));

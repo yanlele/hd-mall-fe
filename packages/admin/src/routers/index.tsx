@@ -3,7 +3,6 @@ import {
   Route,
   Switch,
   BrowserRouter as Router,
-  Redirect,
   // HashRouter as Router,
 } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
@@ -23,9 +22,6 @@ const routes = (
               const { path, component } = route;
               return <Route key={index} exact={true} path={path} component={component} />;
             })}
-
-            {/* 默认到商品配置页面 */}
-            <Redirect to="/product" />
           </div>
         </Switch>
       </div>
