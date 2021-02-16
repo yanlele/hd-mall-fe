@@ -9,10 +9,12 @@ import {
   MailOutlined,
 } from '@ant-design/icons';
 import React from 'react';
+import { SubSideProps } from '@src/components/biz/SubSide/interface';
+import styles from './style.less';
 
 const { SubMenu } = Menu;
 
-class SubSide extends React.Component {
+class SubSide extends React.Component<SubSideProps> {
   state = {
     collapsed: false,
   };
@@ -24,8 +26,10 @@ class SubSide extends React.Component {
   };
 
   render() {
+    console.log(this.props.pageRouteConfig);
+
     return (
-      <div style={{ width: 256 }}>
+      <div className={styles.subSideContainer}>
         <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
           {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
         </Button>

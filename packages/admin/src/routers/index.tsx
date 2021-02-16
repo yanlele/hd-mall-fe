@@ -15,7 +15,7 @@ const routes = (
   <Router>
     <ConfigProvider locale={zhCN}>
       <div className={styles.appContainer}>
-        <SubSide />
+        <SubSide pageRouteConfig={pageRouteConfig} />
         <Switch>
           <div className={styles.content}>
             {pageRouteConfig.map((route, index) => {

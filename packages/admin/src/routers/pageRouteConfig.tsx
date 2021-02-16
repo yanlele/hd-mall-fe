@@ -1,15 +1,5 @@
 import pages from './pages';
-import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
-
-/*interface*/
-interface StaticRoutes {
-  path: string;
-  component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
-  exact: boolean;
-  title: string;
-  metas?: any[];
-}
+import { StaticRoutes } from '@src/routers/interface';
 
 const staticRotes: StaticRoutes[] = [
   {

@@ -24,7 +24,7 @@ module.exports = merge(baseConfig, {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[hash:base64:7]',
+              localIdentName: '[local]-[hash:base64:7]',
             },
           },
           'postcss-loader',
