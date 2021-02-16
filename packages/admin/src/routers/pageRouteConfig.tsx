@@ -3,7 +3,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
 /*interface*/
-interface IStaticRoutes {
+interface StaticRoutes {
   path: string;
   component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
   exact: boolean;
@@ -11,7 +11,7 @@ interface IStaticRoutes {
   metas?: any[];
 }
 
-const staticRotes: IStaticRoutes[] = [
+const staticRotes: StaticRoutes[] = [
   {
     path: '/',
     component: pages.HomeContainer,

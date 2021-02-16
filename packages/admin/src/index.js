@@ -9,6 +9,7 @@ import routers from './routers';
 import store from './store';
 
 const render = Component =>
+  // eslint-disable-next-line react/no-render-return-value
   ReactDOM.render(
     <AppContainer key={Math.random()}>
       <Provider store={store}>{Component}</Provider>

@@ -2,8 +2,8 @@ import React, { FC, useState } from 'react';
 import { Button } from 'antd';
 import { connect } from 'react-redux';
 import CountTimer from '../../components/CountTimer';
-import { StateModels } from '../../store/interface';
-import { CountAction, CountState } from '../../store/models/count';
+import { StateModels } from '@src/store/interface';
+import { CountAction, CountState } from '@src/store/models/count';
 import CounterComponent from '../../components/CounterComponent';
 
 interface Props {
@@ -42,7 +42,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   countAction: dispatch.count,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);

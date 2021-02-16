@@ -1,8 +1,8 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Button, Select, Input } from 'antd';
 import { connect } from 'react-redux';
-import { StateModels } from '../../store/interface';
-import { CountAction, CountState } from '../../store/models/count';
+import { StateModels } from '@src/store/interface';
+import { CountAction, CountState } from '@src/store/models/count';
 
 const { Option } = Select;
 
@@ -84,7 +84,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   countDispatch: dispatch.count,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(HomeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

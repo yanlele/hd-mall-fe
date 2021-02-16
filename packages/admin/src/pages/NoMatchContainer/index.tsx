@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Button} from 'antd';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Button } from 'antd';
 
 class NoMatchContainer extends Component {
   render() {
