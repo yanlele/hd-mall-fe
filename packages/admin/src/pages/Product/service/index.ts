@@ -4,7 +4,8 @@ import { createProductApiUrl, getProductListApiUrl } from '@src/pages/Product/se
 export const getProductListRequest = (data: any) =>
   request({
     url: getProductListApiUrl,
-    params: data,
+    method: 'post',
+    data,
   });
 
 export const createProductRequest = (data: any) =>

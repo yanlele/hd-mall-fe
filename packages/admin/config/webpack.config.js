@@ -80,16 +80,12 @@ module.exports = merge(baseConfig, {
     before(app) {
       ApiMocker(app, mockPath);
     },
-    proxy: {
-      '/api': {
-        target: '',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': '/',
-        },
-        logLevel: 'debug',
+    proxy: [
+      {
+        context: ['/api/admin'],
+        target: 'http://81.68.72.227:8081',
       },
-    },
+    ],
     clientLogLevel: 'error',
     port: 3001,
     contentBase: paths.PATH_DIST,
