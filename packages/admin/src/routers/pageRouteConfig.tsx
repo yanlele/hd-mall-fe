@@ -3,7 +3,7 @@ import { StaticRoutes } from '@src/routers/interface';
 
 const staticRotes: StaticRoutes[] = [
   {
-    path: '/',
+    path: '/home',
     component: pages.HomeContainer,
     exact: true,
     title: '主页',
@@ -17,11 +17,9 @@ const staticRotes: StaticRoutes[] = [
     metas: [],
   },
   {
-    path: '',
-    component: pages.NoMatchContainer,
-    exact: true,
-    title: '主页',
-    metas: [],
+    path: '/product',
+    component: pages.Product,
+    title: '商品配置',
   },
 ];
 

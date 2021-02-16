@@ -1,18 +1,11 @@
 import { Menu, Button } from 'antd';
-import {
-  AppstoreOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined,
-  MailOutlined,
-} from '@ant-design/icons';
+
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import React from 'react';
 import { SubSideProps } from '@src/components/biz/SubSide/interface';
 import styles from './style.less';
 
-const { SubMenu } = Menu;
+// const { SubMenu } = Menu;
 
 class SubSide extends React.Component<SubSideProps> {
   state = {
@@ -26,25 +19,20 @@ class SubSide extends React.Component<SubSideProps> {
   };
 
   render() {
-    console.log(this.props.pageRouteConfig);
+    const list = this.props.pageRouteConfig;
 
     return (
       <div className={styles.subSideContainer}>
         <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
           {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
         </Button>
-        <Menu
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          mode="inline"
-          theme="dark"
-          inlineCollapsed={this.state.collapsed}>
+        <Menu defaultSelectedKeys={['1']} mode="inline" theme="dark" inlineCollapsed={this.state.collapsed}>
           <Menu.Item key="1">Option 1</Menu.Item>
           <Menu.Item key="2">Option 2</Menu.Item>
           <Menu.Item key="3">Option 3</Menu.Item>
 
           {/*<SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
-            <Menu.Item key="5">Option 5</Menu.Item>
+            <Menu.Item key="5" icon={<ContainerOutlined />}>Option 5</Menu.Item>
             <Menu.Item key="6">Option 6</Menu.Item>
             <Menu.Item key="7">Option 7</Menu.Item>
             <Menu.Item key="8">Option 8</Menu.Item>

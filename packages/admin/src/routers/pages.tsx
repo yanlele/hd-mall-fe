@@ -5,6 +5,7 @@ const pages: Pages = {
   HomeContainer: () => import('../pages/HomeContainer'),
   NoMatchContainer: () => import('../pages/NoMatchContainer'),
   Counter: () => import('../pages/Counter'),
+  Product: () => import('@src/pages/product'),
 };
 
 const exportPages: ExportPages = {};

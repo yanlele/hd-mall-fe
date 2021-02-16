@@ -11,7 +11,7 @@ export interface LoadableComponentConfig {
 export interface StaticRoutes {
   path: string;
   component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
-  exact: boolean;
+  exact?: boolean;
   title: string;
   metas?: any[];
 }

@@ -3,6 +3,7 @@ import {
   Route,
   Switch,
   BrowserRouter as Router,
+  Redirect,
   // HashRouter as Router,
 } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
@@ -19,9 +20,12 @@ const routes = (
         <Switch>
           <div className={styles.content}>
             {pageRouteConfig.map((route, index) => {
-              const { path, exact, component } = route;
-              return <Route key={index} exact={exact} path={path} component={component} />;
+              const { path, component } = route;
+              return <Route key={index} exact={true} path={path} component={component} />;
             })}
+
+            {/* 默认到商品配置页面 */}
+            <Redirect to="/product" />
           </div>
         </Switch>
       </div>
