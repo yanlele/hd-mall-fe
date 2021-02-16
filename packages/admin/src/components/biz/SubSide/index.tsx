@@ -1,5 +1,5 @@
 import { Menu, Button } from 'antd';
-
+import { map, get } from 'lodash';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import React from 'react';
 import { SubSideProps } from '@src/components/biz/SubSide/interface';
@@ -18,6 +18,13 @@ class SubSide extends React.Component<SubSideProps> {
     });
   };
 
+  handleRenderMenuItem = () => {
+    const list = this.props.pageRouteConfig;
+    return map(list, item => {
+      return <Menu.Item key={item.path}>{item.title}</Menu.Item>;
+    });
+  };
+
   render() {
     const list = this.props.pageRouteConfig;
 
@@ -26,10 +33,12 @@ class SubSide extends React.Component<SubSideProps> {
         <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
           {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
         </Button>
-        <Menu defaultSelectedKeys={['1']} mode="inline" theme="dark" inlineCollapsed={this.state.collapsed}>
-          <Menu.Item key="1">Option 1</Menu.Item>
-          <Menu.Item key="2">Option 2</Menu.Item>
-          <Menu.Item key="3">Option 3</Menu.Item>
+        <Menu
+          defaultSelectedKeys={[get(list, '0.path')]}
+          mode="inline"
+          theme="dark"
+          inlineCollapsed={this.state.collapsed}>
+          {this.handleRenderMenuItem()}
 
           {/*<SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
             <Menu.Item key="5" icon={<ContainerOutlined />}>Option 5</Menu.Item>
