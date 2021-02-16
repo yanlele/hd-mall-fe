@@ -11,7 +11,7 @@
     "ncu": "ncu",
     "test": "npm run test",
     "dev": "npm run start",
-    "start": "webpack-dev-server --config ./config/webpack.config.js -w --colors",
+    "start": "webpack-dev-server --config ./config/webpack.config.js -w --colors --display-error-details --info-verbosity=none",
     "build": "NODE_ENV=production webpack --config ./config/webpack.config.prod.js --colors --display-error-details --info-verbosity=none",
     "preview": "cd dist && http-server -p 9527 -g -o"
   },

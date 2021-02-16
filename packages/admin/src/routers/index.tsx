@@ -8,16 +8,21 @@ import {
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import pageRouteConfig from './pageRouteConfig';
+import SubSide from '@src/components/biz/SubSide';
+import styles from './style.less';
 
 const routes = (
   <Router>
     <ConfigProvider locale={zhCN}>
-      <Switch>
-        {pageRouteConfig.map((route, index) => {
-          const { path, exact, component, title } = route;
-          return <Route key={index} exact={exact} path={path} component={component} title={title} />;
-        })}
-      </Switch>
+      <div className={styles.appContainer}>
+        <SubSide />
+        <Switch>
+          {pageRouteConfig.map((route, index) => {
+            const { path, exact, component, title } = route;
+            return <Route key={index} exact={exact} path={path} component={component} title={title} />;
+          })}
+        </Switch>
+      </div>
     </ConfigProvider>
   </Router>
 );

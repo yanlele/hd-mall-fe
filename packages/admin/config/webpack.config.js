@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ApiMocker = require('webpack-api-mocker2');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const paths = require('./paths');
 const baseConfig = require('./webpack.config.base.js');
@@ -53,25 +53,25 @@ module.exports = merge(baseConfig, {
     new MiniCssExtractPlugin('css/[name].css'),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new HardSourceWebpackPlugin({
-      cacheDirectory: path.resolve(__dirname, '../node_modules/.cache/hard-source/[confighash]'),
-      configHash: function(webpackConfig) {
-        return require('node-object-hash')({ sort: false }).hash(webpackConfig);
-      },
-      environmentHash: {
-        root: process.cwd(),
-        directories: [],
-        files: ['package-lock.json', 'yarn.lock'],
-      },
-      info: {
-        mode: 'none',
-        level: 'debug',
-      },
-      cachePrune: {
-        maxAge: 6 * 24 * 60 * 60 * 1000,
-        sizeThreshold: 50 * 1024 * 1024,
-      },
-    }),
+    // new HardSourceWebpackPlugin({
+    //   cacheDirectory: path.resolve(__dirname, '../node_modules/.cache/hard-source/[confighash]'),
+    //   configHash: function(webpackConfig) {
+    //     return require('node-object-hash')({ sort: false }).hash(webpackConfig);
+    //   },
+    //   environmentHash: {
+    //     root: process.cwd(),
+    //     directories: [],
+    //     files: ['package-lock.json', 'yarn.lock'],
+    //   },
+    //   info: {
+    //     mode: 'none',
+    //     level: 'debug',
+    //   },
+    //   cachePrune: {
+    //     maxAge: 6 * 24 * 60 * 60 * 1000,
+    //     sizeThreshold: 50 * 1024 * 1024,
+    //   },
+    // }),
   ],
   optimization: {
     runtimeChunk: true,

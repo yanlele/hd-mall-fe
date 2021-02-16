@@ -1,5 +1,6 @@
 import React from 'react';
 import Loadable from 'react-loadable';
+import { LoadableComponentConfig } from '@src/routers/interface';
 // const Loadable = require('react-loadable');
 const Loading = (props: { error: any }) => {
   const { error } = props;
@@ -10,20 +11,16 @@ const Loading = (props: { error: any }) => {
       </div>
     );
   }
-  return <div> </div>;
+  return <div />;
 };
 
 const loadableComponent = (loader: any, render?: any) => {
-  const config: {
-    loader: any;
-    loading: any;
-    delay: number;
-    render?: any;
-  } = {
+  const config: LoadableComponentConfig = {
     loader,
     loading: Loading,
     delay: 1000,
   };
+
   if (render) {
     config.render = render;
   }
