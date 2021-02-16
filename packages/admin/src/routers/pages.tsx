@@ -5,8 +5,8 @@ const pages: Pages = {
   // HomeContainer: () => import('../pages/HomeContainer'),
   // NoMatchContainer: () => import('../pages/NoMatchContainer'),
   // Counter: () => import('../pages/Counter'),
-  Product: () => import('@src/pages/product'),
-  Category: () => import('@src/pages/category'),
+  Product: () => import('@src/pages/Product'),
+  Category: () => import('@src/pages/Category'),
 };
 
 const exportPages: ExportPages = {};

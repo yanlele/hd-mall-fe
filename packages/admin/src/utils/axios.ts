@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-export default function(options: object) {
+export default function(options: AxiosRequestConfig) {
   const DefaultParams = {
     url: '',
     method: 'get',
