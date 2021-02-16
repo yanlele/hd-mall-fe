@@ -17,10 +17,12 @@ const routes = (
       <div className={styles.appContainer}>
         <SubSide />
         <Switch>
-          {pageRouteConfig.map((route, index) => {
-            const { path, exact, component, title } = route;
-            return <Route key={index} exact={exact} path={path} component={component} title={title} />;
-          })}
+          <div className={styles.content}>
+            {pageRouteConfig.map((route, index) => {
+              const { path, exact, component, title } = route;
+              return <Route key={index} exact={exact} path={path} component={component} title={title} />;
+            })}
+          </div>
         </Switch>
       </div>
     </ConfigProvider>
