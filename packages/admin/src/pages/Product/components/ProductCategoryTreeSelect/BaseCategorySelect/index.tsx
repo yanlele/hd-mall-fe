@@ -10,6 +10,7 @@ const BaseCategorySelect: FC<BaseCategorySelectProps> = props => {
   const { value, onChange } = props;
   const { list } = useGetProductCategoryList();
 
+  // @ts-ignore
   const handleOnChange = (value: any) => onChange(value);
 
   const handleRender = useMemo(() => {

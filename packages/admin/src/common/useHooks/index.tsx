@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { get } from 'lodash';
+import { message } from 'antd';
 
 export const useTitleSet = (title: string, props: any) => {
   useEffect(() => {
@@ -13,4 +14,23 @@ export const useTitleSet = (title: string, props: any) => {
       window.HistoryRouter = null;
     };
   }, []);
+};
+
+export const useRequest = (request: Promise<any>, handleFunction?: Function) => {
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState();
+  request
+    .then(res => {
+      const data = res.data;
+      if (handleFunction) setResult(handleFunction(res));
+      else setResult(data);
+    })
+    .catch(e => {
+      message.error(e.message);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+
+  return { result, loading };
 };

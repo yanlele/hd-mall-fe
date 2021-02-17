@@ -1,4 +1,4 @@
 export interface BaseCategorySelectProps {
-  value: any;
-  onChange: Function;
+  value?: any;
+  onChange?: Function;
 }
