@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useState } from 'react';
 import { TreeSelect, Row, Col } from 'antd';
-import { map, get, isEmpty } from 'lodash';
+import { map, get } from 'lodash';
 import { useGetProductCategoryList } from '@src/pages/Product/components/ProductCategoryTreeSelect/userHooks';
 import { getProductListRequest } from '@src/pages/Product/service';
 import { ProductCategoryTreeSelectProps } from '@src/pages/Product/components/ProductCategoryTreeSelect/interface';
