@@ -13,6 +13,7 @@ import { Path } from 'history';
 class SubSide extends React.Component<SubSideProps> {
   state = {
     collapsed: false,
+    defaultSelectedKeys: [],
   };
 
   toggleCollapsed = () => {
@@ -29,12 +30,17 @@ class SubSide extends React.Component<SubSideProps> {
   };
 
   handleOnClick: MenuClickEventHandler = e => {
-    if (get(e, 'key')) this.props.history.push(get(e, 'key') as Path);
+    if (get(e, 'key')) {
+      this.props.history.push(get(e, 'key') as Path);
+      this.setState({ defaultSelectedKeys: [window.location.pathname] });
+    }
   };
 
-  render() {
-    const list = this.props.pageRouteConfig;
+  componentDidMount() {
+    this.setState({ defaultSelectedKeys: [window.location.pathname] });
+  }
 
+  render() {
     return (
       <div className={styles.subSideContainer}>
         <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
@@ -42,7 +48,7 @@ class SubSide extends React.Component<SubSideProps> {
         </Button>
         <Menu
           onClick={this.handleOnClick}
-          defaultSelectedKeys={[get(list, '0.path')]}
+          selectedKeys={this.state.defaultSelectedKeys}
           mode="inline"
           theme="dark"
           inlineCollapsed={this.state.collapsed}>

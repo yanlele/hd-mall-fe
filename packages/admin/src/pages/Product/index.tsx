@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { createProductRequest, getProductListRequest } from '@src/pages/Product/service';
 import { ProductProps } from '@src/pages/Product/interface';
 import { useTitleSet } from '@src/common/useHooks';
+import loginWrapper from '@src/components/HOC/loginWrapper';
 
 const Product: FC<ProductProps> = props => {
   useEffect(() => {
@@ -21,4 +22,4 @@ const Product: FC<ProductProps> = props => {
   );
 };
 
-export default Product;
+export default loginWrapper(Product);

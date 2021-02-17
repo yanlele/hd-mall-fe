@@ -14,14 +14,14 @@ export default function(options: AxiosRequestConfig) {
     if (contentType && contentType.indexOf('application/json') !== -1) {
       if (data.code != 0) {
         //
-        message.error({ content: data.message, key: data.code });
+        message.error({ content: `${data.message}，请重新登录！`, key: data.code });
 
-        if (data.code === 10002) {
-          setTimeout(() => {
-            // todo 需要跳转到登录页面
-            window?.HistoryRouter?.push('/category');
-          }, 3000);
-        }
+        // if (data.code === 10002) {
+        //   setTimeout(() => {
+        //     // todo 需要跳转到登录页面
+        //     // window?.HistoryRouter?.push('/category');
+        //   }, 3000);
+        // }
 
         return Promise.reject(data);
       }
