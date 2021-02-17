@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { Tabs } from 'antd';
 import { AppstoreAddOutlined, AndroidOutlined } from '@ant-design/icons';
-import ProductList from '@src/pages/Product/components/ProductList';
+import ProductListTab from '@src/pages/Product/components/ProductListTab';
+import CreateProductTab from '@src/pages/Product/components/CreateProductTab';
 
 const { TabPane } = Tabs;
 
@@ -16,17 +17,17 @@ const TabContainer: FC = () => {
           </span>
         }
         key="1">
-        <ProductList />
+        <ProductListTab />
       </TabPane>
       <TabPane
         tab={
           <span>
             <AndroidOutlined />
-            Tab 2
+            创建商品
           </span>
         }
         key="2">
-        Tab 2
+        <CreateProductTab />
       </TabPane>
     </Tabs>
   );

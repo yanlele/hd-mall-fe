@@ -3,7 +3,7 @@ import ProductCategoryTreeSelect from '@src/pages/Product/components/ProductCate
 import ProductTableList from '@src/pages/Product/components/ProductTableList';
 import { ProductDetail } from '@src/pages/Product/service/interface';
 
-const ProductList: FC = () => {
+const ProductListTab: FC = () => {
   const [productList, setProductList] = useState<ProductDetail[]>([]);
 
   return (
@@ -14,4 +14,4 @@ const ProductList: FC = () => {
   );
 };
 
-export default ProductList;
+export default ProductListTab;
