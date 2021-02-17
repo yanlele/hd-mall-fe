@@ -6,3 +6,5 @@ export const commonFormLayout = {
 export const commonFormTailLayout = {
   wrapperCol: { offset: 4, span: 20 },
 };
+
+export const ApiPrefix = '/api/admin';
