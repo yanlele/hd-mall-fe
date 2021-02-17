@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 // import { createProductRequest, getProductListRequest } from '@src/pages/Product/service';
 import { ProductProps } from '@src/pages/Product/interface';
 import { useTitleSet } from '@src/common/useHooks';
@@ -6,13 +6,6 @@ import loginWrapper from '@src/components/HOC/loginWrapper';
 import TabContainer from '@src/pages/Product/components/TabContainer';
 
 const Product: FC<ProductProps> = props => {
-  useEffect(() => {
-    // getProductListRequest({ name: 'yanle' });
-    // createProductRequest({
-    //   age: 15,
-    // });
-  });
-
   useTitleSet('商品配置', props);
 
   return (

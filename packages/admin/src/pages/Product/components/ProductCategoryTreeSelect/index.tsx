@@ -1,15 +1,24 @@
 import React, { FC, useMemo, useState } from 'react';
 import { TreeSelect, Row, Col } from 'antd';
-import { map } from 'lodash';
+import { map, get, isEmpty } from 'lodash';
 import { useGetProductCategoryList } from '@src/pages/Product/components/ProductCategoryTreeSelect/userHooks';
+import { getProductListRequest } from '@src/pages/Product/service';
+import { ProductCategoryTreeSelectProps } from '@src/pages/Product/components/ProductCategoryTreeSelect/interface';
 
 const { TreeNode } = TreeSelect;
 
-const ProductCategoryTreeSelect: FC = () => {
+const ProductCategoryTreeSelect: FC<ProductCategoryTreeSelectProps> = props => {
   const [value, setValue] = useState();
 
-  const handleOnChange = (value: any) => {
+  const handleOnChange = async (value: any) => {
     setValue(value);
+
+    // 请求获取
+    if (!value) props.setProductList([]);
+    else {
+      const res = await getProductListRequest({ category_id: value, page: 1, page_size: 100 });
+      props.setProductList(get(res, 'data.list', []));
+    }
   };
 
   const { list } = useGetProductCategoryList();
