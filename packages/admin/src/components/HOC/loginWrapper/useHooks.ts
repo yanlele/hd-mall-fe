@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getUserInfoRequest } from '@src/pages/User/service';
 import { UseGetUserInfoOptions } from '@src/components/HOC/loginWrapper/interface';
 
 export const useGetUserInfo = (options: UseGetUserInfoOptions) => {
-  const { setUserInfo } = options;
-  const [auth, setAuth] = useState(true);
+  const { setUserInfo, setAuth } = options;
   useEffect(() => {
     getUserInfoRequest()
       .then(res => {
@@ -22,6 +21,4 @@ export const useGetUserInfo = (options: UseGetUserInfoOptions) => {
         // console.log('finally');
       });
   }, []);
-
-  return { auth };
 };
