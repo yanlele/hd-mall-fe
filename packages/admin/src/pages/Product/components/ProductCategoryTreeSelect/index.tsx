@@ -39,7 +39,7 @@ const ProductCategoryTreeSelect: FC<ProductCategoryTreeSelectProps> = props => {
   }, [list]);
 
   return (
-    <Row>
+    <Row style={{ marginBottom: '12px' }}>
       <Col span={4}>请选择商品分类</Col>
       <Col span={8}>
         <TreeSelect

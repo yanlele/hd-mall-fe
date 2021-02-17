@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Divider, Image, Popconfirm, Space, Table, Typography } from 'antd';
+import { Image, Table } from 'antd';
 import { ProductTableListProps } from '@src/pages/Product/components/ProductTableList/interface';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import TableAction from '@src/pages/Product/components/TableAction';
+import { ProductDetail } from '@src/pages/Product/service/interface';
 
 const ProductTableList: FC<ProductTableListProps> = props => {
   const columns = [
@@ -10,8 +10,8 @@ const ProductTableList: FC<ProductTableListProps> = props => {
       title: '主图',
       dataIndex: 'primary_image',
       key: 'primary_image',
-      render: (text: any) => {
-        return <Image width={200} src={text} />;
+      render: (text: string) => {
+        return <Image width={160} src={text} />;
       },
     },
     {
@@ -52,7 +52,7 @@ const ProductTableList: FC<ProductTableListProps> = props => {
     {
       title: 'Action',
       key: 'action',
-      render: (_: string, record: any) => <TableAction record={record} />,
+      render: (_: string, record: ProductDetail) => <TableAction record={record} />,
     },
   ];
 
