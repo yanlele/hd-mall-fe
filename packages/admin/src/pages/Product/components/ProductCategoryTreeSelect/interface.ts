@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 
 export interface ProductCategoryTreeSelectProps {
-  setProductList: Dispatch<SetStateAction<any[]>>;
+  setProductList?: Dispatch<SetStateAction<any[]>>;
 }
