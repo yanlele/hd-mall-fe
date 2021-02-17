@@ -16,7 +16,6 @@ const CreateProductTab: FC = () => {
   // 提交
   const handleOnFinish = async (value: any) => {
     value.primary_image = get(value, 'primary_image.0', '');
-    console.log(value);
     setSubmitLoading(true);
     try {
       await createProductRequest(value);
@@ -109,7 +108,7 @@ const CreateProductTab: FC = () => {
         </Col>
       </Row>
 
-      <Form.Item>
+      <Form.Item wrapperCol={{ offset: 2, span: 22 }}>
         <Button loading={submitLoading} type="primary" htmlType="submit">
           创建
         </Button>

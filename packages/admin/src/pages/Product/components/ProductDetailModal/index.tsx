@@ -8,6 +8,7 @@ const ProductDetailModal: FC<ProductDetailModalProps> = props => {
 
   return (
     <Modal
+      destroyOnClose
       className={styles.productDetailModalContainer}
       title={record.name}
       centered

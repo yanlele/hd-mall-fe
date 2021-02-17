@@ -1,14 +1,18 @@
 import React, { FC, useState } from 'react';
-import { Upload, Button } from 'antd';
+import { Upload, Button, Space } from 'antd';
 import { get, map, compact, isBoolean } from 'lodash';
 import { UploadOutlined } from '@ant-design/icons';
 import { UploadFile } from 'antd/lib/upload/interface';
 import { ApiPrefix } from '@src/common/consts';
 import { UploadFileComponentProps } from '@src/components/biz/UploadFileComponent/interface';
+import UploadFileInputModal from '@src/components/biz/UploadFileComponent/UploadFileInputModal';
 
 const UploadFileComponent: FC<UploadFileComponentProps> = props => {
   const { onChange, multiple } = props;
 
+  const isMultiple = isBoolean(multiple) ? multiple : false;
+
+  const [visible, setVisible] = useState(false);
   const [fileList, setFileList] = useState<UploadFile[]>([
     // {
     //   name: 'string', // 展示的name
@@ -43,13 +47,21 @@ const UploadFileComponent: FC<UploadFileComponentProps> = props => {
     // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
     action: `${ApiPrefix}/upload`,
     onChange: handleChange,
-    multiple: isBoolean(multiple) ? multiple : false,
+    multiple: isMultiple,
   };
 
   return (
-    <Upload {...uploadProps} fileList={fileList}>
-      <Button icon={<UploadOutlined />}>Upload</Button>
-    </Upload>
+    <>
+      <Space size="small">
+        <Upload {...uploadProps} fileList={fileList}>
+          <Button icon={<UploadOutlined />}>Upload</Button>
+        </Upload>
+
+        <Button onClick={() => setVisible(true)}>直接通过 URL 链接上传文件</Button>
+
+        <UploadFileInputModal visible={visible} setVisible={setVisible} />
+      </Space>
+    </>
   );
 };
 
