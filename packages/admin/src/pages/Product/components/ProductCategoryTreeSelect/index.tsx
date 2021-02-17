@@ -1,22 +1,24 @@
 import React, { FC, useState } from 'react';
 import { Row, Col } from 'antd';
-import { get } from 'lodash';
-import { getProductListRequest } from '@src/pages/Product/service';
 import { ProductCategoryTreeSelectProps } from '@src/pages/Product/components/ProductCategoryTreeSelect/interface';
 import BaseCategorySelect from '@src/pages/Product/components/ProductCategoryTreeSelect/BaseCategorySelect';
+import queryString from 'query-string';
+import { handleGetListHelper } from '@src/pages/Product/components/ProductListTab/helper';
 
 const ProductCategoryTreeSelect: FC<ProductCategoryTreeSelectProps> = props => {
+  const { setGetListLoading, setProductList } = props;
   const [value, setValue] = useState();
 
   const handleOnChange = async (value: any) => {
     setValue(value);
 
     // 请求获取
-    if (props.setProductList) {
-      if (!value) props.setProductList([]);
+    if (setProductList) {
+      if (!value) setProductList([]);
       else {
-        const res = await getProductListRequest({ category_id: value, page: 1, page_size: 100 });
-        props.setProductList(get(res, 'data.list', []));
+        const query = queryString.stringify({ category_id: value });
+        window.HistoryRouter.replace(`${window.location.pathname}?${query}`);
+        await handleGetListHelper({ setGetListLoading, setProductList });
       }
     }
   };

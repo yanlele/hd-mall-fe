@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
-import { Image, Table } from 'antd';
+import { Image, Table, Spin } from 'antd';
 import { ProductTableListProps } from '@src/pages/Product/components/ProductTableList/interface';
 import TableAction from '@src/pages/Product/components/TableAction';
 import { ProductDetail } from '@src/pages/Product/service/interface';
 
 const ProductTableList: FC<ProductTableListProps> = props => {
+  const { getListLoading, setProductList, setGetListLoading } = props;
   const columns = [
     {
       title: '主图',
@@ -52,11 +53,17 @@ const ProductTableList: FC<ProductTableListProps> = props => {
     {
       title: 'Action',
       key: 'action',
-      render: (_: string, record: ProductDetail) => <TableAction record={record} />,
+      render: (_: string, record: ProductDetail) => (
+        <TableAction setGetListLoading={setGetListLoading} setProductList={setProductList} record={record} />
+      ),
     },
   ];
 
-  return <Table columns={columns} dataSource={props.productList} />;
+  return (
+    <Spin spinning={getListLoading}>
+      <Table columns={columns} dataSource={props.productList} />
+    </Spin>
+  );
 };
 
 export default ProductTableList;

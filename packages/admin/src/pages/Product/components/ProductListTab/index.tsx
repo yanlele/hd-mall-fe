@@ -5,11 +5,17 @@ import { ProductDetail } from '@src/pages/Product/service/interface';
 
 const ProductListTab: FC = () => {
   const [productList, setProductList] = useState<ProductDetail[]>([]);
+  const [getListLoading, setGetListLoading] = useState(false);
 
   return (
     <div>
-      <ProductCategoryTreeSelect setProductList={setProductList} />
-      <ProductTableList productList={productList} />
+      <ProductCategoryTreeSelect setGetListLoading={setGetListLoading} setProductList={setProductList} />
+      <ProductTableList
+        setGetListLoading={setGetListLoading}
+        setProductList={setProductList}
+        getListLoading={getListLoading}
+        productList={productList}
+      />
     </div>
   );
 };
