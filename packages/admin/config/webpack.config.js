@@ -81,10 +81,10 @@ module.exports = merge(baseConfig, {
       ApiMocker(app, mockPath);
     },
     proxy: [
-      {
-        context: ['/api/admin/product/create'],
-        target: 'http://127.0.0.1:8081',
-      },
+      // {
+      //   context: ['/api/admin/product/create'],
+      //   target: 'http://127.0.0.1:8081',
+      // },
       {
         context: ['/api/admin'],
         target: 'http://81.68.72.227:8081',
