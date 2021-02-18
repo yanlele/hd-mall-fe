@@ -1,12 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Spin, Table } from 'antd';
-import { useGetProductCategoryList as useGetCategoryList } from '@src/pages/Product/components/ProductCategoryTreeSelect/userHooks';
 import TableAction from '@src/pages/Category/components/CategoryTable/TableAction';
 import { CategoryItem } from '@src/pages/Category/service/interface';
+import { useRecoilValue } from 'recoil';
+import { categoryListModel } from '@src/pages/Category/models';
+import { useGetCategoryList } from '@src/pages/Category/userHooks';
 
 const CategoryTable: FC = () => {
   const [tableKey, setTableKey] = useState(1);
-  const { list, loading } = useGetCategoryList([tableKey]);
+
+  useGetCategoryList();
+  const { list, loading } = useRecoilValue(categoryListModel);
 
   const columns = [
     {
