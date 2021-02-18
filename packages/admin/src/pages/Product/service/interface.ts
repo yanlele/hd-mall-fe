@@ -19,3 +19,12 @@ export interface ProductDetail {
   tag: string;
   status: number;
 }
+
+export interface StaticImage {
+  id: number;
+  product_id: number;
+  type: number;
+  file_name: string;
+  url: string;
+  link: string;
+}
