@@ -67,7 +67,7 @@ const UploadFileComponent: FC<UploadFileComponentProps> = props => {
       </Space>
 
       <UploadFileInputModal
-        multiple={false}
+        multiple={isMultiple}
         value={value}
         onChange={onChange}
         visible={visible}

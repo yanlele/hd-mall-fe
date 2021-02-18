@@ -94,8 +94,9 @@ const CreateProductTab: FC = () => {
         </Col>
       </Row>
 
-      <Divider orientation="left">主图上传</Divider>
+      {/* todo 基本参数 */}
 
+      <Divider orientation="left">主图上传</Divider>
       <Row>
         <Col span={12}>
           <Form.Item
@@ -104,6 +105,32 @@ const CreateProductTab: FC = () => {
             // rules={[{ required: true, message: '请上传主图！' }]}
           >
             <UploadFileComponent formRef={formRef} />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Divider orientation="left">商品图上传</Divider>
+      <Row>
+        <Col span={12}>
+          <Form.Item
+            label="商品图"
+            name="product_image_list"
+            // rules={[{ required: true, message: '请上传主图！' }]}
+          >
+            <UploadFileComponent multiple formRef={formRef} />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Divider orientation="left">详情图上传</Divider>
+      <Row>
+        <Col span={12}>
+          <Form.Item
+            label="详情图"
+            name="product_detail_list"
+            // rules={[{ required: true, message: '请上传主图！' }]}
+          >
+            <UploadFileComponent multiple formRef={formRef} />
           </Form.Item>
         </Col>
       </Row>
