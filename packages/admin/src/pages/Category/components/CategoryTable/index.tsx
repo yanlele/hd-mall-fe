@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Spin, Table } from 'antd';
 import TableAction from '@src/pages/Category/components/CategoryTable/TableAction';
 import { CategoryItem } from '@src/pages/Category/service/interface';

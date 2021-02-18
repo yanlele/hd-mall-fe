@@ -8,3 +8,8 @@ export const categoryListModel = atom<CategoryListModel>({
     list: [],
   },
 });
+
+export const categoryModalVisibleModel = atom<boolean>({
+  key: 'categoryModalVisibleModel',
+  default: false,
+});
