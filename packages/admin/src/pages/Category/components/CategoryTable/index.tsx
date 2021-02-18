@@ -5,8 +5,8 @@ import TableAction from '@src/pages/Category/components/CategoryTable/TableActio
 import { CategoryItem } from '@src/pages/Category/service/interface';
 
 const CategoryTable: FC = () => {
-  const { list } = useGetCategoryList();
   const [tableKey, setTableKey] = useState(1);
+  const { list, loading } = useGetCategoryList([tableKey]);
 
   const columns = [
     {
@@ -39,7 +39,7 @@ const CategoryTable: FC = () => {
   ];
 
   return (
-    <Spin spinning={false}>
+    <Spin spinning={loading}>
       <Table pagination={false} columns={columns} dataSource={list} />
     </Spin>
   );
