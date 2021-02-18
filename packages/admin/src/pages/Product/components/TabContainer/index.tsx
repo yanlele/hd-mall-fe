@@ -12,22 +12,22 @@ const TabContainer: FC = () => {
       <TabPane
         tab={
           <span>
-            <AndroidOutlined />
-            创建商品
-          </span>
-        }
-        key="2">
-        <CreateProductTab />
-      </TabPane>
-      <TabPane
-        tab={
-          <span>
             <AppstoreAddOutlined />
             所有商品
           </span>
         }
         key="1">
         <ProductListTab />
+      </TabPane>
+      <TabPane
+        tab={
+          <span>
+            <AndroidOutlined />
+            创建商品
+          </span>
+        }
+        key="2">
+        <CreateProductTab />
       </TabPane>
     </Tabs>
   );

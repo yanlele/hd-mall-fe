@@ -7,6 +7,7 @@ import StatusSelect from '@src/pages/Product/components/CreateProductTab/StatusS
 import UploadFileComponent from '@src/components/biz/UploadFileComponent';
 import { createProductRequest } from '@src/pages/Product/service';
 import { handleCreateDataHelper } from '@src/pages/Product/components/CreateProductTab/helper';
+import BaseParams from '@src/pages/Product/components/CreateProductTab/BaseParams';
 // import { createProductRequest } from '@src/pages/Product/service';
 
 const CreateProductTab: FC = () => {
@@ -97,6 +98,12 @@ const CreateProductTab: FC = () => {
       </Row>
 
       {/* todo 基本参数 */}
+      <Divider orientation="left">基本参数</Divider>
+      <Row>
+        <Col offset={2} span={12}>
+          <BaseParams />
+        </Col>
+      </Row>
 
       <Divider orientation="left">主图上传</Divider>
       <Row>

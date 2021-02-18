@@ -19,5 +19,7 @@ export const handleCreateDataHelper = (value: any) => {
     url: item.url,
     type: 2,
   }));
+
+  value.params = JSON.stringify(value.params);
   return value;
 };
