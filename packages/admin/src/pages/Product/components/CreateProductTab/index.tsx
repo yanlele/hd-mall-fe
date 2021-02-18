@@ -5,8 +5,8 @@ import styles from './style.less';
 import BaseCategorySelect from '@src/pages/Product/components/ProductCategoryTreeSelect/BaseCategorySelect';
 import StatusSelect from '@src/pages/Product/components/CreateProductTab/StatusSelect';
 import UploadFileComponent from '@src/components/biz/UploadFileComponent';
-import { get } from 'lodash';
 import { createProductRequest } from '@src/pages/Product/service';
+import { handleCreateDataHelper } from '@src/pages/Product/components/CreateProductTab/helper';
 // import { createProductRequest } from '@src/pages/Product/service';
 
 const CreateProductTab: FC = () => {
@@ -15,12 +15,14 @@ const CreateProductTab: FC = () => {
 
   // 提交
   const handleOnFinish = async (value: any) => {
-    value.primary_image = get(value, 'primary_image.0.url', '');
+    const rebuildValue = handleCreateDataHelper(value);
+
     setSubmitLoading(true);
     try {
-      await createProductRequest(value);
+      await createProductRequest(rebuildValue);
       message.success('创建成功');
       setSubmitLoading(false);
+
       formRef.current?.resetFields();
     } catch (e) {
       setSubmitLoading(false);
@@ -127,7 +129,7 @@ const CreateProductTab: FC = () => {
         <Col span={12}>
           <Form.Item
             label="详情图"
-            name="product_detail_list"
+            name="product_detail_image_list"
             // rules={[{ required: true, message: '请上传主图！' }]}
           >
             <UploadFileComponent multiple formRef={formRef} />
