@@ -3,11 +3,15 @@ import { Button, Divider, Space, Typography, Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { deleteProductRequest } from '@src/pages/Product/service';
 import { CategoryTableAction } from '@src/pages/Category/components/CategoryTable/TableAction/interface';
+import { useRecoilState } from 'recoil';
+import { categoryListModel } from '@src/pages/Category/models';
+import { handleGetCategoryListAsyncHelper } from '@src/pages/Category/helper';
 
 const { confirm } = Modal;
 
 const TableAction: FC<CategoryTableAction> = props => {
-  const { categoryItem, setTableKey, tableKey } = props;
+  const { categoryItem } = props;
+  const [state, setState] = useRecoilState(categoryListModel);
 
   // 删除确认模态框
   const handleShowDeleteConfirm = () => {
@@ -20,7 +24,7 @@ const TableAction: FC<CategoryTableAction> = props => {
         return new Promise((resolve, reject) => {
           deleteProductRequest({ id })
             .then(async () => {
-              setTableKey(tableKey + 1);
+              handleGetCategoryListAsyncHelper({ state, setState });
               resolve();
             })
             .catch(() => reject());
