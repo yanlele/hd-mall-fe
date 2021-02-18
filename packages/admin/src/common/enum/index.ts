@@ -4,3 +4,16 @@ export enum ImageType {
   bannerMain, // banner
   bannerSubjoin, // banner 附加图
 }
+
+//		1 - 热销产品
+//		2 - 店家推荐
+//		3 - 新品上架
+//		4 - 优惠活动
+//		5 - 有礼相送
+export enum ProductTag {
+  hot = 1,
+  recommend,
+  new,
+  discounts,
+  present,
+}
