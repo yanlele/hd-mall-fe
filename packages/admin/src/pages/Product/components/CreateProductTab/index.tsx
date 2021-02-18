@@ -15,7 +15,7 @@ const CreateProductTab: FC = () => {
 
   // 提交
   const handleOnFinish = async (value: any) => {
-    value.primary_image = get(value, 'primary_image.0', '');
+    value.primary_image = get(value, 'primary_image.0.url', '');
     setSubmitLoading(true);
     try {
       await createProductRequest(value);

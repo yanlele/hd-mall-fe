@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { UploadFileInputModalProps } from '@src/components/biz/UploadFileComponent/UploadFileInputModal/interface';
+import { get, map, split, compact } from 'lodash';
+
 import styles from './style.less';
 
 const formItemLayout = {
@@ -25,7 +27,20 @@ const UploadFileInputModal: FC<UploadFileInputModalProps> = props => {
   const { visible, setVisible, value, onChange, multiple = false } = props;
   const handleOnFinish = (value: any) => {
     // 保存成功
-    onChange(value.image_link);
+    const list = map(value.image_link, item => {
+      const tempArr = split(item, '/');
+      const fileName = get(tempArr, tempArr.length - 1, '');
+      return {
+        uid: '-1',
+        status: 'done',
+        url: item,
+        fileName,
+        type: '',
+        name: fileName,
+      };
+    });
+
+    onChange(compact(list));
     // 关闭模态框
     setVisible(false);
   };
@@ -41,18 +56,7 @@ const UploadFileInputModal: FC<UploadFileInputModalProps> = props => {
       width={'640px'}
       onCancel={() => setVisible(false)}>
       <Form onFinish={handleOnFinish} name="dynamic_form_item" {...formItemLayoutWithOutLabel}>
-        <Form.List
-          name="image_link"
-          initialValue={value}
-          rules={[
-            {
-              validator: async (_, names) => {
-                if (!names || names.length < 1) {
-                  return Promise.reject(new Error('At least 1 passengers'));
-                }
-              },
-            },
-          ]}>
+        <Form.List name="image_link" initialValue={map(value, item => get(item, 'url', ''))}>
           {(fields, { add, remove }, { errors }) => {
             return (
               <>
@@ -75,7 +79,7 @@ const UploadFileInputModal: FC<UploadFileInputModalProps> = props => {
                       noStyle>
                       <Input placeholder="请输入url链接" style={{ width: '90%' }} />
                     </Form.Item>
-                    {fields.length > 1 ? (
+                    {fields.length >= 1 ? (
                       <MinusCircleOutlined className="dynamic-delete-button" onClick={() => remove(field.name)} />
                     ) : null}
                   </Form.Item>

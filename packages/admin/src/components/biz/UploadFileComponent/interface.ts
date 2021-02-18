@@ -5,5 +5,5 @@ export interface UploadFileComponentProps {
   value?: any[];
   onChange?: any;
   multiple?: boolean;
-  formRef: MutableRefObject<FormInstance | undefined>;
+  formRef?: MutableRefObject<FormInstance | undefined>;
 }
