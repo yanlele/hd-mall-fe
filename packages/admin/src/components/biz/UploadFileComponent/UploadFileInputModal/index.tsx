@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { UploadFileInputModalProps } from '@src/components/biz/UploadFileComponent/UploadFileInputModal/interface';
+import styles from './style.less';
 
 const formItemLayout = {
   labelCol: {
@@ -21,9 +22,17 @@ const formItemLayoutWithOutLabel = {
 };
 
 const UploadFileInputModal: FC<UploadFileInputModalProps> = props => {
-  const { visible, setVisible } = props;
+  const { visible, setVisible, value, onChange, multiple = false } = props;
+  const handleOnFinish = (value: any) => {
+    // 保存成功
+    onChange(value.image_link);
+    // 关闭模态框
+    setVisible(false);
+  };
+
   return (
     <Modal
+      className={styles.uploadFileInputModalContainer}
       destroyOnClose
       title="url上传文件"
       centered
@@ -31,10 +40,10 @@ const UploadFileInputModal: FC<UploadFileInputModalProps> = props => {
       footer={null}
       width={'640px'}
       onCancel={() => setVisible(false)}>
-      <Form name="dynamic_form_item" {...formItemLayoutWithOutLabel}>
+      <Form onFinish={handleOnFinish} name="dynamic_form_item" {...formItemLayoutWithOutLabel}>
         <Form.List
-          name="names"
-          initialValue={['123123']}
+          name="image_link"
+          initialValue={value}
           rules={[
             {
               validator: async (_, names) => {
@@ -60,11 +69,11 @@ const UploadFileInputModal: FC<UploadFileInputModalProps> = props => {
                         {
                           required: true,
                           whitespace: true,
-                          message: "Please input passenger's name or delete this field.",
+                          message: '请输入url链接',
                         },
                       ]}
                       noStyle>
-                      <Input placeholder="passenger name" style={{ width: '80%' }} />
+                      <Input placeholder="请输入url链接" style={{ width: '90%' }} />
                     </Form.Item>
                     {fields.length > 1 ? (
                       <MinusCircleOutlined className="dynamic-delete-button" onClick={() => remove(field.name)} />
@@ -72,8 +81,13 @@ const UploadFileInputModal: FC<UploadFileInputModalProps> = props => {
                   </Form.Item>
                 ))}
                 <Form.Item>
-                  <Button type="dashed" onClick={() => add()} style={{ width: '80%' }} icon={<PlusOutlined />}>
-                    Add field
+                  <Button
+                    disabled={!multiple ? fields.length >= 1 : false}
+                    type="dashed"
+                    onClick={() => add()}
+                    style={{ width: '90%' }}
+                    icon={<PlusOutlined />}>
+                    添加 field
                   </Button>
                   <Form.ErrorList errors={errors} />
                 </Form.Item>
@@ -83,7 +97,7 @@ const UploadFileInputModal: FC<UploadFileInputModalProps> = props => {
         </Form.List>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Submit
+            确认
           </Button>
         </Form.Item>
       </Form>

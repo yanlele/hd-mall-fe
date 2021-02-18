@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Upload, Button, Space } from 'antd';
-import { get, map, compact, isBoolean } from 'lodash';
+import { get, map, compact, isBoolean, split, isEmpty } from 'lodash';
 import { UploadOutlined } from '@ant-design/icons';
 import { UploadFile } from 'antd/lib/upload/interface';
 import { ApiPrefix } from '@src/common/consts';
@@ -8,7 +8,7 @@ import { UploadFileComponentProps } from '@src/components/biz/UploadFileComponen
 import UploadFileInputModal from '@src/components/biz/UploadFileComponent/UploadFileInputModal';
 
 const UploadFileComponent: FC<UploadFileComponentProps> = props => {
-  const { onChange, multiple } = props;
+  const { onChange, multiple, value } = props;
 
   const isMultiple = isBoolean(multiple) ? multiple : false;
 
@@ -25,6 +25,23 @@ const UploadFileComponent: FC<UploadFileComponentProps> = props => {
     //   type: '',
     // },
   ]);
+
+  useEffect(() => {
+    const list = map(value, item => {
+      const tempArr = split(item.split, '/');
+      const fileName = get(tempArr, tempArr.length - 1, '');
+      return {
+        uid: '-1',
+        status: 'done',
+        url: item,
+        fileName,
+      };
+    });
+
+    if (!isEmpty(fileList)) setFileList(list as UploadFile[]);
+
+    console.log('list', list);
+  }, [value]);
 
   const handleChange = (info: any) => {
     let fileList = [...info.fileList];
@@ -59,7 +76,13 @@ const UploadFileComponent: FC<UploadFileComponentProps> = props => {
 
         <Button onClick={() => setVisible(true)}>直接通过 URL 链接上传文件</Button>
 
-        <UploadFileInputModal visible={visible} setVisible={setVisible} />
+        <UploadFileInputModal
+          multiple={true}
+          value={value}
+          onChange={onChange}
+          visible={visible}
+          setVisible={setVisible}
+        />
       </Space>
     </>
   );

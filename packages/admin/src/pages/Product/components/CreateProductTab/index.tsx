@@ -103,7 +103,7 @@ const CreateProductTab: FC = () => {
             name="primary_image"
             // rules={[{ required: true, message: '请上传主图！' }]}
           >
-            <UploadFileComponent />
+            <UploadFileComponent formRef={formRef} />
           </Form.Item>
         </Col>
       </Row>
