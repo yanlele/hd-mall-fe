@@ -3,6 +3,11 @@ import { StaticRoutes } from '@src/routers/interface';
 
 const staticRotes: StaticRoutes[] = [
   {
+    path: '/',
+    component: pages.Home,
+    title: '首页配置',
+  },
+  {
     path: '/product',
     component: pages.Product,
     title: '商品配置',

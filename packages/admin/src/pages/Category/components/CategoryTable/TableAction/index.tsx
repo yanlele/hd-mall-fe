@@ -1,0 +1,47 @@
+import React, { FC } from 'react';
+import { Button, Divider, Space, Typography, Modal } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { deleteProductRequest } from '@src/pages/Product/service';
+import { CategoryTableAction } from '@src/pages/Category/components/CategoryTable/TableAction/interface';
+
+const { confirm } = Modal;
+
+const TableAction: FC<CategoryTableAction> = props => {
+  const { categoryItem, setTableKey, tableKey } = props;
+
+  // 删除确认模态框
+  const handleShowDeleteConfirm = () => {
+    const id = categoryItem.id;
+    confirm({
+      title: '确认删除该商品品类?',
+      icon: <ExclamationCircleOutlined />,
+      content: '删除之后无法恢复。',
+      onOk() {
+        return new Promise((resolve, reject) => {
+          deleteProductRequest({ id })
+            .then(async () => {
+              setTableKey(tableKey + 1);
+              resolve();
+            })
+            .catch(() => reject());
+        }).catch(() => console.log('Oops errors!'));
+      },
+    });
+  };
+
+  return (
+    <Space size="middle" split={<Divider type="vertical" />}>
+      <Typography.Link>
+        <Button size="small">修改</Button>
+      </Typography.Link>
+
+      <Typography.Link>
+        <Button onClick={handleShowDeleteConfirm} danger size="small">
+          删除
+        </Button>
+      </Typography.Link>
+    </Space>
+  );
+};
+
+export default TableAction;
