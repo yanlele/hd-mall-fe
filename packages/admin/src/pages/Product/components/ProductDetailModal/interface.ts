@@ -6,3 +6,7 @@ export interface ProductDetailModalProps {
   setVisible: Dispatch<SetStateAction<boolean>>;
   record: ProductDetail;
 }
+
+export interface ProductBaseProps {
+  record: ProductDetail;
+}
