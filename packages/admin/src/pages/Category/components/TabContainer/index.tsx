@@ -15,9 +15,7 @@ const TabContainer: FC = () => {
             品类列表
           </span>
         }
-        key="1">
-        <CategoryTable />
-      </TabPane>
+        key="1"></TabPane>
     </Tabs>
   );
 };
