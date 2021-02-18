@@ -11,3 +11,6 @@ export const updateProductApiUrl = `${ApiPrefix}/product/update`;
 
 // 删除
 export const deleteProductApiUrl = `${ApiPrefix}/product/delete`;
+
+// 获取静态图片资源
+export const getProductImageApiUrl = `${ApiPrefix}/static/list`;

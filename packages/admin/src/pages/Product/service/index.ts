@@ -1,5 +1,10 @@
 import request from '@src/utils/axios';
-import { createProductApiUrl, deleteProductApiUrl, getProductListApiUrl } from '@src/pages/Product/service/consts';
+import {
+  createProductApiUrl,
+  deleteProductApiUrl,
+  getProductImageApiUrl,
+  getProductListApiUrl,
+} from '@src/pages/Product/service/consts';
 import { GetProductListRequestParams } from '@src/pages/Product/service/interface';
 
 export const getProductListRequest = (data: GetProductListRequestParams) =>
@@ -21,4 +26,10 @@ export const deleteProductRequest = (data: { id: number }) =>
     url: deleteProductApiUrl,
     method: 'post',
     data,
+  });
+
+export const getProductImageRequest = (params: { product_id: number }) =>
+  request({
+    url: getProductImageApiUrl,
+    params,
   });

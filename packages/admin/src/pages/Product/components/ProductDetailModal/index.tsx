@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { ProductDetailModalProps } from '@src/pages/Product/components/ProductDetailModal/interface';
 import { Modal, Image, Card, Space, Row, Col, Divider } from 'antd';
 import styles from './style.less';
+import ProductImage from '@src/pages/Product/components/ProductDetailModal/ProductImage';
 
 const ProductDetailModal: FC<ProductDetailModalProps> = props => {
   const { visible, setVisible, record } = props;
@@ -54,6 +55,8 @@ const ProductDetailModal: FC<ProductDetailModalProps> = props => {
           </Col>
         </Row>
       </div>
+
+      <ProductImage productId={record.id} />
     </Modal>
   );
 };
