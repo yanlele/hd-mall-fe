@@ -6,7 +6,7 @@ import { categoryListModelSelector, categoryModalVisibleModelSelector } from '@s
 import { commonFormLayout } from '@src/common/consts';
 import UploadFileComponent from '@src/components/biz/UploadFileComponent';
 import { CreateCategoryRequestParams } from '@src/pages/Category/service/interface';
-import { createCategoryRequest } from '@src/pages/Category/service';
+import { createCategoryRequest, updateCategoryRequest } from '@src/pages/Category/service';
 import { handleGetCategoryListAsyncHelper } from '@src/pages/Category/helper';
 import { categoryModalVisibleModelDefault } from '@src/pages/Category/models/consts';
 import { CategoryActionType } from '@src/pages/Category/models/interface';
@@ -49,8 +49,16 @@ const CategoryModal: FC = () => {
 
     // 创建
     setModalState({ modalLoading: true });
-    await createCategoryRequest(params);
-    message.success('创建成功');
+
+    if (type === CategoryActionType.edit) {
+      params.id = item?.id;
+      await updateCategoryRequest(params);
+      message.success('更新成功');
+    } else {
+      await createCategoryRequest(params);
+      message.success('创建成功');
+    }
+
     setModalState({ visible: false, modalLoading: false });
 
     // 刷新列表

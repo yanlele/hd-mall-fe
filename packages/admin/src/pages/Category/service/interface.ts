@@ -8,7 +8,9 @@ export interface CategoryItem {
 }
 
 export interface CreateCategoryRequestParams {
+  id?: number;
   name: string;
   avatar?: string;
   parent_id?: number;
+  type?: number;
 }
