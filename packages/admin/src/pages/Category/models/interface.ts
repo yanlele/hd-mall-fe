@@ -14,6 +14,7 @@ export enum CategoryActionType {
 export interface CategoryModalModel {
   visible: boolean;
   type: CategoryActionType;
-  parentId: string;
+  parentId: number;
   modalLoading: boolean;
+  item: CategoryItem;
 }

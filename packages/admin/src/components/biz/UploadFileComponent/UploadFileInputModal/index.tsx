@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { UploadFileInputModalProps } from '@src/components/biz/UploadFileComponent/UploadFileInputModal/interface';
-import { get, map, split, compact } from 'lodash';
+import { get, map, compact } from 'lodash';
 
 import styles from './style.less';
+import { handleLinkListToFileList } from '@src/components/biz/UploadFileComponent/helper';
 
 const formItemLayout = {
   labelCol: {
@@ -27,18 +28,7 @@ const UploadFileInputModal: FC<UploadFileInputModalProps> = props => {
   const { visible, setVisible, value, onChange, multiple = false } = props;
   const handleOnFinish = (value: any) => {
     // 保存成功
-    const list = map(value.image_link, item => {
-      const tempArr = split(item, '/');
-      const fileName = get(tempArr, tempArr.length - 1, '');
-      return {
-        uid: '-1',
-        status: 'done',
-        url: item,
-        fileName,
-        type: '',
-        name: fileName,
-      };
-    });
+    const list = handleLinkListToFileList(value.image_link);
 
     onChange(compact(list));
     // 关闭模态框

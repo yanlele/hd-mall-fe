@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Spin, Table } from 'antd';
+import { Spin, Table, Image } from 'antd';
 import TableAction from '@src/pages/Category/components/CategoryTable/TableAction';
 import { CategoryItem } from '@src/pages/Category/service/interface';
 import { useRecoilValue } from 'recoil';
@@ -30,6 +30,10 @@ const CategoryTable: FC = () => {
       title: '缩略图',
       dataIndex: 'avatar',
       key: 'avatar',
+      render: (item: string) => {
+        if (item) return <Image width={100} src={item} />;
+        return null;
+      },
     },
     {
       title: '操作',

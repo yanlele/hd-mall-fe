@@ -1,10 +1,15 @@
-import { CategoryActionType } from '@src/pages/Category/models/interface';
+import { CategoryActionType, CategoryModalModel } from '@src/pages/Category/models/interface';
 
-export const categoryModalVisibleModelDefault = {
+export const categoryModalVisibleModelDefault: CategoryModalModel = {
   visible: false,
   type: CategoryActionType.unknown,
-  parentId: '',
+  parentId: 0,
   modalLoading: false,
+  item: {
+    id: 0,
+    name: '',
+    children: [],
+  },
 };
 
 export const categoryListModelDefault = {

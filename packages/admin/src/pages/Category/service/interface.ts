@@ -10,4 +10,5 @@ export interface CategoryItem {
 export interface CreateCategoryRequestParams {
   name: string;
   avatar?: string;
+  parent_id?: number;
 }
