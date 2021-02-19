@@ -19,6 +19,6 @@ export enum ProductTag {
 }
 
 export const CategoryType: { [key: number]: string } = {
-  [0]: '普通',
-  [1]: '主要分类',
+  [1]: '普通',
+  [2]: '主要分类',
 };

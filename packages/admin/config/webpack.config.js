@@ -82,7 +82,7 @@ module.exports = merge(baseConfig, {
     },
     proxy: [
       // {
-      //   context: ['/api/admin/product/create'],
+      //   context: ['/api/admin/category/update'],
       //   target: 'http://127.0.0.1:8081',
       // },
       {

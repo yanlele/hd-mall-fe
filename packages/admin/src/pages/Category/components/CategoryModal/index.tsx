@@ -35,7 +35,7 @@ const CategoryModal: FC = () => {
       params.type = item.type;
       return params;
     }
-    return { type: 0 };
+    return { type: 1 };
   }, [item, type]);
 
   const handleOnOk = async () => {
@@ -87,9 +87,9 @@ const CategoryModal: FC = () => {
 
         {!parentId && (
           <Form.Item label="类型" name="type">
-            <Select defaultValue={0} style={{ width: 120 }}>
-              <Option value={0}>普通分类</Option>
-              <Option value={1}>主分类</Option>
+            <Select defaultValue={1} style={{ width: 120 }}>
+              <Option value={1}>普通分类</Option>
+              <Option value={2}>主分类</Option>
             </Select>
           </Form.Item>
         )}
