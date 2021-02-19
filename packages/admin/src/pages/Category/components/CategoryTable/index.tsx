@@ -3,12 +3,12 @@ import { Spin, Table } from 'antd';
 import TableAction from '@src/pages/Category/components/CategoryTable/TableAction';
 import { CategoryItem } from '@src/pages/Category/service/interface';
 import { useRecoilValue } from 'recoil';
-import { categoryListModel } from '@src/pages/Category/models';
+import { categoryListModelSelector } from '@src/pages/Category/models';
 import { useGetCategoryList } from '@src/pages/Category/userHooks';
 
 const CategoryTable: FC = () => {
   useGetCategoryList();
-  const { list, loading } = useRecoilValue(categoryListModel);
+  const { list, loading } = useRecoilValue(categoryListModelSelector);
 
   const columns = [
     {

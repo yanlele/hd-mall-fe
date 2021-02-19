@@ -1,8 +1,8 @@
 import React, { FC, useRef, useState } from 'react';
 import { Form, FormInstance, Input, message, Modal } from 'antd';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { get } from 'lodash';
-import { categoryListModel, categoryModalVisibleModel } from '@src/pages/Category/models';
+import { categoryListModelSelector, categoryModalVisibleModelSelector } from '@src/pages/Category/models';
 import { commonFormLayout } from '@src/common/consts';
 import UploadFileComponent from '@src/components/biz/UploadFileComponent';
 import { CreateCategoryRequestParams } from '@src/pages/Category/service/interface';
@@ -10,9 +10,8 @@ import { createCategoryRequest } from '@src/pages/Category/service';
 import { handleGetCategoryListAsyncHelper } from '@src/pages/Category/helper';
 
 const CategoryModal: FC = () => {
-  const [visible, setVisible] = useRecoilState(categoryModalVisibleModel);
-  const [state, setState] = useRecoilState(categoryListModel);
-  const [loading, setLoading] = useState(false);
+  const [{ visible, modalLoading }, setModalState] = useRecoilState(categoryModalVisibleModelSelector);
+  const setState = useSetRecoilState(categoryListModelSelector);
 
   const formRef = useRef<FormInstance>();
 
@@ -26,14 +25,13 @@ const CategoryModal: FC = () => {
     if (get(value, 'avatar.0.url', '')) params.avatar = get(value, 'avatar.0.url', '');
 
     // 创建
-    setLoading(true);
+    setModalState({ modalLoading: true });
     await createCategoryRequest(params);
     message.success('创建成功');
-    setLoading(false);
-    setVisible(false);
+    setModalState({ visible: false, modalLoading: false });
 
     // 刷新列表
-    await handleGetCategoryListAsyncHelper({ state, setState });
+    await handleGetCategoryListAsyncHelper({ setState });
   };
 
   return (
@@ -44,8 +42,8 @@ const CategoryModal: FC = () => {
       visible={visible}
       onOk={handleOnOk}
       width={'640px'}
-      confirmLoading={loading}
-      onCancel={() => setVisible(false)}>
+      confirmLoading={modalLoading}
+      onCancel={() => setModalState({ visible: false })}>
       <Form
         // @ts-ignore
         ref={formRef}

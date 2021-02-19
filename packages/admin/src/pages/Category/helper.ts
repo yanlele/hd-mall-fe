@@ -5,9 +5,9 @@ import { CategoryListModel } from '@src/pages/Category/models/interface';
 export const handleGetCategoryListAsyncHelper = async (
   options: HandleGetCategoryListAsyncHelperOptions<CategoryListModel>,
 ) => {
-  const { setState, state } = options;
+  const { setState } = options;
 
-  setState({ ...state, loading: true });
+  setState({ loading: true });
   const res = await getCategoryListRequest();
   setState({ list: res.data, loading: false });
 };

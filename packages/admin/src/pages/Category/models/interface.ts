@@ -4,3 +4,16 @@ export interface CategoryListModel {
   list: CategoryItem[];
   loading: boolean;
 }
+
+export enum CategoryActionType {
+  unknown,
+  add,
+  edit,
+}
+
+export interface CategoryModalModel {
+  visible: boolean;
+  type: CategoryActionType;
+  parentId: string;
+  modalLoading: boolean;
+}

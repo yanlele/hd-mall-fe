@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { categoryListModel } from '@src/pages/Category/models';
+import { useSetRecoilState } from 'recoil';
+import { categoryListModelSelector } from '@src/pages/Category/models';
 import { handleGetCategoryListAsyncHelper } from '@src/pages/Category/helper';
 
 export const useGetCategoryList = () => {
-  const [state, setState] = useRecoilState(categoryListModel);
+  const setState = useSetRecoilState(categoryListModelSelector);
 
   useEffect(() => {
-    handleGetCategoryListAsyncHelper({ state, setState });
+    handleGetCategoryListAsyncHelper({ setState });
   }, []);
 };
