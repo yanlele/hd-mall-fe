@@ -43,6 +43,7 @@ module.exports = merge(baseConfig, {
   plugins: [
     new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
     new HtmlWebpackPlugin({
+      favicon: './favicon.png',
       filename: 'index.html',
       inject: true,
       template: 'index.html',
