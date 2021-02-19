@@ -5,9 +5,11 @@ import CategoryTable from '@src/pages/Category/components/CategoryTable';
 import CategoryModal from '@src/pages/Category/components/CategoryModal';
 import { useSetRecoilState } from 'recoil';
 import { categoryModalVisibleModel } from '@src/pages/Category/models';
+import { useTitle } from 'ahooks';
 
 const Category: FC = () => {
   const setVisible = useSetRecoilState(categoryModalVisibleModel);
+  useTitle('商品分类管理');
 
   return (
     <>

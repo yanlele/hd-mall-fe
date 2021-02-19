@@ -1,5 +1,5 @@
 import request from '@src/utils/axios';
-import { createCategoryApiUrl, getCategoryListApiUrl } from '@src/pages/Category/service/consts';
+import { createCategoryApiUrl, deleteCategoryApiUrl, getCategoryListApiUrl } from '@src/pages/Category/service/consts';
 import { CreateCategoryRequestParams } from '@src/pages/Category/service/interface';
 
 // 获取分类列表
@@ -11,4 +11,11 @@ export const createCategoryRequest = (data: CreateCategoryRequestParams) =>
     url: createCategoryApiUrl,
     method: 'post',
     data,
+  });
+
+export const deleteCategoryRequest = (params: { id: number }) =>
+  request({
+    url: deleteCategoryApiUrl,
+    method: 'post',
+    data: params,
   });

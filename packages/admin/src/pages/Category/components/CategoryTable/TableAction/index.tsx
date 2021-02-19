@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Button, Divider, Space, Typography, Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { deleteProductRequest } from '@src/pages/Product/service';
 import { CategoryTableAction } from '@src/pages/Category/components/CategoryTable/TableAction/interface';
 import { useRecoilState } from 'recoil';
 import { categoryListModel } from '@src/pages/Category/models';
 import { handleGetCategoryListAsyncHelper } from '@src/pages/Category/helper';
+import { deleteCategoryRequest } from '@src/pages/Category/service';
 
 const { confirm } = Modal;
 
@@ -22,7 +22,7 @@ const TableAction: FC<CategoryTableAction> = props => {
       content: '删除之后无法恢复。',
       onOk() {
         return new Promise((resolve, reject) => {
-          deleteProductRequest({ id })
+          deleteCategoryRequest({ id })
             .then(async () => {
               handleGetCategoryListAsyncHelper({ state, setState });
               resolve();
