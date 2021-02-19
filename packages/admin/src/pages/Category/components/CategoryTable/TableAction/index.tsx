@@ -36,6 +36,10 @@ const TableAction: FC<CategoryTableAction> = props => {
   return (
     <Space size="middle" split={<Divider type="vertical" />}>
       <Typography.Link>
+        <Button size="small">添加</Button>
+      </Typography.Link>
+
+      <Typography.Link>
         <Button size="small">修改</Button>
       </Typography.Link>
 

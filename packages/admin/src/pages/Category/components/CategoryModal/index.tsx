@@ -1,12 +1,40 @@
-import React, { FC } from 'react';
-import { Form, Input, Modal } from 'antd';
+import React, { FC, useRef, useState } from 'react';
+import { Form, FormInstance, Input, message, Modal } from 'antd';
 import { useRecoilState } from 'recoil';
-import { categoryModalVisibleModel } from '@src/pages/Category/models';
+import { get } from 'lodash';
+import { categoryListModel, categoryModalVisibleModel } from '@src/pages/Category/models';
 import { commonFormLayout } from '@src/common/consts';
 import UploadFileComponent from '@src/components/biz/UploadFileComponent';
+import { CreateCategoryRequestParams } from '@src/pages/Category/service/interface';
+import { createCategoryRequest } from '@src/pages/Category/service';
+import { handleGetCategoryListAsyncHelper } from '@src/pages/Category/helper';
 
 const CategoryModal: FC = () => {
   const [visible, setVisible] = useRecoilState(categoryModalVisibleModel);
+  const [state, setState] = useRecoilState(categoryListModel);
+  const [loading, setLoading] = useState(false);
+
+  const formRef = useRef<FormInstance>();
+
+  const handleOnOk = async () => {
+    const value = await formRef.current?.validateFields();
+
+    // 整理数据
+    const params: CreateCategoryRequestParams = {
+      name: get(value, 'name', ''),
+    };
+    if (get(value, 'avatar.0.url', '')) params.avatar = get(value, 'avatar.0.url', '');
+
+    // 创建
+    setLoading(true);
+    await createCategoryRequest(params);
+    message.success('创建成功');
+    setLoading(false);
+    setVisible(false);
+
+    // 刷新列表
+    await handleGetCategoryListAsyncHelper({ state, setState });
+  };
 
   return (
     <Modal
@@ -14,11 +42,13 @@ const CategoryModal: FC = () => {
       title="创建"
       centered
       visible={visible}
-      onOk={() => setVisible(false)}
+      onOk={handleOnOk}
       width={'640px'}
-      confirmLoading={false}
+      confirmLoading={loading}
       onCancel={() => setVisible(false)}>
       <Form
+        // @ts-ignore
+        ref={formRef}
         {...commonFormLayout}
         name="basic"
         initialValues={{ remember: true }}

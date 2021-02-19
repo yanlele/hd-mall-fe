@@ -6,3 +6,8 @@ export interface CategoryItem {
   avatar?: string;
   children: CategoryItem[];
 }
+
+export interface CreateCategoryRequestParams {
+  name: string;
+  avatar?: string;
+}
