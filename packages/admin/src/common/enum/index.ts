@@ -17,3 +17,8 @@ export enum ProductTag {
   discounts,
   present,
 }
+
+export const CategoryType: { [key: number]: string } = {
+  [0]: '普通',
+  [1]: '主要分类',
+};

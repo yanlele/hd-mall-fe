@@ -5,6 +5,7 @@ import { CategoryItem } from '@src/pages/Category/service/interface';
 import { useRecoilValue } from 'recoil';
 import { categoryListModelSelector } from '@src/pages/Category/models';
 import { useGetCategoryList } from '@src/pages/Category/userHooks';
+import { CategoryType } from '@src/common/enum';
 
 const CategoryTable: FC = () => {
   useGetCategoryList();
@@ -25,6 +26,9 @@ const CategoryTable: FC = () => {
       title: 'type',
       dataIndex: 'type',
       key: 'type',
+      render: (type: number) => {
+        return CategoryType[type];
+      },
     },
     {
       title: '缩略图',
