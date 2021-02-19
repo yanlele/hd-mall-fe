@@ -15,7 +15,6 @@ export const categoryListModelSelector = selector<Partial<CategoryListModel>>({
     set(categoryListModel, { ...get(categoryListModel), ...newValue });
   },
 });
-
 /* ==============================  categoryListModel - End   ============================== */
 
 /* ==============================  categoryModalVisibleModel - Start ============================== */
