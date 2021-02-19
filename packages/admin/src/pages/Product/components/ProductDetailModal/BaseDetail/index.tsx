@@ -1,9 +1,12 @@
 import React, { FC } from 'react';
 import { Col, Divider, Row } from 'antd';
 import { ProductBaseProps } from '@src/pages/Product/components/ProductDetailModal/interface';
+import { ProductStatus, ProductTag } from '@src/common/enum';
+import { toNumber } from 'lodash';
 
 const BaseDetail: FC<ProductBaseProps> = props => {
   const { record } = props;
+
   return (
     <>
       <Divider>基本信息</Divider>
@@ -24,10 +27,10 @@ const BaseDetail: FC<ProductBaseProps> = props => {
           </Col>
 
           <Col span={8}>
-            <p>打标类型：{record.tag}</p>
+            <p>打标类型：{ProductTag[toNumber(record.tag)]}</p>
           </Col>
           <Col span={8}>
-            <p>商品现在的状态： {record.status}</p>
+            <p>商品状态： {ProductStatus[record.status]}</p>
           </Col>
         </Row>
       </div>
