@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ApiMocker = require('webpack-api-mocker2');
+const devProxy = require('./devProxy');
 // const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const paths = require('./paths');
@@ -80,16 +81,7 @@ module.exports = merge(baseConfig, {
     before(app) {
       ApiMocker(app, mockPath);
     },
-    proxy: {
-      '/api': {
-        target: '',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': '/',
-        },
-        logLevel: 'debug',
-      },
-    },
+    proxy: devProxy,
     clientLogLevel: 'error',
     port: 3001,
     contentBase: paths.PATH_DIST,
