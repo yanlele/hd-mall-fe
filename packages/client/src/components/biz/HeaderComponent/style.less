@@ -1,0 +1,27 @@
+//@import "~@src/style/main.less";
+//@import url("~@src/style/main.less");
+@import "../../../style/main";
+
+.header {
+    background: #1b1b1b;
+    color: #ffffff;
+    height: 48px;
+    line-height: 48px;
+
+    :global {
+        .header-content {
+            .common-content();
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ant-divider {
+            color: #ffffff;
+            background: #959595;
+        }
+
+        a {
+            color: #ffffff;
+        }
+    }
+}
