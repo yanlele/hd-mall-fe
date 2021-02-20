@@ -13,7 +13,7 @@ dist-ts/
 # production
 /build
 /coverage
-devProxy.ts
+devProxy.js
 
 # misc
 .DS_Store
