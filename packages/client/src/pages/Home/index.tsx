@@ -1,11 +1,13 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
+import MainCarousel from '@src/pages/Home/MainCarousel';
 
 const Home: FC = () => {
-  useEffect(() => {
-    console.log(history);
-  });
-
-  return <div>home</div>;
+  return (
+    <div>
+      <MainCarousel />
+      <p>hello</p>
+    </div>
+  );
 };
 
 export default Home;
