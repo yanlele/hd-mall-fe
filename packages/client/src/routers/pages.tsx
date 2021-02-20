@@ -10,14 +10,8 @@ interface ExportPages {
   [key: string]: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
 }
 
-const HomeContainer = () => import('../pages/HomeContainer');
-const NoMatchContainer = () => import('../pages/NoMatchContainer');
-const Counter = () => import('../pages/Counter');
-
 const pages: Pages = {
-  HomeContainer,
-  NoMatchContainer,
-  Counter,
+  Home: () => import('@src/pages/Home'),
 };
 
 const exportPages: ExportPages = {};

@@ -1,18 +1,16 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import './common/reset.less';
 import routers from './routers';
-
-import store from './store';
+import { RecoilRoot } from 'recoil';
 
 const render = Component =>
   // eslint-disable-next-line react/no-render-return-value
   ReactDOM.render(
     <AppContainer key={Math.random()}>
-      <Provider store={store}>{Component}</Provider>
+      <RecoilRoot>{Component}</RecoilRoot>
     </AppContainer>,
     document.getElementById('app'),
   );
