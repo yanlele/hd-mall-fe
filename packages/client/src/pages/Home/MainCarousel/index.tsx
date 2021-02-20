@@ -2,6 +2,10 @@ import React, { FC } from 'react';
 import { Carousel } from 'antd';
 import styles from './style.less';
 
+/**
+ * 轮播图
+ * @constructor
+ */
 const MainCarousel: FC = () => {
   return (
     <Carousel className={styles.contentStyle} autoplay>
