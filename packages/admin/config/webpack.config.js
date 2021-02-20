@@ -84,7 +84,7 @@ module.exports = merge(baseConfig, {
     },
     proxy: devProxy,
     clientLogLevel: 'error',
-    port: 3001,
+    port: 8001,
     contentBase: paths.PATH_DIST,
     inline: true,
     hot: false,
