@@ -1,4 +1,4 @@
-import { toString } from 'lodash';
+import { toString, toNumber } from 'lodash';
 
 export const handleCountTimeHelper = (endDate: Date) => {
   //获取当前时间
@@ -36,6 +36,12 @@ export const handleCountTimeHelper = (endDate: Date) => {
   const $h = document.getElementById('_h');
   const $m = document.getElementById('_m');
   const $s = document.getElementById('_s');
+
+  // 天数的元素节点不存在
+  if (!$d) {
+    h = toNumber(h) + toNumber(d) * 24;
+    h = h > 10 ? h : `0${h}`;
+  }
 
   if ($d) $d.innerText = toString(d);
   if ($h) $h.innerText = toString(h);

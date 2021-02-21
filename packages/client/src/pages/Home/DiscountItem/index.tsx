@@ -5,17 +5,30 @@ import { useBindCountTime } from '@src/pages/Home/useHooks';
 
 const DiscountItem: FC = () => {
   // 是否已经结束
-  const isCountDown = useBindCountTime(new Date('2020-02-23'));
+  const isCountDown = useBindCountTime(new Date('2021-02-23'));
 
   return (
     <div className={styles.discountItemContainer}>
-      <p>10:00 场 </p>
-      <p>
+      <p className="time">10:00 场 </p>
+
+      <p className="icon">
         <ThunderboltOutlined />
       </p>
-      <p>{isCountDown ? '活动已经结束' : '距离结束还有'}</p>
-      <p>
-        <span id="_d">00</span> :<span id="_h">00</span> :<span id="_m">00</span> :<span id="_s">00</span>
+
+      <p className="desc">{isCountDown ? '活动已经结束' : '距离结束还有'}</p>
+
+      <p className="date-container">
+        <span id="_h" className="date">
+          00
+        </span>
+        <span className="divide">:</span>
+        <span id="_m" className="date">
+          00
+        </span>
+        <span className="divide">:</span>
+        <span id="_s" className="date">
+          00
+        </span>
       </p>
     </div>
   );

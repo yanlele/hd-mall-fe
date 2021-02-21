@@ -1,6 +1,47 @@
+@import "~@src/style/main";
+
 .discountItemContainer {
     width: 300px;
 
     background-color: #e7d0d0;
     margin-right: 26px;
+
+    :global {
+        p {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .time {
+            color: @primary-color;
+            margin-top: 55px;
+            font-size: 30px;
+        }
+
+        .icon {
+            color: @primary-color;
+            text-align: center;
+            font-size: 36px;
+        }
+
+        .desc {
+            font-size: 16px;
+            color: #656565;
+        }
+
+        .date-container {
+            font-size: 30px;
+            span.date {
+                border-radius: 5px;
+                background-color: #6c6c6c;
+                color: #ffffff;
+                padding: 10px;
+            }
+
+            .divide {
+                font-size: 36px;
+                color: #6c6c6c;
+            }
+        }
+    }
 }
