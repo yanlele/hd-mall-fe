@@ -7,10 +7,11 @@ const { SubMenu } = Menu;
 const CategoryNavigation: FC = () => {
   return (
     <div className={styles.categoryNavContainer}>
+      {/* @ts-ignore */}
       <Menu getPopupContainer={node => node.parentElement}>
-        <SubMenu title="sub menu">
-          <Menu.Item>3rd menu item</Menu.Item>
-          <Menu.Item>4th menu item</Menu.Item>
+        <SubMenu title="自动化玩具">
+          <Menu.Item>盲盒</Menu.Item>
+          <Menu.Item>机器玩具</Menu.Item>
         </SubMenu>
       </Menu>
     </div>
