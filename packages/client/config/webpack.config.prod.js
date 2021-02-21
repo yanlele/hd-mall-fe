@@ -63,6 +63,7 @@ module.exports = merge(baseConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
+      favicon: './favicon.png',
       inject: true,
       minify: {
         removeComments: true,

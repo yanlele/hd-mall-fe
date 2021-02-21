@@ -151,6 +151,7 @@
     "react-redux": "^6.0.1",
     "recoil": "^0.1.2",
     "redux-thunk": "^2.3.0",
+    "swiper": "^6.4.15",
     "tslint": "^5.19.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
