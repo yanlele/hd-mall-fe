@@ -1,9 +1,10 @@
 import React, { FC, useMemo } from 'react';
 import { ProductCardProps } from '@src/components/biz/ProductCard/interface';
+import cn from 'classnames';
 import styles from './style.less';
 
 const ProductCard: FC<ProductCardProps> = props => {
-  const { hasDiscount = false } = props;
+  const { hasDiscount = false, className } = props;
 
   const handleRenderDiscount = useMemo(() => {
     if (hasDiscount) {
@@ -19,7 +20,7 @@ const ProductCard: FC<ProductCardProps> = props => {
   }, [hasDiscount]);
 
   return (
-    <div className={styles.productCardContainer}>
+    <div className={cn(styles.productCardContainer, className)}>
       <img
         className="primary-image"
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimgse.cn.gcimg.net%2F4e4ba00947ad08924ed6d5f9f8d7a98d.jpg&refer=http%3A%2F%2Fimgse.cn.gcimg.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1616511718&t=4bd3fd5b7732789d1106a489a8bb651c"

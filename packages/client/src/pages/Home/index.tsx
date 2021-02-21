@@ -5,6 +5,8 @@ import CategoryNavigation from '@src/pages/Home/CategoryNavigation';
 import { useTitle } from 'ahooks';
 import DiscountSwiper from '@src/pages/Home/DiscountSwiper';
 import HomeHeader from '@src/pages/Home/HomeHeader';
+import PrimaryCategory from '@src/pages/Home/PrimaryCategory';
+import { map, range } from 'lodash';
 
 const Home: FC = () => {
   useTitle('首页');
@@ -20,6 +22,10 @@ const Home: FC = () => {
         </div>
 
         <DiscountSwiper />
+
+        {map(range(1, 6), item => (
+          <PrimaryCategory key={item} />
+        ))}
       </div>
     </div>
   );

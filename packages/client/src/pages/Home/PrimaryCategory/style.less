@@ -1,0 +1,41 @@
+.primaryCategoryContainer {
+    :global {
+        .header {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h2 {
+                font-size: 24px;
+                font-weight: normal;
+            }
+
+            .more {
+                color: #7d7d7d;
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+
+
+        }
+
+        .card-container {
+            position: relative;
+            height: 330px;
+        }
+
+        .card-box-shadow:hover {
+            transition: box-shadow .5s;
+            cursor: pointer;
+            box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .first-card {
+            background-color: #ac2f2f;
+        }
+    }
+}
