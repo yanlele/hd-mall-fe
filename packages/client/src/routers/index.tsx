@@ -6,8 +6,9 @@ import pageRouteConfig from './pageRouteConfig';
 import { Layout } from 'antd';
 import styles from './style.less';
 import HeaderComponent from '@src/components/biz/HeaderComponent';
+import FooterComponent from '@src/components/biz/FooterComponent';
 
-const { Footer, Content } = Layout;
+const { Content } = Layout;
 
 const routes = (
   <Router>
@@ -24,7 +25,7 @@ const routes = (
             </div>
           </Switch>
         </Content>
-        <Footer className={styles.footer}>footer</Footer>
+        <FooterComponent />
       </Layout>
     </ConfigProvider>
   </Router>

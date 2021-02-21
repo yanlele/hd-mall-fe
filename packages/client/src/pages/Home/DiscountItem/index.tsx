@@ -9,7 +9,8 @@ const DiscountItem: FC = () => {
 
   return (
     <div className={styles.discountItemContainer}>
-      <p className="time">10:00 场 </p>
+      {/* todo 动态时间 */}
+      <p className="time">10:00 场</p>
 
       <p className="icon">
         <ThunderboltOutlined />
