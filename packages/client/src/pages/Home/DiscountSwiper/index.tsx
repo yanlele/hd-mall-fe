@@ -7,6 +7,7 @@ import styles from './style.less';
 import './min.css';
 
 import React, { FC } from 'react';
+import DiscountItem from '@src/pages/Home/DiscountItem';
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -26,17 +27,13 @@ const DiscountSwiper: FC = () => {
       </header>
 
       <div className="discount-container">
-        <div className="discount-item">
-          <p>nihao </p>
-          <p>helle</p>
-          <p>12312</p>
-        </div>
+        <DiscountItem />
 
         <Swiper
           pagination={{ clickable: true, el: '.swiper-pagination' }}
           navigation={{ nextEl: '.discount-category-button-next', prevEl: '.discount-category-button-prev' }}
           slidesPerView={4}
-          spaceBetween={30}
+          spaceBetween={26}
           slidesPerGroup={4}
           loop
           loopFillGroupWithBlank
