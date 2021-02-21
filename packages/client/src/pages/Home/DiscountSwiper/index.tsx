@@ -8,28 +8,9 @@ import './min.css';
 
 import React, { FC } from 'react';
 
-// install Swiper modules
 SwiperCore.use([Navigation, Pagination]);
 
 const DiscountSwiper: FC = () => {
-  // useEffect(() => {
-  //   new Swiper('.swiper-container', {
-  //     slidesPerView: 3,
-  //     spaceBetween: 30,
-  //     slidesPerGroup: 3,
-  //     loop: true,
-  //     loopFillGroupWithBlank: true,
-  //     pagination: {
-  //       el: '.swiper-pagination',
-  //       clickable: true,
-  //     },
-  //     // navigation: {
-  //     //   nextEl: '.swiper-button-next',
-  //     //   prevEl: '.swiper-button-prev',
-  //     // },
-  //   });
-  // }, []);
-
   return (
     <div className={styles.swiperContainer}>
       <header className="header">
@@ -44,13 +25,19 @@ const DiscountSwiper: FC = () => {
         </nav>
       </header>
 
-      <div className="swiper-container">
+      <div className="discount-container">
+        <div className="discount-item">
+          <p>nihao </p>
+          <p>helle</p>
+          <p>12312</p>
+        </div>
+
         <Swiper
           pagination={{ clickable: true, el: '.swiper-pagination' }}
           navigation={{ nextEl: '.discount-category-button-next', prevEl: '.discount-category-button-prev' }}
-          slidesPerView={3}
+          slidesPerView={4}
           spaceBetween={30}
-          slidesPerGroup={3}
+          slidesPerGroup={4}
           loop
           loopFillGroupWithBlank
           onSwiper={swiper => console.log(swiper)}

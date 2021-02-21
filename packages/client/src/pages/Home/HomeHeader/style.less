@@ -1,0 +1,51 @@
+@import "../../../style/main";
+
+.homeHeader {
+    height: 60px;
+    background-color: #ffffff;
+
+    :global {
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .common-content();
+
+            .left {
+                display: flex;
+                align-items: center;
+
+                .title {
+                    width: 124px;
+                }
+
+                .link {
+                    height: 60px;
+                    min-width: 60px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    a {
+                        color: #000000;
+                        &:hover {
+                            color: @primary-color;
+                        }
+
+                        transition: color .3s;
+                    }
+                }
+            }
+
+            .right {
+                .search-input {
+                    width: 270px;
+                    border-radius: 25px;
+                }
+            }
+
+        }
+    }
+}

@@ -131,6 +131,7 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.5.0",
     "@rematch/core": "^1.2.0",
     "@types/classnames": "^2.2.6",
     "@types/prop-types": "^15.5.5",
