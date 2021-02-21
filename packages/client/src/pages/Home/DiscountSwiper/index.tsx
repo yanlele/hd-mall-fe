@@ -8,6 +8,7 @@ import './min.css';
 
 import React, { FC } from 'react';
 import DiscountItem from '@src/pages/Home/DiscountItem';
+import ProductCard from '@src/components/biz/ProductCard';
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -43,7 +44,7 @@ const DiscountSwiper: FC = () => {
           {map(range(1, 12), item => {
             return (
               <SwiperSlide key={item} className="swiper-slide">
-                {`Slide ${item}`}
+                <ProductCard hasDiscount={true} />
               </SwiperSlide>
             );
           })}
