@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './style.less';
 import MainCarousel from '@src/pages/Home/MainCarousel';
 import CategoryNavigation from '@src/pages/Home/CategoryNavigation';
@@ -7,11 +7,19 @@ import DiscountSwiper from '@src/pages/Home/DiscountSwiper';
 import HomeHeader from '@src/pages/Home/HomeHeader';
 import PrimaryCategory from '@src/pages/Home/PrimaryCategory';
 import { map, range } from 'lodash';
-import { demo } from 'hd-common/consts';
+import { GetCategoryListRequest } from '@src/pages/Home/service';
+import { useSetRecoilState } from 'recoil';
+import { categoryListModel } from '@src/pages/Home/model';
 
 const Home: FC = () => {
   useTitle('首页');
-  console.log('demo', demo);
+  const setCategoryList = useSetRecoilState(categoryListModel);
+
+  useEffect(() => {
+    GetCategoryListRequest().then(res => {
+      setCategoryList(res.data);
+    });
+  }, []);
 
   return (
     <div className={styles.homeContainer}>
