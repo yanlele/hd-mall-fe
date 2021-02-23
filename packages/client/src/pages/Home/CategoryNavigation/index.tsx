@@ -1,17 +1,18 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Menu } from 'antd';
-import { range, map } from 'lodash';
+import { map } from 'lodash';
 import styles from './style.less';
 import { GetCategoryListRequest } from '@src/pages/Home/service';
+import { CategoryItem } from '@src/pages/Home/service/interface';
 
 const { SubMenu } = Menu;
 
 const CategoryNavigation: FC = () => {
-  const [list, setList] = useState();
+  const [list, setList] = useState<CategoryItem[]>([]);
 
   useEffect(() => {
     GetCategoryListRequest().then(res => {
-      console.log('res.data', res.data);
+      setList(res.data);
     });
   }, []);
 
@@ -19,11 +20,12 @@ const CategoryNavigation: FC = () => {
     <div className={styles.categoryNavContainer}>
       {/* @ts-ignore */}
       <Menu getPopupContainer={node => node.parentElement}>
-        {map(range(1, 12), item => {
+        {map(list, item => {
           return (
-            <SubMenu title={`自动化玩具 - ${item}`}>
-              <Menu.Item>盲盒</Menu.Item>
-              <Menu.Item>机器玩具</Menu.Item>
+            <SubMenu key={item.id} title={item.name}>
+              {map(item.children, child => (
+                <Menu.Item key={child.id}>{child.name}</Menu.Item>
+              ))}
             </SubMenu>
           );
         })}
