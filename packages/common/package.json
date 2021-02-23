@@ -1,6 +1,6 @@
 {
-  "name": "common",
-  "version": "0.0.0",
+  "name": "@hd/common",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "yanlele <331393627@qq.com>",
   "homepage": "https://github.com/yanlele/hd-mall-fe#readme",
@@ -27,6 +27,5 @@
     "url": "https://github.com/yanlele/hd-mall-fe/issues"
   },
   "dependencies": {
-    "mini": "^1.0.0"
   }
 }

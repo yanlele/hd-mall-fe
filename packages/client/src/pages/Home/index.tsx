@@ -7,9 +7,11 @@ import DiscountSwiper from '@src/pages/Home/DiscountSwiper';
 import HomeHeader from '@src/pages/Home/HomeHeader';
 import PrimaryCategory from '@src/pages/Home/PrimaryCategory';
 import { map, range } from 'lodash';
+import { demo } from 'hd-common/consts';
 
 const Home: FC = () => {
   useTitle('首页');
+  console.log('demo', demo);
 
   return (
     <div className={styles.homeContainer}>
