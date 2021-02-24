@@ -84,7 +84,7 @@ module.exports = {
           //   loader: 'eslint-loader',
           // },
         ],
-        include: [paths.PATH_SRC, paths.PATH_COMMON],
+        include: [paths.PATH_SRC, paths.PATH_COMMON, paths.PATH_MODULE_COMMON],
         exclude: /node_modules/,
       },
       {

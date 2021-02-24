@@ -6,6 +6,7 @@ const PATH_DIST = path.join(PATH_ROOT, 'dist');
 const PATH_PKG = path.join(PATH_ROOT, 'package.json');
 const PATH_NODE_MODULES = path.join(PATH_ROOT, 'node_modules');
 const PATH_COMMON = path.resolve(PATH_ROOT, '../common');
+const PATH_MODULE_COMMON = path.resolve(PATH_NODE_MODULES, '@hd');
 
 module.exports = {
   PATH_ROOT,
@@ -14,4 +15,5 @@ module.exports = {
   PATH_PKG,
   PATH_NODE_MODULES,
   PATH_COMMON,
+  PATH_MODULE_COMMON,
 };
