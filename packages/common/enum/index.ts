@@ -10,6 +10,7 @@ export enum ImageType {
 //		3 - 新品上架
 //		4 - 优惠活动
 //		5 - 有礼相送
+//    6 - 限时折扣
 export enum ProductTagEnum {
   unknown,
   hot = 1,
@@ -29,6 +30,12 @@ export const ProductTag: { [key: number]: string } = {
   [ProductTagEnum.present]: '有礼相送',
   [ProductTagEnum.limitedTimeDiscount]: '限时折扣',
 };
+
+export enum CategoryTypeEnum {
+  unknown,
+  normal,
+  primary,
+}
 
 export const CategoryType: { [key: number]: string } = {
   [1]: '普通',

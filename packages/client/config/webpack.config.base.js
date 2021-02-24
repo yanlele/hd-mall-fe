@@ -59,7 +59,6 @@ module.exports = {
         use: 'babel-loader?cacheDirectory',
         exclude: /node_modules/,
       },
-
       {
         test: /\.(ts|tsx)?$/,
         use: [
@@ -85,7 +84,7 @@ module.exports = {
           //   loader: 'eslint-loader',
           // },
         ],
-        include: [paths.PATH_SRC],
+        include: [paths.PATH_SRC, paths.PATH_COMMON],
         exclude: /node_modules/,
       },
       {
