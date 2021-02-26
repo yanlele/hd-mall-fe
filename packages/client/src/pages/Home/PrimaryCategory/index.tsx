@@ -10,7 +10,6 @@ import { PrimaryCategoryProps } from '@src/pages/Home/PrimaryCategory/interface'
 
 const PrimaryCategory: FC<PrimaryCategoryProps> = props => {
   const { item } = props;
-  console.log(item);
   return (
     <div className={styles.primaryCategoryContainer}>
       <LongBanner />
@@ -24,16 +23,16 @@ const PrimaryCategory: FC<PrimaryCategoryProps> = props => {
       </div>
 
       <Row gutter={[24, 24]}>
-        {map(range(1, 9), item => {
+        {map(item.product_list, (productItem, index) => {
           let className = 'card-box-shadow';
 
           /* todo 这个地方可以特殊处理 */
-          if (item === 1) className = `${className}`;
+          if (index === 0) className = `${className}`;
 
           return (
-            <Col key={item} span="6">
+            <Col key={productItem.id} span="6">
               <div className="card-container">
-                <ProductCard className={className} />
+                <ProductCard productItem={productItem} className={className} />
               </div>
             </Col>
           );
