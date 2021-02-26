@@ -6,7 +6,7 @@ interface CategoryBase {
   type: number;
 }
 
-interface ProductItem {
+export interface ProductItem {
   id: number;
   category_id: number;
   name: string;
