@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { CategoryItem } from '@src/pages/Home/service/interface';
+import { CategoryItem, PrimaryCategory } from '@src/pages/Home/service/interface';
 /* ==============================  categoryList - Start ============================== */
 export const categoryListModel = atom<CategoryItem[]>({
   key: 'categoryListModel',
@@ -8,7 +8,7 @@ export const categoryListModel = atom<CategoryItem[]>({
 /* ==============================  categoryList - End   ============================== */
 
 /* ==============================  primary category list - Start ============================== */
-export const primaryCategoryListModel = atom<any[]>({
+export const primaryCategoryListModel = atom<PrimaryCategory[]>({
   key: 'primaryCategoryListModel',
   default: [],
 });

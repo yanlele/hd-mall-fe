@@ -2,19 +2,16 @@ import React, { FC, useMemo } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import { Divider } from 'antd';
-import { map, filter } from 'lodash';
+import { map } from 'lodash';
 import { useRecoilValue } from 'recoil';
-import { categoryListModel } from '@src/pages/Home/model';
+import { primaryCategoryListModel } from '@src/pages/Home/model';
 import styles from './style.less';
-import { CategoryTypeEnum } from '@hd/common/enum';
 
 const HomeHeader: FC = () => {
-  const list = useRecoilValue(categoryListModel);
+  const list = useRecoilValue(primaryCategoryListModel);
 
   const handleRenderPrimaryCategory = useMemo(() => {
-    const filterList = filter(list, item => item.type === CategoryTypeEnum.primary);
-
-    return map(filterList, item => {
+    return map(list, item => {
       return (
         <>
           <Divider type="vertical" />
