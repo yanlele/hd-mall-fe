@@ -39,7 +39,13 @@ const TableAction: FC<CategoryTableAction> = props => {
   const handleAddCategory = () => setModalState({ visible: true, parentId: categoryItem.id });
 
   // 编辑
-  const handleEditCategory = () => setModalState({ visible: true, type: CategoryActionType.edit, item: categoryItem });
+  const handleEditCategory = () =>
+    setModalState({
+      visible: true,
+      parentId: categoryItem.parent_id,
+      type: CategoryActionType.edit,
+      item: categoryItem,
+    });
 
   return (
     <Space size="middle" split={<Divider type="vertical" />}>

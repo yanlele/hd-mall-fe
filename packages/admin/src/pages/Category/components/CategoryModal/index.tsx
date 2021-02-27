@@ -38,6 +38,7 @@ const CategoryModal: FC = () => {
     return { type: 1 };
   }, [item, type]);
 
+  /* 提交 */
   const handleOnOk = async () => {
     const value = await formRef.current?.validateFields();
 
@@ -64,6 +65,8 @@ const CategoryModal: FC = () => {
     // 刷新列表
     await handleGetCategoryListAsyncHelper({ setState });
   };
+
+  console.log(parentId);
 
   return (
     <Modal
