@@ -11,19 +11,6 @@ const UploadFileComponent: FC<UploadFileComponentProps> = props => {
   const isMultiple = isBoolean(multiple) ? multiple : false;
 
   const [visible, setVisible] = useState(false);
-  // const [fileList, setFileList] = useState<UploadFile[]>([
-  //   {
-  //     name:
-  //       'https://gitee.com/yanle-static/static/raw/master/hd-mall/1613566965316-b12117553ac45c2e9ce34ee21fa3981b.jpeg', // 展示的name
-  //     fileName: '123',
-  //     status: 'done',
-  //     uid: '',
-  //     size: 0,
-  //     url:
-  //       'https://gitee.com/yanle-static/static/raw/master/hd-mall/1613566965316-b12117553ac45c2e9ce34ee21fa3981b.jpeg',
-  //     type: '',
-  //   },
-  // ]);
 
   const handleChange = (info: any) => {
     let fileList = [...info.fileList];

@@ -29,10 +29,14 @@ const CategoryModal: FC = () => {
 
   const initialValues = useMemo(() => {
     if (type === CategoryActionType.edit && item?.id) {
+      // 编辑状态下的回填
+      console.log('item', item);
       const avatar = get(item, 'avatar', '');
-      const params: any = { name: item.name };
+      const banner_image = get(item, 'banner_image', '');
+      const params: any = { ...item };
       if (avatar) params.avatar = handleLinkListToFileList([avatar]);
-      params.type = item.type;
+      console.log('banner_image', banner_image);
+      if (banner_image) params.banner_image = handleLinkListToFileList([banner_image]);
       return params;
     }
     return { type: 1 };
@@ -86,26 +90,28 @@ const CategoryModal: FC = () => {
           <Input />
         </Form.Item>
 
-        {!parentId && (
-          <Form.Item label="类型" name="type">
-            <Select defaultValue={1} style={{ width: 120 }}>
-              <Option value={1}>普通分类</Option>
-              <Option value={2}>主分类</Option>
-            </Select>
-          </Form.Item>
-        )}
-
         <Form.Item label="缩略图" name="avatar">
           <UploadFileComponent />
         </Form.Item>
 
-        <Form.Item label="banner" name="banner_image">
-          <UploadFileComponent />
-        </Form.Item>
+        {!parentId && (
+          <>
+            <Form.Item label="类型" name="type">
+              <Select defaultValue={1} style={{ width: 120 }}>
+                <Option value={1}>普通分类</Option>
+                <Option value={2}>主分类</Option>
+              </Select>
+            </Form.Item>
 
-        <Form.Item label="banner" name="banner_link">
-          <Input />
-        </Form.Item>
+            <Form.Item label="banner" name="banner_image">
+              <UploadFileComponent />
+            </Form.Item>
+
+            <Form.Item label="banner_link" name="banner_link">
+              <Input />
+            </Form.Item>
+          </>
+        )}
       </Form>
     </Modal>
   );
