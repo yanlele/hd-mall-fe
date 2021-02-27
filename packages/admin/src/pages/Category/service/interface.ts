@@ -13,4 +13,6 @@ export interface CreateCategoryRequestParams {
   avatar?: string;
   parent_id?: number;
   type?: number;
+  banner_image?: string;
+  banner_link?: string;
 }

@@ -44,8 +44,8 @@ const CategoryModal: FC = () => {
 
     // 整理数据
     const params: CreateCategoryRequestParams = { ...value };
-    console.log('params', params);
     if (get(value, 'avatar.0.url', '')) params.avatar = get(value, 'avatar.0.url', '');
+    if (get(value, 'banner_image.0.url', '')) params.banner_image = get(value, 'banner_image.0.url', '');
     if (parentId) params.parent_id = parentId;
 
     // 创建
@@ -65,8 +65,6 @@ const CategoryModal: FC = () => {
     // 刷新列表
     await handleGetCategoryListAsyncHelper({ setState });
   };
-
-  console.log(parentId);
 
   return (
     <Modal
@@ -97,8 +95,16 @@ const CategoryModal: FC = () => {
           </Form.Item>
         )}
 
-        <Form.Item label="主图" name="avatar">
+        <Form.Item label="缩略图" name="avatar">
           <UploadFileComponent />
+        </Form.Item>
+
+        <Form.Item label="banner" name="banner_image">
+          <UploadFileComponent />
+        </Form.Item>
+
+        <Form.Item label="banner" name="banner_link">
+          <Input />
         </Form.Item>
       </Form>
     </Modal>
