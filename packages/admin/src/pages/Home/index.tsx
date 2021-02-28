@@ -3,6 +3,7 @@ import { useTitle } from 'ahooks';
 import HeaderComponent from '@src/components/biz/HeaderComponent';
 import { Tabs } from 'antd';
 import { SmileTwoTone } from '@ant-design/icons';
+import BannerImage from '@src/pages/Home/components/BannerImage';
 
 const { TabPane } = Tabs;
 
@@ -23,7 +24,7 @@ const Home: FC = () => {
             </span>
           }
           key="1">
-          123123123
+          <BannerImage />
         </TabPane>
       </Tabs>
     </div>
