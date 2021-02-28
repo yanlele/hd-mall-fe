@@ -1,5 +1,8 @@
 import React, { FC } from 'react';
 import { Button, Divider, List, Space } from 'antd';
+import { useRequest } from 'ahooks';
+import { getBannerListRequest } from '@src/pages/Home/service';
+import { get } from 'lodash';
 
 const data = [
   'Racing car sprays burning fuel into crowd.',
@@ -10,6 +13,11 @@ const data = [
 ];
 
 const BannerImage: FC = () => {
+  const { data: res } = useRequest(getBannerListRequest);
+
+  const bannerList = get(res, 'data', []);
+  console.log('bannerList', bannerList);
+
   return (
     <>
       <Space style={{ marginBottom: '6px' }} size="small">
