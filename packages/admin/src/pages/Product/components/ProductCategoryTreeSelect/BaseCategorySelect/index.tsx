@@ -1,17 +1,21 @@
 import React, { FC, useMemo } from 'react';
 import { TreeSelect } from 'antd';
-import { useGetProductCategoryList } from '@src/pages/Product/components/ProductCategoryTreeSelect/userHooks';
-import { map } from 'lodash';
+import { map, get } from 'lodash';
 import { BaseCategorySelectProps } from '@src/pages/Product/components/ProductCategoryTreeSelect/BaseCategorySelect/interface';
+import { useRequest } from 'ahooks';
+import { getCategoryListRequest } from '@src/pages/Category/service';
+import { CategoryItem } from '@src/pages/Category/service/interface';
 
 const { TreeNode } = TreeSelect;
 
 const BaseCategorySelect: FC<BaseCategorySelectProps> = props => {
   const { value, onChange } = props;
-  const { list } = useGetProductCategoryList();
 
-  // @ts-ignore
-  const handleOnChange = (value: any) => onChange(value);
+  const { data: res } = useRequest(getCategoryListRequest, { cacheKey: 'getCategoryListRequest' });
+
+  const list: CategoryItem[] = get(res, 'data', []) || [];
+
+  const handleOnChange = (value: any) => onChange && onChange(value);
 
   const handleRender = useMemo(() => {
     return map(list, item => {

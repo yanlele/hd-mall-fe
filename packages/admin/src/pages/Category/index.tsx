@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import styles from './style.less';
 import { Button } from 'antd';
 import CategoryTable from '@src/pages/Category/components/CategoryTable';
 import CategoryModal from '@src/pages/Category/components/CategoryModal';
 import { useSetRecoilState } from 'recoil';
 import { categoryModalVisibleModelSelector } from '@src/pages/Category/models';
 import { useTitle } from 'ahooks';
+import HeaderComponent from '@src/components/biz/HeaderComponent';
 
 const Category: FC = () => {
   const setVisible = useSetRecoilState(categoryModalVisibleModelSelector);
@@ -14,12 +14,15 @@ const Category: FC = () => {
   return (
     <>
       <div>
-        <div className={styles.header}>
-          <h1>商品分类管理</h1>
-          <Button type="primary" onClick={() => setVisible({ visible: true })}>
-            创建分类
-          </Button>
-        </div>
+        <HeaderComponent
+          leftChild={<h1>商品分类管理</h1>}
+          rightChild={
+            <Button type="primary" onClick={() => setVisible({ visible: true })}>
+              创建分类
+            </Button>
+          }
+        />
+
         <hr />
         <CategoryTable />
       </div>
