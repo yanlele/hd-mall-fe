@@ -6,7 +6,7 @@ import { get } from 'lodash';
 import { BannerItem } from '@src/pages/Home/service/interface';
 import { useSetRecoilState } from 'recoil';
 import { bannerModalModel } from '@src/pages/Home/model';
-import { produce } from 'immer';
+import { BannerModalType } from '@src/pages/Home/consts';
 
 const data = [
   'Racing car sprays burning fuel into crowd.',
@@ -25,11 +25,10 @@ const BannerImage: FC = () => {
   console.log('bannerList', bannerList);
 
   const handleAdd = () => {
-    setBannerModalState(
-      produce(draft => {
-        draft.visible = true;
-      }),
-    );
+    setBannerModalState({
+      visible: true,
+      type: BannerModalType.add,
+    });
   };
 
   return (
@@ -40,6 +39,7 @@ const BannerImage: FC = () => {
         </Button>
         <Button>预览</Button>
       </Space>
+
       <List
         bordered
         dataSource={data}
