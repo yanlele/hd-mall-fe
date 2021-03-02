@@ -3,6 +3,7 @@ import { Button, Divider, List, Space } from 'antd';
 import { useRequest } from 'ahooks';
 import { getBannerListRequest } from '@src/pages/Home/service';
 import { get } from 'lodash';
+import { BannerItem } from '@src/pages/Home/service/interface';
 
 const data = [
   'Racing car sprays burning fuel into crowd.',
@@ -15,7 +16,7 @@ const data = [
 const BannerImage: FC = () => {
   const { data: res } = useRequest(getBannerListRequest);
 
-  const bannerList = get(res, 'data', []);
+  const bannerList: BannerItem[] = get(res, 'data', []);
   console.log('bannerList', bannerList);
 
   return (
