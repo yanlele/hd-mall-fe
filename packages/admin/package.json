@@ -132,9 +132,7 @@
   },
   "dependencies": {
     "@hd/common": "0.0.1",
-    "@rematch/core": "^1.2.0",
     "@types/classnames": "^2.2.6",
-    "@types/prop-types": "^15.5.5",
     "@types/react": "^16.9.2",
     "@types/react-loadable": "^5.4.1",
     "@types/react-redux": "^7.0.1",
