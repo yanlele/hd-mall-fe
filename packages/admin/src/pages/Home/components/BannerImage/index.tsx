@@ -4,6 +4,9 @@ import { useRequest } from 'ahooks';
 import { getBannerListRequest } from '@src/pages/Home/service';
 import { get } from 'lodash';
 import { BannerItem } from '@src/pages/Home/service/interface';
+import { useSetRecoilState } from 'recoil';
+import { bannerModalModel } from '@src/pages/Home/model';
+import { produce } from 'immer';
 
 const data = [
   'Racing car sprays burning fuel into crowd.',
@@ -16,13 +19,25 @@ const data = [
 const BannerImage: FC = () => {
   const { data: res } = useRequest(getBannerListRequest);
 
+  const setBannerModalState = useSetRecoilState(bannerModalModel);
+
   const bannerList: BannerItem[] = get(res, 'data', []);
   console.log('bannerList', bannerList);
+
+  const handleAdd = () => {
+    setBannerModalState(
+      produce(draft => {
+        draft.visible = true;
+      }),
+    );
+  };
 
   return (
     <>
       <Space style={{ marginBottom: '6px' }} size="small">
-        <Button type="primary">添加</Button>
+        <Button type="primary" onClick={handleAdd}>
+          添加
+        </Button>
         <Button>预览</Button>
       </Space>
       <List

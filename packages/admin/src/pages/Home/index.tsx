@@ -4,6 +4,7 @@ import HeaderComponent from '@src/components/biz/HeaderComponent';
 import { Tabs } from 'antd';
 import { SmileTwoTone } from '@ant-design/icons';
 import BannerImage from '@src/pages/Home/components/BannerImage';
+import BannerModal from '@src/pages/Home/components/BannerModal';
 
 const { TabPane } = Tabs;
 
@@ -27,6 +28,8 @@ const Home: FC = () => {
           <BannerImage />
         </TabPane>
       </Tabs>
+
+      <BannerModal />
     </div>
   );
 };
