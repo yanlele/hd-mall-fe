@@ -1,8 +1,15 @@
 import request from '@src/utils/axios';
-import { getBannerListApiUrl, createBannerApiUrl, deleteBannerApiUrl } from '@hd/common/adminService/consts';
+import {
+  getBannerListApiUrl,
+  createBannerApiUrl,
+  updateBannerApiUrl,
+  deleteBannerApiUrl,
+} from '@hd/common/adminService/consts';
 import { CreateBannerRequestParams, UpdateBannerRequestParams } from '@src/pages/Home/service/interface';
 
 export const getBannerListRequest = () => request({ url: getBannerListApiUrl });
+
+export const deleteBannerRequest = (id: number) => request({ url: deleteBannerApiUrl, method: 'post', data: { id } });
 
 export const CreateBannerRequest = (data: CreateBannerRequestParams) =>
   request({
@@ -14,6 +21,6 @@ export const CreateBannerRequest = (data: CreateBannerRequestParams) =>
 export const updateBannerRequest = (data: UpdateBannerRequestParams) =>
   request({
     method: 'post',
-    url: deleteBannerApiUrl,
+    url: updateBannerApiUrl,
     data,
   });

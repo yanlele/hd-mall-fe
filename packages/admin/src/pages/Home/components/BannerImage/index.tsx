@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button, Divider, List, Space } from 'antd';
+import { Button, Divider, List, Space, Modal } from 'antd';
 import { useMount, usePersistFn } from 'ahooks';
 import { BannerItem } from '@src/pages/Home/service/interface';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -7,6 +7,12 @@ import { bannerListModel, bannerModalModel } from '@src/pages/Home/model';
 import { BannerModalType } from '@src/pages/Home/consts';
 import produce from 'immer';
 import { handleGetBannerList } from '@src/pages/Home/service/helper';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { deleteProductRequest } from '@src/pages/Product/service';
+import { handleGetListHelper } from '@src/pages/Product/components/ProductListTab/helper';
+import { deleteBannerRequest } from '@src/pages/Home/service';
+
+const { confirm } = Modal;
 
 const BannerImage: FC = () => {
   const setBannerModalState = useSetRecoilState(bannerModalModel);
@@ -36,6 +42,24 @@ const BannerImage: FC = () => {
     );
   });
 
+  const handleDelete = usePersistFn((id: number) => {
+    confirm({
+      title: '确认删除该商品数据?',
+      icon: <ExclamationCircleOutlined />,
+      content: '删除之后无法恢复。',
+      onOk() {
+        return new Promise((resolve, reject) => {
+          deleteBannerRequest(id)
+            .then(async () => {
+              await handleGetBannerList({ setState: setBannerListState });
+              resolve();
+            })
+            .catch(() => reject());
+        }).catch(() => console.log('Oops errors!'));
+      },
+    });
+  });
+
   return (
     <>
       <Space style={{ marginBottom: '6px' }} size="small">
@@ -60,7 +84,7 @@ const BannerImage: FC = () => {
               <Button size="small" onClick={() => handleEdit(item)}>
                 修改
               </Button>
-              <Button danger size="small">
+              <Button onClick={() => handleDelete(item.id)} danger size="small">
                 删除
               </Button>
             </Space>
