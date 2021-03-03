@@ -10,6 +10,7 @@ import { ImageType } from '@hd/common/enum';
 import { get } from 'lodash';
 import { bannerModalModelDefaultState } from '@src/pages/Home/model/consts';
 import { handleLinkListToFileList } from '@src/components/biz/UploadFileComponent/helper';
+import { CreateBannerRequest } from '@src/pages/Home/service';
 
 const BannerModal: FC = () => {
   const [{ visible, type, backFill }, setModalState] = useRecoilState(bannerModalModel);
@@ -33,7 +34,9 @@ const BannerModal: FC = () => {
       link: value.link,
     };
 
-    console.log(params);
+    // 提交流程
+    await CreateBannerRequest(params);
+    handleCancel();
   });
 
   // 初始化值

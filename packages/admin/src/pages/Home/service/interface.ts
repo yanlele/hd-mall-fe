@@ -6,3 +6,10 @@ export interface BannerItem {
   url: string;
   link: string;
 }
+
+export interface CreateBannerRequestParams {
+  type: number;
+  file_name: string;
+  url: string;
+  link: string;
+}
