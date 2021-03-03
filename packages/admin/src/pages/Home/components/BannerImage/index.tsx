@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import { Button, Divider, List, Space } from 'antd';
-import { useRequest } from 'ahooks';
+import { usePersistFn, useRequest } from 'ahooks';
 import { getBannerListRequest } from '@src/pages/Home/service';
 import { get } from 'lodash';
 import { BannerItem } from '@src/pages/Home/service/interface';
 import { useSetRecoilState } from 'recoil';
 import { bannerModalModel } from '@src/pages/Home/model';
 import { BannerModalType } from '@src/pages/Home/consts';
+import produce from 'immer';
 
 const data = [
   'Racing car sprays burning fuel into crowd.',
@@ -24,12 +25,14 @@ const BannerImage: FC = () => {
   const bannerList: BannerItem[] = get(res, 'data', []);
   console.log('bannerList', bannerList);
 
-  const handleAdd = () => {
-    setBannerModalState({
-      visible: true,
-      type: BannerModalType.add,
-    });
-  };
+  const handleAdd = usePersistFn(() => {
+    setBannerModalState(
+      produce(draft => {
+        draft.visible = true;
+        draft.type = BannerModalType.add;
+      }),
+    );
+  });
 
   return (
     <>
