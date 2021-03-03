@@ -10,11 +10,11 @@ import { ImageType } from '@hd/common/enum';
 import { get } from 'lodash';
 import { bannerModalModelDefaultState } from '@src/pages/Home/model/consts';
 import { handleLinkListToFileList } from '@src/components/biz/UploadFileComponent/helper';
-import { CreateBannerRequest } from '@src/pages/Home/service';
+import { CreateBannerRequest, updateBannerRequest } from '@src/pages/Home/service';
 import produce from 'immer';
 
 const BannerModal: FC = () => {
-  const [{ visible, type, backFill, confirmLoading }, setModalState] = useRecoilState(bannerModalModel);
+  const [{ visible, type, item, confirmLoading }, setModalState] = useRecoilState(bannerModalModel);
   const formRef = useRef<FormInstance>();
   const handleCancel = usePersistFn(() => {
     setModalState(bannerModalModelDefaultState);
@@ -28,12 +28,14 @@ const BannerModal: FC = () => {
 
   const handleOnSubmit = usePersistFn(async () => {
     const value = await formRef.current?.validateFields();
-    const params = {
+    const params: any = {
       type: ImageType.bannerMain,
       file_name: get(value, 'image.0.fileName'),
       url: get(value, 'image.0.url'),
       link: value.link,
     };
+
+    if (type === BannerModalType.edit) params.id = item.id;
 
     // 提交流程
     setModalState(
@@ -41,31 +43,29 @@ const BannerModal: FC = () => {
         draft.confirmLoading = true;
       }),
     );
-    await CreateBannerRequest(params);
-    setModalState(
-      produce(draft => {
-        draft.confirmLoading = false;
-      }),
-    );
+
+    const requestFunction = type === BannerModalType.edit ? updateBannerRequest : CreateBannerRequest;
+    await requestFunction(params);
     handleCancel();
   });
 
   // 初始化值
   const initValues = useMemo(() => {
-    if (backFill.url && type === BannerModalType.edit) {
+    if (item.url && type === BannerModalType.edit) {
       return {
-        image: handleLinkListToFileList([backFill.url]),
-        link: backFill.link,
+        image: handleLinkListToFileList([item.url]),
+        link: item.link,
       };
     }
     return undefined;
-  }, [backFill, type]);
+  }, [item, type]);
 
   return (
     <Modal
       destroyOnClose
       confirmLoading={confirmLoading}
       onOk={handleOnSubmit}
+      okText={type === BannerModalType.edit ? '更新' : '确认'}
       onCancel={handleCancel}
       title={title}
       centered
