@@ -8,8 +8,6 @@ import { BannerModalType } from '@src/pages/Home/consts';
 import produce from 'immer';
 import { handleGetBannerList } from '@src/pages/Home/service/helper';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { deleteProductRequest } from '@src/pages/Product/service';
-import { handleGetListHelper } from '@src/pages/Product/components/ProductListTab/helper';
 import { deleteBannerRequest } from '@src/pages/Home/service';
 
 const { confirm } = Modal;
