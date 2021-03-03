@@ -9,14 +9,6 @@ import { bannerModalModel } from '@src/pages/Home/model';
 import { BannerModalType } from '@src/pages/Home/consts';
 import produce from 'immer';
 
-const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
-];
-
 const BannerImage: FC = () => {
   const { data: res } = useRequest(getBannerListRequest);
 
@@ -45,12 +37,20 @@ const BannerImage: FC = () => {
 
       <List
         bordered
-        dataSource={data}
+        dataSource={bannerList}
         renderItem={item => (
           <List.Item>
-            <p>{item}</p>
+            <p>
+              {/* eslint-disable-next-line react/jsx-no-target-blank */}
+              <a href={item.url} target="_blank">
+                {item.file_name}
+              </a>
+            </p>
             <Space split={<Divider type="vertical" />}>
               <Button size="small">修改 </Button>
+              <Button danger size="small">
+                删除
+              </Button>
             </Space>
           </List.Item>
         )}

@@ -11,9 +11,10 @@ import { get } from 'lodash';
 import { bannerModalModelDefaultState } from '@src/pages/Home/model/consts';
 import { handleLinkListToFileList } from '@src/components/biz/UploadFileComponent/helper';
 import { CreateBannerRequest } from '@src/pages/Home/service';
+import produce from 'immer';
 
 const BannerModal: FC = () => {
-  const [{ visible, type, backFill }, setModalState] = useRecoilState(bannerModalModel);
+  const [{ visible, type, backFill, confirmLoading }, setModalState] = useRecoilState(bannerModalModel);
   const formRef = useRef<FormInstance>();
   const handleCancel = usePersistFn(() => {
     setModalState(bannerModalModelDefaultState);
@@ -35,7 +36,17 @@ const BannerModal: FC = () => {
     };
 
     // 提交流程
+    setModalState(
+      produce(draft => {
+        draft.confirmLoading = true;
+      }),
+    );
     await CreateBannerRequest(params);
+    setModalState(
+      produce(draft => {
+        draft.confirmLoading = false;
+      }),
+    );
     handleCancel();
   });
 
@@ -53,6 +64,7 @@ const BannerModal: FC = () => {
   return (
     <Modal
       destroyOnClose
+      confirmLoading={confirmLoading}
       onOk={handleOnSubmit}
       onCancel={handleCancel}
       title={title}
