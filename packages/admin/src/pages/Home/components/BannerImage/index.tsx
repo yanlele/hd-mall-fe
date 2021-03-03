@@ -6,6 +6,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { bannerListModel, bannerModalModel } from '@src/pages/Home/model';
 import { BannerModalType } from '@src/pages/Home/consts';
 import produce from 'immer';
+import { slice } from 'lodash';
 import { handleGetBannerList } from '@src/pages/Home/service/helper';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { deleteBannerRequest } from '@src/pages/Home/service';
@@ -67,6 +68,7 @@ const BannerImage: FC = () => {
       </Space>
 
       <List
+        style={{ marginRight: '24px' }}
         bordered
         loading={loading}
         dataSource={bannerList}
@@ -75,7 +77,7 @@ const BannerImage: FC = () => {
             <p>
               {/* eslint-disable-next-line react/jsx-no-target-blank */}
               <a href={item.url} target="_blank">
-                {item.file_name}
+                {slice(item.file_name, 0, 80)}
               </a>
             </p>
             <Space split={<Divider type="vertical" />}>
