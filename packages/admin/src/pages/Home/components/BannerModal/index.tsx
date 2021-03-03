@@ -1,7 +1,7 @@
 import React, { FC, Ref, useMemo, useRef } from 'react';
 import { Form, FormInstance, Input, Modal } from 'antd';
-import { useRecoilState } from 'recoil';
-import { bannerModalModel } from '@src/pages/Home/model';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { bannerListModel, bannerModalModel } from '@src/pages/Home/model';
 import { BannerModalType } from '@src/pages/Home/consts';
 import { usePersistFn } from 'ahooks';
 import { commonFormLayout } from '@src/common/consts';
@@ -12,9 +12,12 @@ import { bannerModalModelDefaultState } from '@src/pages/Home/model/consts';
 import { handleLinkListToFileList } from '@src/components/biz/UploadFileComponent/helper';
 import { CreateBannerRequest, updateBannerRequest } from '@src/pages/Home/service';
 import produce from 'immer';
+import { handleGetBannerList } from '@src/pages/Home/service/helper';
 
 const BannerModal: FC = () => {
   const [{ visible, type, item, confirmLoading }, setModalState] = useRecoilState(bannerModalModel);
+
+  const setBannerListState = useSetRecoilState(bannerListModel);
   const formRef = useRef<FormInstance>();
   const handleCancel = usePersistFn(() => {
     setModalState(bannerModalModelDefaultState);
@@ -47,6 +50,7 @@ const BannerModal: FC = () => {
     const requestFunction = type === BannerModalType.edit ? updateBannerRequest : CreateBannerRequest;
     await requestFunction(params);
     handleCancel();
+    handleGetBannerList({ setState: setBannerListState });
   });
 
   // 初始化值

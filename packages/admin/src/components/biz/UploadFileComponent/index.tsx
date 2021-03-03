@@ -4,6 +4,7 @@ import { get, isBoolean } from 'lodash';
 import { UploadOutlined } from '@ant-design/icons';
 import { UploadFileComponentProps } from '@src/components/biz/UploadFileComponent/interface';
 import UploadFileInputModal from '@src/components/biz/UploadFileComponent/UploadFileInputModal';
+import styles from './style.less';
 
 const UploadFileComponent: FC<UploadFileComponentProps> = props => {
   const { onChange, multiple, value = [] } = props;
@@ -40,7 +41,7 @@ const UploadFileComponent: FC<UploadFileComponentProps> = props => {
   const uploadDisabled = !isMultiple ? value.length >= 1 : false;
 
   return (
-    <>
+    <div className={styles.uploadFileComponentContainer}>
       <Space size="small" align="start" direction={'vertical'}>
         <Button onClick={() => setVisible(true)}>
           直接通过 URL 链接上传文件
@@ -60,7 +61,7 @@ const UploadFileComponent: FC<UploadFileComponentProps> = props => {
         visible={visible}
         setVisible={setVisible}
       />
-    </>
+    </div>
   );
 };
 
