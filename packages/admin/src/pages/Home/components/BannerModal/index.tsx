@@ -8,15 +8,14 @@ import { commonFormLayout } from '@src/common/consts';
 import UploadFileComponent from '@src/components/biz/UploadFileComponent';
 import { ImageType } from '@hd/common/enum';
 import { get } from 'lodash';
+import { bannerModalModelDefaultState } from '@src/pages/Home/model/consts';
+import { handleLinkListToFileList } from '@src/components/biz/UploadFileComponent/helper';
 
 const BannerModal: FC = () => {
-  const [{ visible, type }, setModalState] = useRecoilState(bannerModalModel);
+  const [{ visible, type, backFill }, setModalState] = useRecoilState(bannerModalModel);
   const formRef = useRef<FormInstance>();
   const handleCancel = usePersistFn(() => {
-    setModalState({
-      visible: false,
-      type: BannerModalType.unknown,
-    });
+    setModalState(bannerModalModelDefaultState);
   });
 
   const title = useMemo(() => {
@@ -37,6 +36,17 @@ const BannerModal: FC = () => {
     console.log(params);
   });
 
+  // 初始化值
+  const initValues = useMemo(() => {
+    if (backFill.url && type === BannerModalType.edit) {
+      return {
+        image: handleLinkListToFileList([backFill.url]),
+        link: backFill.link,
+      };
+    }
+    return undefined;
+  }, [backFill, type]);
+
   return (
     <Modal
       destroyOnClose
@@ -50,13 +60,13 @@ const BannerModal: FC = () => {
         {...commonFormLayout}
         ref={formRef as Ref<FormInstance> | undefined}
         name="basic"
-        initialValues={{ remember: true }}>
+        initialValues={initValues}>
         <Form.Item label="banner图片" name="image" rules={[{ required: true, message: '请上传banner文件' }]}>
           <UploadFileComponent />
         </Form.Item>
 
         <Form.Item label="跳转链接" name="link">
-          <Input />
+          <Input placeholder="请输入跳转链接" />
         </Form.Item>
       </Form>
     </Modal>
