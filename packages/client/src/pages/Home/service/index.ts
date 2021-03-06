@@ -1,4 +1,10 @@
-import { getCategoryListApiUrl, getCategoryPrimaryListApiUrl, getDiscountListApiUrl } from '@hd/common/service/consts';
+import {
+  getBannerListApiUrl,
+  getCategoryListApiUrl,
+  getCategoryPrimaryListApiUrl,
+  getDiscountListApiUrl,
+} from '@hd/common/service/consts';
+
 import request from '@src/utils/axios';
 
 // 获取分类列表
@@ -9,3 +15,5 @@ export const getPrimaryCategoryList = () => request({ url: getCategoryPrimaryLis
 
 // 获取折扣商品
 export const getDiscountProductList = () => request({ url: getDiscountListApiUrl });
+
+export const getBannerListRequest = () => request({ url: getBannerListApiUrl });

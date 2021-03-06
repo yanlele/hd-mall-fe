@@ -29,3 +29,12 @@ export interface CategoryItem extends CategoryBase {
 export interface PrimaryCategory extends CategoryBase {
   product_list: ProductItem[];
 }
+
+export interface BannerItem {
+  file_name: string;
+  id: number;
+  link: string;
+  product_id: number;
+  type: number;
+  url: string;
+}
