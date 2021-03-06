@@ -1,6 +1,6 @@
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { range, map, flatMapDeep } from 'lodash';
+import { isEmpty, map, flatMapDeep } from 'lodash';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 import styles from './style.less';
@@ -35,25 +35,28 @@ const DiscountSwiper: FC = () => {
       <div className="discount-container">
         <DiscountItem />
 
-        <Swiper
-          pagination={{ clickable: true, el: '.swiper-pagination' }}
-          navigation={{ nextEl: '.discount-category-button-next', prevEl: '.discount-category-button-prev' }}
-          slidesPerView={4}
-          spaceBetween={26}
-          slidesPerGroup={4}
-          loop
-          loopFillGroupWithBlank
-          onSwiper={swiper => console.log(swiper)}
-          onChange={value => console.log('on change value: ', value)}
-          className="swiper-wrapper">
-          {map(list, item => {
-            return (
-              <SwiperSlide key={item.id} className="swiper-slide">
-                <ProductCard productItem={item} hasDiscount={true} />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+        {!isEmpty(list) && (
+          <Swiper
+            pagination={{ clickable: true, el: '.swiper-pagination' }}
+            navigation={{ nextEl: '.discount-category-button-next', prevEl: '.discount-category-button-prev' }}
+            slidesPerView={4}
+            spaceBetween={26}
+            slidesPerGroup={4}
+            loop
+            autoplay
+            loopFillGroupWithBlank
+            onSwiper={swiper => console.log(swiper)}
+            onChange={value => console.log('on change value: ', value)}
+            className="swiper-wrapper">
+            {map(list, item => {
+              return (
+                <SwiperSlide key={item.id} className="swiper-slide">
+                  <ProductCard productItem={item} hasDiscount={true} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        )}
       </div>
     </div>
   );

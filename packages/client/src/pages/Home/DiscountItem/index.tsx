@@ -5,7 +5,7 @@ import { useBindCountTime } from '@src/pages/Home/useHooks';
 
 const DiscountItem: FC = () => {
   // 是否已经结束
-  const isCountDown = useBindCountTime(new Date('2021-02-23'));
+  const isCountDown = useBindCountTime(new Date('2021-03-10'));
 
   return (
     <div className={styles.discountItemContainer}>
