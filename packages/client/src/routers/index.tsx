@@ -13,7 +13,7 @@ const { Content } = Layout;
 const routes = (
   <Router>
     <ConfigProvider locale={zhCN}>
-      <Layout>
+      <Layout style={{ minHeight: '100vh' }}>
         <HeaderComponent />
         <Content className={styles.content}>
           <Switch>
