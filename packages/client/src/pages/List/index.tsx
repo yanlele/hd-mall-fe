@@ -14,7 +14,7 @@ const List: FC = () => {
       <HomeHeader />
 
       <ListSearchHeader />
-      <div className="list-content"></div>
+      <div className="list-content">2113123</div>
     </div>
   );
 };

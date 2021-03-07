@@ -2,6 +2,18 @@
 
 
 .common-content {
-    width: 1200px;
-    margin: 0 auto;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.a-hover {
+  a {
+    color: #000000;
+
+    &:hover {
+      color: @primary-color!important;
+    }
+
+    transition: color .3s;
+  }
 }
