@@ -12,6 +12,7 @@ interface ExportPages {
 
 const pages: Pages = {
   Home: () => import('@src/pages/Home'),
+  List: () => import('@src/pages/List'),
 };
 
 const exportPages: ExportPages = {};

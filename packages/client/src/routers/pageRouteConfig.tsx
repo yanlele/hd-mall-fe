@@ -9,6 +9,13 @@ const staticRotes: StaticRoutes[] = [
     title: '主页',
     metas: [],
   },
+  {
+    path: '/list',
+    component: pages.List,
+    exact: true,
+    title: '详情',
+    metas: [],
+  },
 ];
 
 export default staticRotes;
