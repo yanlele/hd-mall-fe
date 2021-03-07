@@ -1,9 +1,8 @@
 import { RecoilState, useRecoilState } from 'recoil';
 import { CategoryItem, PrimaryCategory } from '@src/pages/Home/service/interface';
-import { getPrimaryCategoryList } from '@src/pages/Home/service/index';
+import { GetCategoryListRequest, getPrimaryCategoryList } from '@src/pages/Home/service/index';
 import { useMount } from 'ahooks';
 import { get, isEmpty } from 'lodash';
-import { getCategoryListRequest } from '../../../../../admin/src/pages/Category/service';
 
 // 请求获取 category list 数据
 export const useGetCategoryList = (categoryListModel: RecoilState<CategoryItem[]>) => {
@@ -11,7 +10,7 @@ export const useGetCategoryList = (categoryListModel: RecoilState<CategoryItem[]
 
   useMount(() => {
     if (isEmpty(list))
-      getCategoryListRequest().then(res => {
+      GetCategoryListRequest().then(res => {
         if (get(res, 'data')) setCategoryList(res.data);
       });
   });

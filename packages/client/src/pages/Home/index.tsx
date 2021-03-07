@@ -4,12 +4,12 @@ import MainCarousel from '@src/pages/Home/MainCarousel';
 import CategoryNavigation from '@src/pages/Home/CategoryNavigation';
 import { useTitle } from 'ahooks';
 import DiscountSwiper from '@src/pages/Home/DiscountSwiper';
-import HomeHeader from '@src/pages/Home/HomeHeader';
 import PrimaryCategory from '@src/pages/Home/PrimaryCategory';
 import { map } from 'lodash';
 import { categoryListModel, primaryCategoryListModel } from '@src/pages/Home/model';
 import { useGetCategoryList, useGetPrimaryCategoryList } from '@src/pages/Home/service/useHomeService';
 import { useRecoilValue } from 'recoil';
+import HomeHeader from '@src/components/biz/HomeHeader';
 
 const Home: FC = () => {
   useTitle('首页');
