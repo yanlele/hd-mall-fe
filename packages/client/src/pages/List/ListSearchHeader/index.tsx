@@ -11,6 +11,7 @@ const ListSearchHeader: FC = () => {
     <div className={styles.listSearchHeaderContainer}>
       <div className="content">
         <ListSearchHeaderNav />
+        content
       </div>
     </div>
   );
