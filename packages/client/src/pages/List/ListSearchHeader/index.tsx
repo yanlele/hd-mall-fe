@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styles from './style.less';
 import ListSearchHeaderNav from '@src/pages/List/ListSearchHeader/ListSearchHeaderNav';
+import Classify from '@src/pages/List/ListSearchHeader/Classify';
 
 /**
  * 搜索列表页面
@@ -11,7 +12,7 @@ const ListSearchHeader: FC = () => {
     <div className={styles.listSearchHeaderContainer}>
       <div className="content">
         <ListSearchHeaderNav />
-        content
+        <Classify />
       </div>
     </div>
   );
