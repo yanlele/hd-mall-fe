@@ -4,6 +4,7 @@ import { useGetPrimaryCategoryList } from '@src/pages/Home/service/useHomeServic
 import { primaryCategoryListModel } from '@src/pages/Home/model';
 import HomeHeader from '@src/components/biz/HomeHeader';
 import ListSearchHeader from '@src/pages/List/ListSearchHeader';
+import SortType from '@src/pages/List/SortType';
 
 const List: FC = () => {
   // 获取主要分类
@@ -14,7 +15,9 @@ const List: FC = () => {
       <HomeHeader />
 
       <ListSearchHeader />
-      <div className="list-content">2113123</div>
+      <div className="list-content">
+        <SortType />
+      </div>
     </div>
   );
 };
