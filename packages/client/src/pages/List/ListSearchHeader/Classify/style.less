@@ -4,4 +4,22 @@
   border-bottom: 1px solid #dcdcdc;
   display: flex;
   align-items: center;
+
+  :global {
+    .label {
+      margin: 0;
+      text-align: center;
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      margin: 0;
+
+      .item {
+        width: 120px;
+        margin: unset;
+      }
+    }
+  }
 }
