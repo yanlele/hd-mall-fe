@@ -1,3 +1,28 @@
+@import "../../../style/main";
+
 .footerContainer {
-    background: #ffffff;
+  background: #ffffff;
+  height: 180px;
+
+  :global {
+    .content {
+      .common-content();
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .footer-image1 {
+        margin-left: 46px;
+        width: 550px;
+      }
+
+      .content-right {
+        margin-right: 46px;
+        p {
+          margin: unset;
+        }
+      }
+    }
+  }
+
 }
