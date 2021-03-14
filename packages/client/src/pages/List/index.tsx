@@ -1,14 +1,18 @@
 import React, { FC } from 'react';
 import styles from './style.less';
-import { useGetPrimaryCategoryList } from '@src/pages/Home/service/useHomeService';
-import { primaryCategoryListModel } from '@src/pages/Home/model';
+import { useGetCategoryList, useGetPrimaryCategoryList } from '@src/pages/Home/service/useHomeService';
+import { categoryListModel, primaryCategoryListModel } from '@src/pages/Home/model';
 import HomeHeader from '@src/components/biz/HomeHeader';
 import ListSearchHeader from '@src/pages/List/ListSearchHeader';
 import SortType from '@src/pages/List/SortType';
+import ProductList from '@src/pages/List/ProductList';
 
 const List: FC = () => {
   // 获取主要分类
   useGetPrimaryCategoryList(primaryCategoryListModel);
+
+  // 获取所有分类
+  useGetCategoryList(categoryListModel);
 
   return (
     <div className={styles.listContainer}>
@@ -17,6 +21,7 @@ const List: FC = () => {
       <ListSearchHeader />
       <div className="list-content">
         <SortType />
+        <ProductList />
       </div>
     </div>
   );

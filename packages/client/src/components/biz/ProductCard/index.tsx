@@ -4,7 +4,7 @@ import cn from 'classnames';
 import styles from './style.less';
 
 const ProductCard: FC<ProductCardProps> = props => {
-  const { hasDiscount = false, className, productItem } = props;
+  const { hasDiscount = false, className, productItem, hasShadow = true } = props;
 
   const { original_cost, price, title, desc, primary_image } = productItem;
 
@@ -22,7 +22,7 @@ const ProductCard: FC<ProductCardProps> = props => {
   }, [hasDiscount]);
 
   return (
-    <div className={cn(styles.productCardContainer, className)}>
+    <div className={cn(styles.productCardContainer, hasShadow && styles.hasHover, className)}>
       <img className="primary-image" src={primary_image} alt="无法显示" />
       <p className="title">{title}</p>
       <p className="desc">{desc}</p>

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import LongBanner from '@src/pages/Home/LongBanner';
 import styles from './style.less';
 import { Link } from 'react-router-dom';
-import { range, map } from 'lodash';
+import { map } from 'lodash';
 import { RightOutlined } from '@ant-design/icons';
 import ProductCard from '@src/components/biz/ProductCard';
 import { Row, Col } from 'antd';
@@ -23,16 +23,11 @@ const PrimaryCategory: FC<PrimaryCategoryProps> = props => {
       </div>
 
       <Row gutter={[24, 24]}>
-        {map(item.product_list, (productItem, index) => {
-          let className = 'card-box-shadow';
-
-          /* todo 这个地方可以特殊处理 */
-          if (index === 0) className = `${className}`;
-
+        {map(item.product_list, productItem => {
           return (
             <Col key={productItem.id} span="6">
               <div className="card-container">
-                <ProductCard productItem={productItem} className={className} />
+                <ProductCard productItem={productItem} />
               </div>
             </Col>
           );

@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 const Classify: FC = () => {
   const list = useRecoilValue(primaryCategoryListModel);
-  console.log('list', list);
 
   const handleRenderClassifyItem = useMemo(() => {
     return map(list, item => {
