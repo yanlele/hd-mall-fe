@@ -25,6 +25,7 @@ const Home: FC = () => {
             </span>
           }
           key="1">
+          {/* banner list */}
           <BannerImage />
         </TabPane>
       </Tabs>

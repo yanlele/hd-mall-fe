@@ -84,7 +84,7 @@ const BannerModal: FC = () => {
           <UploadFileComponent />
         </Form.Item>
 
-        <Form.Item label="跳转链接" name="link">
+        <Form.Item label="跳转链接" name="link" rules={[{ required: true, message: '请填写跳转链接' }]}>
           <Input placeholder="请输入跳转链接" />
         </Form.Item>
       </Form>

@@ -5,6 +5,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { UploadFileComponentProps } from '@src/components/biz/UploadFileComponent/interface';
 import UploadFileInputModal from '@src/components/biz/UploadFileComponent/UploadFileInputModal';
 import styles from './style.less';
+import { ApiPrefix } from '@src/common/consts';
 
 const UploadFileComponent: FC<UploadFileComponentProps> = props => {
   const { onChange, multiple, value = [] } = props;
@@ -32,8 +33,8 @@ const UploadFileComponent: FC<UploadFileComponentProps> = props => {
   };
 
   const uploadProps = {
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    // action: `${ApiPrefix}/upload`,
+    // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    action: `${ApiPrefix}/upload`,
     onChange: handleChange,
     multiple: isMultiple,
   };
