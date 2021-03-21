@@ -1,20 +1,18 @@
 import React, { FC } from 'react';
-import { map, flatMap } from 'lodash';
-import { Col, Row } from 'antd';
+import { map } from 'lodash';
+import { Col, Row, Spin } from 'antd';
 import ProductCard from '@src/components/biz/ProductCard';
-import { primaryCategoryListModel } from '@src/pages/Home/model';
 import { useRecoilValue } from 'recoil';
+import { productListModel } from '@src/pages/List/model';
 
 const ProductList: FC = () => {
   // todo 需要获取所有产品的接口， 通过id 获取商品情况
-  const categoryList = useRecoilValue(primaryCategoryListModel);
-
-  const allList = flatMap(map(categoryList, item => item.product_list));
+  const { list, loading } = useRecoilValue(productListModel);
 
   return (
-    <div>
+    <Spin spinning={loading}>
       <Row gutter={[24, 24]}>
-        {map(allList, productItem => {
+        {map(list, productItem => {
           return (
             <Col key={productItem.id} span="6">
               <ProductCard productItem={productItem} />
@@ -22,7 +20,7 @@ const ProductList: FC = () => {
           );
         })}
       </Row>
-    </div>
+    </Spin>
   );
 };
 
