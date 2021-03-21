@@ -131,8 +131,8 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
-    "@hd/common": "0.0.1",
     "@ant-design/icons": "^4.5.0",
+    "@hd/common": "0.0.1",
     "@rematch/core": "^1.2.0",
     "@types/classnames": "^2.2.6",
     "@types/prop-types": "^15.5.5",
@@ -143,6 +143,7 @@
     "ahooks": "^2.9.6",
     "axios": "^0.18.0",
     "clean-webpack-plugin": "^1.0.1",
+    "immer": "^9.0.1",
     "lodash": "^4.17.20",
     "moment": "^2.18.1",
     "react": "^16.9.0",

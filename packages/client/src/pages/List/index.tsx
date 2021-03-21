@@ -6,6 +6,8 @@ import HomeHeader from '@src/components/biz/HomeHeader';
 import ListSearchHeader from '@src/pages/List/ListSearchHeader';
 import SortType from '@src/pages/List/SortType';
 import ProductList from '@src/pages/List/ProductList';
+import { useGetProductList } from '@src/pages/List/service/useListServiceHooks';
+import { productListModel } from '@src/pages/List/model';
 
 const List: FC = () => {
   // 获取主要分类
@@ -13,6 +15,9 @@ const List: FC = () => {
 
   // 获取所有分类
   useGetCategoryList(categoryListModel);
+
+  // 获取商品列表
+  useGetProductList(productListModel);
 
   return (
     <div className={styles.listContainer}>
