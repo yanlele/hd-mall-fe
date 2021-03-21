@@ -2,7 +2,7 @@
 
 .footerContainer {
   background: #ffffff;
-  height: 180px;
+
 
   :global {
     .content {
@@ -41,7 +41,7 @@
             height: 40px;
             padding: 0 16px;
             background-color: #000000;
-            color: blanchedalmond;
+            color: #ffffff;
             border-radius: 20px;
 
             .connect-left {
@@ -51,6 +51,33 @@
         }
       }
     }
-  }
 
+    .content2 {
+      .common-content();
+      display: flex;
+      flex-wrap: wrap;
+
+      color: #bababa;
+      font-size: 14px;
+
+      .desc {
+        padding: 0 46px;
+        width: 50%;
+      }
+
+      .right-desc {
+        padding: 0 46px;
+      }
+
+      .icon-container {
+        font-size: 20px;
+        text-align: right;
+        padding-right: 8.5%;
+
+        span[role='img'] {
+          margin-left: 6px;
+        }
+      }
+    }
+  }
 }

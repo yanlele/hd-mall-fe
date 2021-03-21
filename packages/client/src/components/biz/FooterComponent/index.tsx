@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Layout } from 'antd';
 import styles from './style.less';
-import { MessageOutlined } from '@ant-design/icons';
+import { MessageOutlined, QqOutlined, WechatOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 
 const { Footer } = Layout;
 
@@ -26,6 +26,16 @@ const FooterComponent: FC = () => {
             <span>在线客服</span>
           </p>
         </div>
+      </div>
+
+      <div className="content2">
+        <div className="desc">了解商城 | 加入我们 | 联系我们 ｜ 问题反馈 | 经营许可证</div>
+        <div className="desc icon-container">
+          <WechatOutlined />
+          <QqOutlined />
+          <WeiboCircleOutlined />
+        </div>
+        <div className="right-desc">@2020 Daxiong Telecom Equipment reserved. 渝ICP16789043号 营业执照 法律声明</div>
       </div>
     </Footer>
   );
