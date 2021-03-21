@@ -20,6 +20,7 @@ const UploadFileComponent: FC<UploadFileComponentProps> = props => {
     fileList = fileList.map(file => {
       if (file.response) {
         file.url = get(file, 'response.download_url', '') || get(file, 'response.url', '');
+        file.fileName = get(file, 'name');
       }
       // 特殊标记为
       file.uploadType = 'fileUploader';
