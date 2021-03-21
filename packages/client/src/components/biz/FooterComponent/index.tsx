@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Layout } from 'antd';
 import styles from './style.less';
+import { MessageOutlined } from '@ant-design/icons';
 
 const { Footer } = Layout;
 
@@ -18,7 +19,12 @@ const FooterComponent: FC = () => {
         <div className="content-right">
           <p>周一至周日 8:00 - 23:00</p>
           <p>240-3456-8888</p>
-          <p>在线客服</p>
+          <p className="connect">
+            <span className="connect-left">
+              <MessageOutlined />
+            </span>
+            <span>在线客服</span>
+          </p>
         </div>
       </div>
     </Footer>
