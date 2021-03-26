@@ -13,7 +13,12 @@ const ProductDetail: FC = () => {
     <div className={styles.productDetailContainer}>
       <HomeHeader />
 
-      <div className="detail-content">hello</div>
+      <div className="detail-content">
+        <div className="main-content">
+          <div className="image-container">image</div>
+          <div className="detail-container">detail</div>
+        </div>
+      </div>
     </div>
   );
 };
