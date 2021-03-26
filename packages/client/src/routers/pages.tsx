@@ -13,6 +13,7 @@ interface ExportPages {
 const pages: Pages = {
   Home: () => import('@src/pages/Home'),
   List: () => import('@src/pages/List'),
+  ProductDetail: () => import('@src/pages/ProductDetail'),
 };
 
 const exportPages: ExportPages = {};

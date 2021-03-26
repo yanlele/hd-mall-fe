@@ -13,8 +13,14 @@ const staticRotes: StaticRoutes[] = [
     path: '/list',
     component: pages.List,
     exact: true,
-    title: '详情',
+    title: '列表',
     metas: [],
+  },
+  {
+    path: '/detail',
+    component: pages.ProductDetail,
+    exact: true,
+    title: '详情',
   },
 ];
 

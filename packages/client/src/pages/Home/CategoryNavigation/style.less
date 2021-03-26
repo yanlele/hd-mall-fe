@@ -1,31 +1,32 @@
 @import "../../../style/main";
 
 .categoryNavContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 570px;
-    background-color: rgba(61, 57, 57, .9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 570px;
+  background-color: rgba(61, 57, 57, .9);
 
-    :global {
-        .ant-menu {
-            color: #ffffff;
-            background: transparent;
-            border-right: unset;
-            box-shadow: unset;
-        }
-
-        .ant-menu-item {
-            &:hover {
-                color: @primary-color;
-            }
-            background: rgba(61, 57, 57, .9);
-        }
-
-        .ant-menu-item-selected {
-            color: @primary-color;
-            background-color: rgba(61, 57, 57, .9) !important;
-        }
+  :global {
+    .ant-menu {
+      color: #ffffff;
+      background: transparent;
+      border-right: unset;
+      box-shadow: unset;
     }
+
+    .ant-menu-item {
+      &:hover {
+        color: @primary-color;
+      }
+
+      background: rgba(61, 57, 57, .9);
+    }
+
+    .ant-menu-item-selected {
+      color: @primary-color;
+      background-color: rgba(61, 57, 57, .9) !important;
+    }
+  }
 }
