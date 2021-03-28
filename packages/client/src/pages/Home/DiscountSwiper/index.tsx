@@ -4,7 +4,7 @@ import { isEmpty, map, flatMapDeep } from 'lodash';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 import styles from './style.less';
-import './min.css';
+import '../../../style/swiper-min.css';
 
 import React, { FC } from 'react';
 import DiscountItem from '@src/pages/Home/DiscountItem';

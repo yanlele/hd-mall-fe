@@ -4,6 +4,49 @@
   :global {
     .detail-content {
       .common-content();
+
+      .main-content {
+        height: 530px;
+        background-color: #ffffff;
+        margin-top: 52px;
+
+        display: flex;
+
+        .image-container {
+          height: 100%;
+          width: 40%;
+
+          .main-img img {
+            width: 80%;
+            margin: 10%;
+          }
+
+          .img-list{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .image-next, .image-prev {
+              color: #8a8a8a;
+              font-size: 24px;
+              cursor: pointer;
+              height: 100%;
+              width: 8%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            .swiper-button-disabled {
+              cursor: not-allowed;
+            }
+          }
+        }
+
+        .detail-container {
+          height: 100%;
+        }
+      }
     }
   }
 }
