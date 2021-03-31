@@ -1,6 +1,8 @@
 .productInfoContainer {
   height: 100%;
   margin-left: 24px;
+  width: 60%;
+  margin-right: 24px;
 
   :global {
     .title {
@@ -12,5 +14,58 @@
       margin-top: 16px;
       font-size: 16px;
     }
+
+    .price-content {
+      padding: 14px 16px;
+      background-color: #fff0f0;
+      font-size: 14px;
+
+      p.line {
+        display: flex;
+        align-items: center;
+        margin: unset;
+        height: 30px;
+        line-height: 30px;
+
+        span {
+          line-height: 1;
+        }
+
+        .label {
+          color: #333333;
+          margin-right: 12px;
+        }
+
+        .price {
+          color: #da0000;
+          font-size: 22px;
+        }
+
+        .discount-icon {
+          font-size: 12px;
+          padding: 4px 6px;
+          color: #da0000;
+          border: 1px solid #da0000;
+        }
+
+        .desc {
+          margin-left: 6px;
+          color: #333333;
+        }
+      }
+    }
+
+    .distribution {
+      color: #333333;
+      height: 55px;
+      line-height: 55px;
+      margin-top: 16px;
+      margin-left: 16px;
+
+      span {
+        margin-right: 12px;
+      }
+    }
+
   }
 }
