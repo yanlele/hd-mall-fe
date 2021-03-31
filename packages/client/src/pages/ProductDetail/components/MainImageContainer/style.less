@@ -1,0 +1,51 @@
+.mainImageContainer {
+  height: 100%;
+  width: 40%;
+
+  :global {
+    .main-img {
+      height: 440px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 90%;
+        margin: 5%;
+      }
+    }
+
+    .img-list {
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .image-next, .image-prev {
+        outline: unset;
+        color: #8a8a8a;
+        font-size: 24px;
+        cursor: pointer;
+        height: 100%;
+        width: 8%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .swiper-button-disabled {
+        cursor: not-allowed;
+      }
+
+      .swiper-container {
+        max-height: 70px;
+      }
+
+      .swiper-slide {
+        cursor: pointer;
+      }
+    }
+  }
+}
