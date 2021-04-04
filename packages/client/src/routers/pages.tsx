@@ -14,6 +14,7 @@ const pages: Pages = {
   Home: () => import('@src/pages/Home'),
   List: () => import('@src/pages/List'),
   ProductDetail: () => import('@src/pages/ProductDetail'),
+  Order: () => import('@src/pages/Order'),
 };
 
 const exportPages: ExportPages = {};

@@ -22,6 +22,12 @@ const staticRotes: StaticRoutes[] = [
     exact: true,
     title: '详情',
   },
+  {
+    path: '/order',
+    component: pages.Order,
+    exact: true,
+    title: '订单',
+  },
 ];
 
 export default staticRotes;
