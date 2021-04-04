@@ -20,6 +20,9 @@ const ProductDetail: FC = () => {
           <ProductInfo />
         </div>
       </div>
+      <hr className="line" />
+
+      <div className="detail-content">hello</div>
     </div>
   );
 };
