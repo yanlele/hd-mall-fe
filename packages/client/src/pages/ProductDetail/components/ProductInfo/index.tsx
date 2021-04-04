@@ -1,6 +1,8 @@
 import React, { FC, useState } from 'react';
 import styles from './style.less';
 import { map, range } from 'lodash';
+import { Button } from 'antd';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const ProductInfo: FC = () => {
   const [purchaseQuantity, setPurchaseQuantity] = useState(1);
@@ -92,6 +94,14 @@ const ProductInfo: FC = () => {
         </div>
 
         <span className="inventory">库存1000件</span>
+      </div>
+
+      {/* handle - 操作 */}
+      <div className="handle">
+        <Button className="buy">立即购买</Button>
+        <Button className="add-car">
+          <ShoppingCartOutlined style={{ fontSize: 18, verticalAlign: 'sub' }} /> 加入购物车
+        </Button>
       </div>
     </div>
   );
