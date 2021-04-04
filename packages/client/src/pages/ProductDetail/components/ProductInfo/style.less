@@ -1,3 +1,9 @@
+.label-common {
+  margin-left: 16px;
+  width: 80px;
+  flex-shrink: 0;
+}
+
 .productInfoContainer {
   height: 100%;
   margin-left: 24px;
@@ -58,6 +64,7 @@
     }
 
     /* 描述信息板块 */
+
     .distribution {
       color: #333333;
       height: 55px;
@@ -100,13 +107,13 @@
     }
 
     /* 商品销售分类 */
-    .sel-category {
+
+    .sell-category {
       margin-top: 16px;
       display: flex;
 
       .label {
-        margin-left: 16px;
-        width: 80px;
+        .label-common();
       }
 
       .category-container {
@@ -130,6 +137,76 @@
 
           &:hover {
             border-color: #da0000;
+          }
+        }
+      }
+    }
+
+    /* 商品数量模块 */
+
+    .sell-count {
+      margin-top: 26px;
+      display: flex;
+
+      .label {
+        .label-common();
+      }
+
+
+      .input-number-container {
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+        }
+
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
+
+        width: 72px;
+        display: flex;
+
+        .input-number {
+          width: 40px;
+          height: 40px;
+          border: 1px solid #d3d3d3;
+          text-align: center;
+
+          :focus {
+            outline: unset;
+          }
+        }
+
+        .input-number-buttons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          height: 40px;
+          width: 32px;
+
+          span {
+            cursor: pointer;
+            height: 20px;
+            line-height: 20px;
+            width: 100%;
+            color: #d3d3d3;
+            text-align: center;
+
+            &:hover {
+              color: #da0000;
+            }
+          }
+
+          .add {
+            border-top: 1px solid #d3d3d3;
+            border-right: 1px solid #d3d3d3;
+            border-bottom: 1px solid #d3d3d3;
+          }
+
+          .subtract {
+            border-right: 1px solid #d3d3d3;
+            border-bottom: 1px solid #d3d3d3;
           }
         }
       }

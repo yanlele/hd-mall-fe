@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './style.less';
 import { map, range } from 'lodash';
 
 const ProductInfo: FC = () => {
+  const [purchaseQuantity, setPurchaseQuantity] = useState(1);
+
   return (
     <div className={styles.productInfoContainer}>
       <h2 className="title">乐高什么仙女玩具外级逆回购傻逼大傻子</h2>
@@ -50,10 +52,10 @@ const ProductInfo: FC = () => {
       </div>
 
       {/* 商品销售分类 */}
-      <div className="sel-category">
+      <div className="sell-category">
         <span className="label">选择分类</span>
         <div className="category-container">
-          {map(range(0, 10), item => {
+          {map(range(0, 5), item => {
             return (
               <div key={item} className="category-item">
                 <img
@@ -69,6 +71,28 @@ const ProductInfo: FC = () => {
       </div>
 
       {/* 商品数量 */}
+      <div className="sell-count">
+        <span className="label">数量</span>
+        <div className="input-number-container">
+          <input type="number" max={99} value={purchaseQuantity} min={1} className="input-number" />
+          <div className="input-number-buttons">
+            <span className="add" onClick={() => setPurchaseQuantity(purchaseQuantity + 1)}>
+              +
+            </span>
+            <span
+              className="subtract"
+              onClick={() => {
+                if (purchaseQuantity > 1) {
+                  setPurchaseQuantity(purchaseQuantity - 1);
+                }
+              }}>
+              -
+            </span>
+          </div>
+        </div>
+
+        <span className="inventory">库存1000件</span>
+      </div>
     </div>
   );
 };
