@@ -1,13 +1,31 @@
 import React, { FC, useState } from 'react';
 import styles from './style.less';
-import { map, range } from 'lodash';
+import { map, range, get } from 'lodash';
 import { Button } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import cn from 'classnames';
+import { usePersistFn } from 'ahooks';
+import { useHistory } from 'react-router';
+import query from 'query-string';
 
 const ProductInfo: FC = () => {
+  const history = useHistory();
+
   const [purchaseQuantity, setPurchaseQuantity] = useState(1);
   const [type, setType] = useState(0);
+
+  // 跳转到 order 页面
+  const handleOnClickBuy = usePersistFn(() => {
+    const productId = get(query.parse(history.location.search), 'id');
+
+    const toOrderQuery = {
+      productId,
+      type,
+      purchaseQuantity,
+    };
+
+    history.push(`/order?${query.stringify(toOrderQuery)}`);
+  });
 
   return (
     <div className={styles.productInfoContainer}>
@@ -103,7 +121,9 @@ const ProductInfo: FC = () => {
 
       {/* handle - 操作 */}
       <div className="handle">
-        <Button className="buy">立即购买</Button>
+        <Button className="buy" onClick={handleOnClickBuy}>
+          立即购买
+        </Button>
         <Button className="add-car">
           <ShoppingCartOutlined style={{ fontSize: 18, verticalAlign: 'sub' }} /> 加入购物车
         </Button>
