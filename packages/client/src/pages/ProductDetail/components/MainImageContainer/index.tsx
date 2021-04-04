@@ -1,8 +1,6 @@
 import React, { FC, useState } from 'react';
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons';
 import { map } from 'lodash';
-import { useGetPrimaryCategoryList } from '@src/pages/Home/service/useHomeService';
-import { primaryCategoryListModel } from '@src/pages/Home/model';
 import SwiperCore, { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import '@src/style/swiper-min.css';
@@ -26,10 +24,6 @@ const list = [
 ];
 
 const MainImageContainer: FC = () => {
-  // 获取所有分类
-  // 获取主要分类和产品
-  useGetPrimaryCategoryList(primaryCategoryListModel);
-
   const [mainImage, setMainImage] = useState(list[0]);
 
   return (

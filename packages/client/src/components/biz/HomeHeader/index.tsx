@@ -5,18 +5,24 @@ import { Divider } from 'antd';
 import { map } from 'lodash';
 import { useRecoilValue } from 'recoil';
 import { primaryCategoryListModel } from '@src/pages/Home/model';
+import { Link } from 'react-router-dom';
 import styles from './style.less';
 
+/**
+ * header
+ * @constructor
+ */
 const HomeHeader: FC = () => {
   const list = useRecoilValue(primaryCategoryListModel);
 
   const handleRenderPrimaryCategory = useMemo(() => {
     return map(list, item => {
+      const { id } = item;
       return (
         <>
-          <Divider type="vertical" />
-          <div className="link">
-            <a>{item.name}</a>
+          <Divider key={id} type="vertical" />
+          <div key={id} className="link">
+            <Link to={`/list?id=${id}`}>{item.name}</Link>
           </div>
         </>
       );
@@ -30,7 +36,7 @@ const HomeHeader: FC = () => {
           <div className="title">大熊商城</div>
 
           <div className="link">
-            <a>首页</a>
+            <Link to="/">首页</Link>
           </div>
 
           {handleRenderPrimaryCategory}
