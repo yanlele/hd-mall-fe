@@ -32,6 +32,18 @@ const ProductInfo: FC = () => {
         <span>快递满99免邮费</span>
         <span>付款后72小时内发货</span>
       </p>
+
+      <div className="product-information">
+        <p className="info">
+          月销量
+          <span className="price"> 100+</span>
+        </p>
+        <span className="split" />
+        <p className="info">
+          累计评价
+          <span className="price"> 589</span>
+        </p>
+      </div>
     </div>
   );
 };
