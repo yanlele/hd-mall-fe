@@ -3,9 +3,11 @@ import styles from './style.less';
 import { map, range } from 'lodash';
 import { Button } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import cn from 'classnames';
 
 const ProductInfo: FC = () => {
   const [purchaseQuantity, setPurchaseQuantity] = useState(1);
+  const [type, setType] = useState(0);
 
   return (
     <div className={styles.productInfoContainer}>
@@ -57,9 +59,12 @@ const ProductInfo: FC = () => {
       <div className="sell-category">
         <span className="label">选择分类</span>
         <div className="category-container">
-          {map(range(0, 5), item => {
+          {map(range(0, 5), (item, index) => {
             return (
-              <div key={item} className="category-item">
+              <div
+                onClick={() => setType(index)}
+                key={item}
+                className={cn('category-item', type === index && 'active')}>
                 <img
                   width={30}
                   height={30}
