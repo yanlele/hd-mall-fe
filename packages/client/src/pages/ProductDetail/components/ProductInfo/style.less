@@ -15,6 +15,8 @@
       font-size: 16px;
     }
 
+    /* 价格部分信息 */
+
     .price-content {
       padding: 14px 16px;
       background-color: #fff0f0;
@@ -55,6 +57,7 @@
       }
     }
 
+    /* 描述信息板块 */
     .distribution {
       color: #333333;
       height: 55px;
@@ -93,6 +96,42 @@
         width: 1px;
         height: 33px;
         background: #d3d3d3;
+      }
+    }
+
+    /* 商品销售分类 */
+    .sel-category {
+      margin-top: 16px;
+      display: flex;
+
+      .label {
+        margin-left: 16px;
+        width: 80px;
+      }
+
+      .category-container {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 12px;
+
+        .category-item {
+          cursor: pointer;
+          margin-right: 26px;
+          height: 40px;
+          width: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #d3d3d3;
+
+          &.active {
+            border-color: #da0000;
+          }
+
+          &:hover {
+            border-color: #da0000;
+          }
+        }
       }
     }
   }
