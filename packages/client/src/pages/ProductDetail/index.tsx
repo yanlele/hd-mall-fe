@@ -5,6 +5,7 @@ import MainImageContainer from '@src/pages/ProductDetail/components/MainImageCon
 import ProductInfo from '@src/pages/ProductDetail/components/ProductInfo';
 import { RenderComponent } from '@src/components/biz/CustomTabs/interface';
 import CustomTabs from '@src/components/biz/CustomTabs';
+import DetailImage from '@src/pages/ProductDetail/components/DetailImage';
 
 /**
  * 详情页面
@@ -14,7 +15,7 @@ const ProductDetail: FC = () => {
   const componentListRef = useRef<RenderComponent[]>([
     {
       title: '商品详情',
-      component: <span>商品详情</span>,
+      component: <DetailImage />,
     },
 
     {
