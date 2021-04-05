@@ -4,6 +4,7 @@ import { useGetPrimaryCategoryList } from '@src/pages/Home/service/useHomeServic
 import { primaryCategoryListModel } from '@src/pages/Home/model';
 import { useTitle } from 'ahooks';
 import OrderHeader from '@src/pages/Order/components/OrderHeader';
+import OrderAddress from '@src/pages/Order/components/OrderAddress';
 
 const Order: FC = () => {
   useTitle('订单');
@@ -15,7 +16,9 @@ const Order: FC = () => {
     <div className={styles.orderPageContainer}>
       <OrderHeader />
 
-      <div className="order-content">123</div>
+      <div className="order-content">
+        <OrderAddress />
+      </div>
     </div>
   );
 };

@@ -1,0 +1,28 @@
+@import "~@src/style/main";
+
+.orderAddressContainer {
+  padding: 32px 24px;
+  width: 100%;
+  background: white;
+  margin-top: 32px;
+
+  :global {
+    .address-list {
+      margin-top: 12px;
+
+      display: flex;
+
+      .address-item {
+        width: 308px;
+        height: 168px;
+        border: 1px solid @Gray1;
+        border-radius: 4px;
+        padding: 18px 22px;
+
+        &:hover {
+          .common-hover-shadow();
+        }
+      }
+    }
+  }
+}
