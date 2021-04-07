@@ -23,6 +23,18 @@
     /* 订单信息 */
     .order-info-content {
       padding: 0 24px 24px;
+      .label {
+        font-size: 20px;
+        width: 120px;
+        margin-right: 50px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      .value {
+        font-size: 16px;
+      }
+
 
       /* 每一个订单项 */
       .order-info-item {
@@ -62,6 +74,66 @@
           }
         }
       }
+
+      /* 配送方式 */
+      .distribution {
+        display: flex;
+        align-items: center;
+        height: 120px;
+        border-bottom: 1px solid @Gray1;
+      }
+
+      /* 发票信息 */
+      .invoice {
+        padding-top: 25px;
+        display: flex;
+        align-items: start;
+        height: 120px;
+        border-bottom: 1px solid @Gray1;
+
+        .content {
+          margin-top: 3px;
+
+          .line-one {
+            color: @Gray3;
+          }
+        }
+      }
+
+      /* 留言 */
+      .remark {
+        height: 200px;
+        display: flex;
+        align-items: start;
+        padding-top: 25px;
+      }
+    }
+
+    .pay-info {
+      border-top: 1px solid @Gray1;
+      padding: 25px 16px 35px 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      flex-direction: column;
+
+      .text {
+        text-align: right;
+        margin-bottom: 6px;
+      }
+
+      .price {
+        color: @primary-color;
+        font-size: 18px;
+      }
+    }
+
+    .confirm-order-button {
+      font-size: 16px;
+      height: 40px;
+      width: 120px;
+      color: white;
+      background-color: #da0000;
     }
   }
 }
