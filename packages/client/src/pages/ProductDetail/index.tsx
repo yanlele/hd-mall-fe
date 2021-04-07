@@ -43,7 +43,7 @@ const ProductDetail: FC = () => {
           <ProductInfo />
         </div>
       </div>
-      <hr className="line" />
+      <hr className="hr-line" />
 
       <div className="detail-content">
         <CustomTabs components={componentListRef.current} />
