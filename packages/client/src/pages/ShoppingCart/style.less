@@ -1,0 +1,45 @@
+@import "~@src/style/main";
+
+
+.shoppingCartContainer {
+  margin-left: 30px;
+  padding: 18px 30px;
+  background-color: white;
+
+  :global {
+    .content {
+
+    }
+  }
+}
+
+.settlement {
+  margin: 12px 0 0 30px;
+  padding: 18px 30px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  :global {
+    .handle-settlement {
+      p {
+
+        margin: 0 12px 0 0;
+      }
+
+      display: flex;
+      align-items: center;
+
+      .count {
+        font-size: 20px;
+        color: @primary-color;
+      }
+
+      .price {
+        font-size: 22px;
+        color: @primary-color;
+      }
+    }
+  }
+}
