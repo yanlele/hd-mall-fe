@@ -32,7 +32,7 @@ const OrderAddress: FC = () => {
                     <a
                       onClick={() =>
                         handleOpenAddressModalHelper({
-                          params: { title: '修改', type: 'edit', addressInfo: { address_name: '胡大胖' } },
+                          params: { title: '修改', type: 'edit', addressInfo: { address_name: `胡大胖 - ${item}` } },
                           setModalState,
                         })
                       }>

@@ -4,7 +4,7 @@ export interface ClientAddressModalModelState {
   submitLoading: boolean;
   addressInfo: any; // 表单框的内容
   actions: {
-    onSubmit: (value: any) => void;
+    onSubmit: () => Promise<any>;
   }; // 出发方法
   title: string;
 }

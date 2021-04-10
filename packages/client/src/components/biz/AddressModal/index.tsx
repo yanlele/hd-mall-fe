@@ -4,30 +4,32 @@ import AddressForm from '@src/components/biz/AddressModal/AddressForm';
 import { useRecoilState } from 'recoil';
 import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
 import { usePersistFn } from 'ahooks';
-import { produce } from 'immer';
+import { defaultClientAddressModalModelState } from '@src/components/biz/AddressModal/model/consts';
 
 const AddressModal: FC = () => {
   const [modalState, setModalState] = useRecoilState(clientAddressModalModel);
   const { visible, title, actions } = modalState;
-  console.log('modalState', modalState);
   const { onSubmit } = actions;
 
   // 关闭模态框
   const handleCancel = usePersistFn(() => {
-    setModalState(
-      produce(draft => {
-        draft.visible = false;
-      }),
-    );
+    setModalState(defaultClientAddressModalModelState);
   });
+
+  // 提交
+  const handleSubmit = () => {
+    onSubmit().then(values => {
+      console.log(values);
+    });
+  };
 
   return (
     <Modal
       destroyOnClose
-      title={title}
+      title={`${title}收货地址`}
       centered
       visible={visible}
-      onOk={onSubmit}
+      onOk={handleSubmit}
       width={'640px'}
       confirmLoading={false}
       onCancel={handleCancel}>
