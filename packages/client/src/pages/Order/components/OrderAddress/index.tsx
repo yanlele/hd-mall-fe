@@ -1,9 +1,35 @@
 import React, { FC } from 'react';
-import { range, map } from 'lodash';
+import { range, map, isEmpty } from 'lodash';
 import styles from './style.less';
 import { PlusOutlined } from '@ant-design/icons';
+import AddressModal from '@src/components/biz/AddressModal';
+import { useSetRecoilState } from 'recoil';
+import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
+import { usePersistFn, useUnmount } from 'ahooks';
+import produce from 'immer';
+import { defaultClientAddressModalModelState } from '@src/components/biz/AddressModal/model/consts';
+import { ClientAddressModalModelState } from '@src/components/biz/AddressModal/model/interface';
 
 const OrderAddress: FC = () => {
+  const setModalState = useSetRecoilState(clientAddressModalModel);
+
+  // 打开模态框
+  const handleOpenAddressModal = usePersistFn((params?: Partial<ClientAddressModalModelState>) => {
+    if (isEmpty(params)) {
+    }
+
+    return setModalState(
+      produce(draft => {
+        draft.visible = true;
+      }),
+    );
+  });
+
+  // 注销组件的时候， 清空数据
+  useUnmount(() => {
+    setModalState(defaultClientAddressModalModelState);
+  });
+
   return (
     <>
       <div className={styles.orderAddressContainer}>
@@ -16,12 +42,7 @@ const OrderAddress: FC = () => {
                 <p className="info">
                   <span className="name">胡大胖 - {item}</span>
                   <span className="handle">
-                    <a
-                      onClick={() => {
-                        console.log('123123');
-                      }}>
-                      修改
-                    </a>
+                    <a onClick={() => handleOpenAddressModal({ title: '修改' })}>修改</a>
                   </span>
                 </p>
                 <p className="phone">15213498872</p>
@@ -33,7 +54,7 @@ const OrderAddress: FC = () => {
           })}
 
           {/* address - add */}
-          <div className="address-add">
+          <div onClick={handleOpenAddressModal} className="address-add">
             <p className="add-text">
               <span className="add-icon">
                 <PlusOutlined />
@@ -43,6 +64,8 @@ const OrderAddress: FC = () => {
           </div>
         </div>
       </div>
+
+      <AddressModal />
     </>
   );
 };
