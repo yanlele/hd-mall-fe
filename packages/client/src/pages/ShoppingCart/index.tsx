@@ -32,6 +32,7 @@ const ShoppingCart: FC = () => {
       <div className={styles.shoppingCartContainer}>
         <div className="content">
           <Table
+            className={styles.tableItemContainer}
             pagination={{
               current: 1,
               pageSize: 20,
