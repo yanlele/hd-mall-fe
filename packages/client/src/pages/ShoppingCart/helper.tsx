@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'antd';
+import { Button, Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table/interface';
 import CountComponent from '@src/components/dataEntry/CountComponent';
 
@@ -28,6 +28,14 @@ export const columns: ColumnsType<any> = [
     dataIndex: 'price',
     key: 'price',
     render: () => {
+      return <span>￥2899.00</span>;
+    },
+  },
+  {
+    title: '数量',
+    dataIndex: 'count',
+    key: 'count',
+    render: () => {
       return (
         <CountComponent
           onChange={value => {
@@ -38,17 +46,24 @@ export const columns: ColumnsType<any> = [
     },
   },
   {
-    title: '数量',
-    dataIndex: 'count',
-    key: 'count',
-  },
-  {
     title: '金额',
     dataIndex: 'totalPrice',
     key: 'totalPrice',
+    render: () => {
+      return <span>￥2899.00</span>;
+    },
   },
   {
     title: '操作',
     key: 'action',
+    render: () => {
+      return (
+        <div>
+          <Button size="small" danger>
+            删除
+          </Button>
+        </div>
+      );
+    },
   },
 ];
