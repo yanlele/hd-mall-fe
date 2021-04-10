@@ -6,7 +6,12 @@ const AdminMy: FC = () => {
   return (
     <AdminContainer>
       <div className={styles.adminMyContainer}>
-        <div className="info-content">12312312</div>
+        <div className="info-content">
+          <p>头像</p>
+          <p>积分</p>
+          <p>优惠券</p>
+          <p>快速浏览订单</p>
+        </div>
       </div>
     </AdminContainer>
   );

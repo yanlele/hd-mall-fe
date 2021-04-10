@@ -11,7 +11,7 @@ const AdminSubMenu: FC = () => {
   const history = useHistory();
 
   const onOpenChange = (value: any) => {
-    history.push(`/${get(value, 'key')}`);
+    history.push(`${get(value, 'key')}`);
   };
 
   const defaultSelectedKeys = useMemo(() => {
@@ -25,7 +25,7 @@ const AdminSubMenu: FC = () => {
       <Menu.Item onClick={onOpenChange} key="/admin-my" icon={<MailOutlined />}>
         个人中心
       </Menu.Item>
-      <Menu.Item onClick={onOpenChange} key="sub2" icon={<AppstoreOutlined />}>
+      <Menu.Item onClick={onOpenChange} key="/admin-shopping-cart" icon={<AppstoreOutlined />}>
         我的购物车
       </Menu.Item>
       <Menu.Item onClick={onOpenChange} key="sub4" icon={<SettingOutlined />}>

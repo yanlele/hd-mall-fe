@@ -34,6 +34,12 @@ const staticRotes: StaticRoutes[] = [
     exact: true,
     title: '个人中心',
   },
+  {
+    path: '/admin-shopping-cart',
+    component: pages.ShoppingCart,
+    exact: true,
+    title: '购物车',
+  },
 ];
 
 export default staticRotes;
