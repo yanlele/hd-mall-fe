@@ -1,29 +1,16 @@
 import React, { FC } from 'react';
-import { range, map, isEmpty } from 'lodash';
+import { range, map } from 'lodash';
 import styles from './style.less';
 import { PlusOutlined } from '@ant-design/icons';
 import AddressModal from '@src/components/biz/AddressModal';
 import { useSetRecoilState } from 'recoil';
 import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
-import { usePersistFn, useUnmount } from 'ahooks';
-import produce from 'immer';
+import { useUnmount } from 'ahooks';
 import { defaultClientAddressModalModelState } from '@src/components/biz/AddressModal/model/consts';
-import { ClientAddressModalModelState } from '@src/components/biz/AddressModal/model/interface';
+import { handleOpenAddressModalHelper } from '@src/pages/Order/components/OrderAddress/helper';
 
 const OrderAddress: FC = () => {
   const setModalState = useSetRecoilState(clientAddressModalModel);
-
-  // 打开模态框
-  const handleOpenAddressModal = usePersistFn((params?: Partial<ClientAddressModalModelState>) => {
-    if (isEmpty(params)) {
-    }
-
-    return setModalState(
-      produce(draft => {
-        draft.visible = true;
-      }),
-    );
-  });
 
   // 注销组件的时候， 清空数据
   useUnmount(() => {
@@ -42,7 +29,15 @@ const OrderAddress: FC = () => {
                 <p className="info">
                   <span className="name">胡大胖 - {item}</span>
                   <span className="handle">
-                    <a onClick={() => handleOpenAddressModal({ title: '修改' })}>修改</a>
+                    <a
+                      onClick={() =>
+                        handleOpenAddressModalHelper({
+                          params: { title: '修改', type: 'edit', addressInfo: { address_name: '胡大胖' } },
+                          setModalState,
+                        })
+                      }>
+                      修改
+                    </a>
                   </span>
                 </p>
                 <p className="phone">15213498872</p>
@@ -54,7 +49,7 @@ const OrderAddress: FC = () => {
           })}
 
           {/* address - add */}
-          <div onClick={handleOpenAddressModal} className="address-add">
+          <div onClick={() => handleOpenAddressModalHelper({ setModalState })} className="address-add">
             <p className="add-text">
               <span className="add-icon">
                 <PlusOutlined />

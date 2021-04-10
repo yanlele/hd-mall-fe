@@ -7,7 +7,9 @@ import { usePersistFn } from 'ahooks';
 import { produce } from 'immer';
 
 const AddressModal: FC = () => {
-  const [{ visible, title, actions }, setModalState] = useRecoilState(clientAddressModalModel);
+  const [modalState, setModalState] = useRecoilState(clientAddressModalModel);
+  const { visible, title, actions } = modalState;
+  console.log('modalState', modalState);
   const { onSubmit } = actions;
 
   // 关闭模态框
