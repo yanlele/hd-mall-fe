@@ -1,11 +1,20 @@
 import React, { FC } from 'react';
 import styles from './style.less';
-import { Button, Input } from 'antd';
+import { Button, Input, message } from 'antd';
 import { range, map } from 'lodash';
+import { usePersistFn } from 'ahooks';
+import { useHistory } from 'react-router';
 
 const { TextArea } = Input;
 
 const OrderInfo: FC = () => {
+  const history = useHistory();
+
+  const createOrder = usePersistFn(() => {
+    message.success('下单成功');
+    history.goBack();
+  });
+
   return (
     <div className={styles.orderInfoContainer}>
       <div className="order-info-header">
@@ -77,7 +86,9 @@ const OrderInfo: FC = () => {
           <span className="value price">￥2899.00</span>
         </p>
 
-        <Button className="confirm-order-button">立即下单</Button>
+        <Button onClick={createOrder} className="confirm-order-button">
+          立即下单
+        </Button>
       </div>
     </div>
   );
