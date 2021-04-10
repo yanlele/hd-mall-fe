@@ -28,6 +28,12 @@ const staticRotes: StaticRoutes[] = [
     exact: true,
     title: '订单',
   },
+  {
+    path: '/admin-my',
+    component: pages.AdminMy,
+    exact: true,
+    title: '个人中心',
+  },
 ];
 
 export default staticRotes;
