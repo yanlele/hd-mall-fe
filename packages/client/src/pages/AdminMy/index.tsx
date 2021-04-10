@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import AdminSubMenu from '@src/components/biz/AdminSubMenu';
-import AdminBreadcrumb from '@src/components/biz/AdminBreadcrumb';
+import AdminContainer from '@src/components/biz/AdminContainer';
 import styles from './style.less';
 
 const AdminMy: FC = () => {
   return (
-    <div className={styles.adminMyContainer}>
-      <AdminBreadcrumb />
-      <AdminSubMenu />
-    </div>
+    <AdminContainer>
+      <div className={styles.adminMyContainer}>
+        <div className="info-content">12312312</div>
+      </div>
+    </AdminContainer>
   );
 };
 

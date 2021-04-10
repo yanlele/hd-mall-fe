@@ -21,7 +21,7 @@ const AdminSubMenu: FC = () => {
   }, [window.location.pathname]);
 
   return (
-    <Menu mode="inline" defaultSelectedKeys={defaultSelectedKeys} style={{ width: 256 }}>
+    <Menu mode="inline" defaultSelectedKeys={defaultSelectedKeys} style={{ width: 168 }}>
       <Menu.Item onClick={onOpenChange} key="/admin-my" icon={<MailOutlined />}>
         个人中心
       </Menu.Item>
