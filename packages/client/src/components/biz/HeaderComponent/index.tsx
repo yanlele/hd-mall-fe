@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Layout, Divider } from 'antd';
 import styles from './style.less';
+import { Link } from 'react-router-dom';
 
 const { Header } = Layout;
 
@@ -21,7 +22,7 @@ const HeaderComponent: FC = () => {
           <Divider type="vertical" />
           <a>消息通知</a>
           <Divider type="vertical" />
-          <a>购物车</a>
+          <Link to="/admin-shopping-cart">购物车</Link>
         </div>
       </div>
     </Header>
