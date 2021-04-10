@@ -21,7 +21,7 @@ const CountComponent: FC<CountComponentProps> = props => {
 
   return (
     <div className={styles.inputNumberContainer}>
-      <input type="number" max={99} value={value} min={1} className="input-number" />
+      <input type="number" max={99} value={count} min={1} className="input-number" />
       <div className="input-number-buttons">
         <span className="add" onClick={handleAdd}>
           +

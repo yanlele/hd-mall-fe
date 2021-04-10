@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table/interface';
+import CountComponent from '@src/components/dataEntry/CountComponent';
 
 export const columns: ColumnsType<any> = [
   {
@@ -27,7 +28,13 @@ export const columns: ColumnsType<any> = [
     dataIndex: 'price',
     key: 'price',
     render: () => {
-      return <p>price</p>;
+      return (
+        <CountComponent
+          onChange={value => {
+            console.log(value);
+          }}
+        />
+      );
     },
   },
   {
