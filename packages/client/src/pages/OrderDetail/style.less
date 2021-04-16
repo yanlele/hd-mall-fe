@@ -8,6 +8,7 @@
       background-color: white;
       margin-top: 24px;
 
+      /* 进步条 */
       .detail-step {
         height: 200px;
         margin: 0 52px;
@@ -26,6 +27,30 @@
 
         .step-icon {
           font-size: 48px;
+        }
+      }
+
+      /* 订单信息部分 */
+      .order-info {
+        display: flex;
+        height: 300px;
+        border: 1px solid @Gray1;
+
+
+        .info {
+          width: 380px;
+          flex-shrink: 0;
+          color: @Gray5;
+
+          .info-header {
+            height: 55px;
+            line-height: 55px;
+            padding-left: 24px;
+            background-color: @Gray4;
+            border-bottom: 1px solid @Gray1;
+            display: flex;
+            align-content: center;
+          }
         }
       }
     }

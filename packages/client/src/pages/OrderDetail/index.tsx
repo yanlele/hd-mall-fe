@@ -38,6 +38,14 @@ const OrderDetail: FC = () => {
             />
           </Steps>
         </div>
+
+        <div className="order-info">
+          <div className="info">
+            <p className="info-header">订单信息</p>
+            <div className="info-detail">1231231</div>
+          </div>
+          <div className="order-status">订单状态</div>
+        </div>
       </div>
     </div>
   );
