@@ -1,0 +1,33 @@
+//noinspection CssUnknownTarget
+@import "~@src/style/main";
+
+.orderDetailContainer {
+  :global {
+    .detail-content {
+      .common-content();
+      background-color: white;
+      margin-top: 24px;
+
+      .detail-step {
+        height: 200px;
+        margin: 0 52px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+          color: @Green;
+        }
+        .ant-steps-item-custom.ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon {
+          color: @Green;
+        }
+
+        .step-icon {
+          font-size: 48px;
+        }
+      }
+    }
+  }
+}

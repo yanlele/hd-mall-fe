@@ -29,16 +29,22 @@ const staticRotes: StaticRoutes[] = [
     title: '订单',
   },
   {
-    path: '/admin-my',
+    path: '/admin/my',
     component: pages.AdminMy,
     exact: true,
     title: '个人中心',
   },
   {
-    path: '/admin-shopping-cart',
+    path: '/admin/shopping-cart',
     component: pages.ShoppingCart,
     exact: true,
     title: '购物车',
+  },
+  {
+    path: '/admin/order-detail',
+    component: pages.OrderDetail,
+    exact: true,
+    title: '订单',
   },
 ];
 

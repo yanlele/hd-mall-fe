@@ -23,10 +23,10 @@ const AdminSubMenu: FC = () => {
   return (
     <Affix>
       <Menu mode="inline" defaultSelectedKeys={defaultSelectedKeys} style={{ width: 168 }}>
-        <Menu.Item onClick={onOpenChange} key="/admin-my" icon={<MailOutlined />}>
+        <Menu.Item onClick={onOpenChange} key="/admin/my" icon={<MailOutlined />}>
           个人中心
         </Menu.Item>
-        <Menu.Item onClick={onOpenChange} key="/admin-shopping-cart" icon={<AppstoreOutlined />}>
+        <Menu.Item onClick={onOpenChange} key="/admin/shopping-cart" icon={<AppstoreOutlined />}>
           我的购物车
         </Menu.Item>
         <Menu.Item onClick={onOpenChange} key="sub4" icon={<SettingOutlined />}>
