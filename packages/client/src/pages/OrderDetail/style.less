@@ -9,6 +9,7 @@
       margin-top: 24px;
 
       /* 进步条 */
+
       .detail-step {
         height: 200px;
         margin: 0 52px;
@@ -21,6 +22,7 @@
         .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
           color: @Green;
         }
+
         .ant-steps-item-custom.ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon {
           color: @Green;
         }
@@ -31,6 +33,7 @@
       }
 
       /* 订单信息部分 */
+
       .order-info {
         display: flex;
         height: 300px;
@@ -51,6 +54,19 @@
             display: flex;
             align-content: center;
           }
+
+          .info-detail {
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 243px;
+            row-gap: 18px;
+          }
+        }
+
+        .order-status {
+          border-left: 1px solid @Gray1;
         }
       }
     }

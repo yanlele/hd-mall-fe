@@ -4,9 +4,9 @@ import cn from 'classnames';
 import styles from './style.less';
 
 const LabelValue: FC<LabelValueProps> = props => {
-  const { label, value } = props;
+  const { label, value, className } = props;
   return (
-    <div className={cn(styles.labelValueContainer)}>
+    <div className={cn(styles.labelValueContainer, className)}>
       <span className="label">{label}</span>
       <p className="value">{value}</p>
     </div>
