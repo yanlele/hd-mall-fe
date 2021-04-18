@@ -103,7 +103,26 @@
       }
 
       /* 商品信息列表 */
+      .detail-table {
+        border: 1px solid @Gray1;
 
+        background-color: white;
+        margin-top: 42px;
+
+        .ant-table-thead .ant-table-cell {
+          background-color: @Gray4;
+        }
+      }
+
+      /* 其他附加信息 */
+      .extend-info {
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 12px;
+        align-items: flex-end;
+        padding: 36px 24px 24px;
+      }
     }
   }
 }

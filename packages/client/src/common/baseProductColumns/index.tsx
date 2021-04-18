@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Image } from 'antd';
+import { Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table/interface';
 import CountComponent from '@src/components/dataEntry/CountComponent';
 import styles from './style.less';
@@ -54,17 +54,4 @@ export const baseProductColumns: ColumnsType<any> = [
       return <span>￥2899.00</span>;
     },
   },
-  // {
-  //   title: '操作',
-  //   key: 'action',
-  //   render: () => {
-  //     return (
-  //       <div>
-  //         <Button size="small" danger>
-  //           删除
-  //         </Button>
-  //       </div>
-  //     );
-  //   },
-  // },
 ];

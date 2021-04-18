@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import styles from './style.less';
-import { Steps } from 'antd';
+import { Steps, Table } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import LabelValue from '@src/components/layout/LabelValue';
+import { columns } from '@src/pages/OrderDetail/helper';
 
 const { Step } = Steps;
 
@@ -70,6 +71,16 @@ const OrderDetail: FC = () => {
             <LabelValue label="运单号" value="YT1278456436634" />
             <LabelValue className="transportation-status" label="运输状态" value="您已经在重庆第二师范菜鸟驿站取出。" />
           </div>
+        </div>
+
+        <div className="detail-table">
+          <Table pagination={false} columns={columns} dataSource={[{}]} />
+        </div>
+
+        <div className="extend-info">
+          <LabelValue label="商品总价: " value="￥258.00" />
+          <LabelValue label="运费: " value="￥258.00" />
+          <LabelValue label="实际付款: " value={<b>￥258.00</b>} />
         </div>
       </div>
     </div>
