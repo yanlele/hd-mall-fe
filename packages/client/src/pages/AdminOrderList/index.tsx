@@ -3,7 +3,7 @@ import AdminContainer from '@src/components/biz/AdminContainer';
 import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 import styles from './style.less';
 import { Table } from 'antd';
-import { columns } from '@src/pages/ShoppingCart/helper';
+import { handleGetColumnsHelper } from './helper';
 
 const data: any[] = [];
 for (let i = 0; i < 46; i++) {
@@ -16,12 +16,15 @@ for (let i = 0; i < 46; i++) {
 }
 
 const AdminOrderList: FC = () => {
+  const columns = handleGetColumnsHelper({});
+
   return (
     <AdminContainer>
       <AdminTitleBar>订单列表</AdminTitleBar>
 
       <div className={styles.adminOrderListContainer}>
         <Table
+          className="order-table"
           pagination={{
             current: 1,
             pageSize: 20,

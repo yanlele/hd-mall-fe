@@ -1,11 +1,18 @@
-import styles from '@src/common/baseProductColumns/style.less';
+import styles from './style.less';
 import { Image } from 'antd';
 import { Link } from 'react-router-dom';
-import CountComponent from '@src/components/dataEntry/CountComponent';
 import React from 'react';
+import { HandleGetColumnsHelperOptions } from '@src/pages/AdminOrderList/interface';
 
-export const handleGetColumnsHelper = () => {
+export const handleGetColumnsHelper = (options: HandleGetColumnsHelperOptions) => {
+  console.log(options);
   return [
+    {
+      title: '订单号',
+      dataIndex: 'order_id',
+      key: 'order_id',
+      render: () => <span>136786809865</span>,
+    },
     {
       title: '商品信息',
       dataIndex: 'name',
@@ -37,22 +44,54 @@ export const handleGetColumnsHelper = () => {
       title: '数量',
       dataIndex: 'count',
       key: 'count',
-      render: () => {
-        return (
-          <CountComponent
-            onChange={value => {
-              console.log(value);
-            }}
-          />
-        );
-      },
+      render: () => <span>X1</span>,
     },
     {
-      title: '金额',
+      title: '实付款',
       dataIndex: 'totalPrice',
       key: 'totalPrice',
       render: () => {
         return <span>￥2899.00</span>;
+      },
+    },
+    {
+      title: '订单状态',
+      dataIndex: 'totalPrice',
+      key: 'totalPrice',
+      render: () => {
+        return (
+          <div className={styles.info}>
+            <p>
+              <a>交易完成</a>
+            </p>
+            <p>
+              <a>订单详情</a>
+            </p>
+            <p>
+              <a>已评价</a>
+            </p>
+          </div>
+        );
+      },
+    },
+    {
+      title: '交易操作',
+      dataIndex: 'totalPrice',
+      key: 'totalPrice',
+      render: () => {
+        return (
+          <div className={styles.info}>
+            <p>
+              <a>删除</a>
+            </p>
+            <p>
+              <a>申请售后</a>
+            </p>
+            <p>
+              <a>退款</a>
+            </p>
+          </div>
+        );
       },
     },
   ];

@@ -1,5 +1,29 @@
+//noinspection CssUnknownTarget
+@import "~@src/style/main";
+//noinspection CssUnknownTarget
+@import '~@src/common/baseProductColumns/style.less';
+
+.info {
+  :global {
+    a, p {
+      color: @Gray5;
+    }
+  }
+}
+
 .adminOrderListContainer {
   margin-left: 30px;
   padding: 18px 30px;
   background-color: white;
+
+  :global {
+    .order-table {
+      .ant-table-row {
+        color: @Gray5;
+      }
+    }
+  }
 }
+
+
+
