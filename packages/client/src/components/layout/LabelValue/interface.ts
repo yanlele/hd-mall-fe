@@ -1,7 +1,7 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 export interface LabelValueProps {
-  label: string;
-  value: string | React.ReactNode;
+  label: string | ReactNode;
+  value: string | ReactNode;
   className?: string;
 }

@@ -55,7 +55,21 @@ const OrderDetail: FC = () => {
               <LabelValue className="info-detail-item" label="订单编号" value="145671234765" />
             </div>
           </div>
-          <div className="order-status">订单状态</div>
+          <div className="order-status">
+            <LabelValue
+              className="order-status-info-item"
+              label={
+                <>
+                  <CheckCircleOutlined className="step-icon icon" />
+                  订单状态
+                </>
+              }
+              value="已完成"
+            />
+            <LabelValue label="物流" value="圆通快递" />
+            <LabelValue label="运单号" value="YT1278456436634" />
+            <LabelValue className="transportation-status" label="运输状态" value="您已经在重庆第二师范菜鸟驿站取出。" />
+          </div>
         </div>
       </div>
     </div>

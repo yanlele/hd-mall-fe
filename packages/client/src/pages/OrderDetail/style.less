@@ -4,6 +4,11 @@
 .orderDetailContainer {
   :global {
     .detail-content {
+      .step-icon {
+        font-size: 48px;
+      }
+
+
       .common-content();
       background-color: white;
       margin-top: 24px;
@@ -25,10 +30,6 @@
 
         .ant-steps-item-custom.ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon {
           color: @Green;
-        }
-
-        .step-icon {
-          font-size: 48px;
         }
       }
 
@@ -67,6 +68,37 @@
 
         .order-status {
           border-left: 1px solid @Gray1;
+          display: flex;
+
+          padding-left: 48px;
+          justify-content: center;
+          flex-direction: column;
+          width: 100%;
+          row-gap: 12px;
+
+          .order-status-info-item {
+            font-size: 22px;
+
+            .label {
+              display: flex;
+              align-items: center;
+              width: 160px;
+            }
+
+            .value {
+              display: flex;
+              align-items: center;
+            }
+
+            .icon {
+              margin-right: 12px;
+              color: @Green;
+            }
+          }
+
+          .transportation-status {
+            color: @Orange;
+          }
         }
       }
     }
