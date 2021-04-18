@@ -60,7 +60,7 @@ const OrderAddress: FC = () => {
         </div>
       </div>
 
-      <AddressModal />
+      <AddressModal model={clientAddressModalModel} defaultModelState={defaultClientAddressModalModelState} />
     </>
   );
 };

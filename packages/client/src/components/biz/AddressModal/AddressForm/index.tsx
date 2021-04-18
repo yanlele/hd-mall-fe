@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Form, Input } from 'antd';
 import { useRecoilState } from 'recoil';
-import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
 import { useMount } from 'ahooks';
 import produce from 'immer';
+import { AddressModalProps } from '@src/components/biz/AddressModal/interface';
 
 const { TextArea } = Input;
 
@@ -12,9 +12,11 @@ const layout = {
   wrapperCol: { span: 20 },
 };
 
-const AddressForm: FC = () => {
+const AddressForm: FC<Pick<AddressModalProps, 'model'>> = props => {
+  const { model } = props;
+
   const [form] = Form.useForm();
-  const [{ addressInfo }, setModalState] = useRecoilState(clientAddressModalModel);
+  const [{ addressInfo }, setModalState] = useRecoilState(model);
 
   useMount(() => {
     setModalState(

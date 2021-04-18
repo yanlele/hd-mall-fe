@@ -1,5 +1,4 @@
 import { ClientAddressModalModelState } from '@src/components/biz/AddressModal/model/interface';
-import { noop } from 'lodash';
 
 export const defaultClientAddressModalModelState: ClientAddressModalModelState = {
   visible: false,
@@ -8,6 +7,6 @@ export const defaultClientAddressModalModelState: ClientAddressModalModelState =
   submitLoading: false,
   addressInfo: {},
   actions: {
-    onSubmit: noop,
+    onSubmit: () => Promise.resolve(),
   },
 };
