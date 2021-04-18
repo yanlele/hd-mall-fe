@@ -30,7 +30,7 @@ const AdminSubMenu: FC = () => {
         <Menu.Item onClick={onOpenChange} key="/admin/shopping-cart" icon={<AppstoreOutlined />}>
           我的购物车
         </Menu.Item>
-        <Menu.Item onClick={onOpenChange} key="sub4" icon={<SettingOutlined />}>
+        <Menu.Item onClick={onOpenChange} key="/admin/order-list" icon={<SettingOutlined />}>
           订单中心
         </Menu.Item>
         <Menu.Item onClick={onOpenChange} key="sub5" icon={<SettingOutlined />}>

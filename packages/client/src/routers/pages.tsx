@@ -18,6 +18,7 @@ const pages: Pages = {
   AdminMy: () => import('@src/pages/AdminMy'),
   ShoppingCart: () => import('@src/pages/ShoppingCart'),
   OrderDetail: () => import('@src/pages/OrderDetail'),
+  AdminOrderList: () => import('@src/pages/AdminOrderList'),
 };
 
 const exportPages: ExportPages = {};
