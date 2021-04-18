@@ -19,6 +19,7 @@ const pages: Pages = {
   ShoppingCart: () => import('@src/pages/ShoppingCart'),
   OrderDetail: () => import('@src/pages/OrderDetail'),
   AdminOrderList: () => import('@src/pages/AdminOrderList'),
+  AdminAddress: () => import('@src/pages/AdminAddress'),
 };
 
 const exportPages: ExportPages = {};
