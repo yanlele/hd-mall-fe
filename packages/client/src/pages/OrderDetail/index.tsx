@@ -4,10 +4,13 @@ import { Steps, Table } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import LabelValue from '@src/components/layout/LabelValue';
 import { columns } from '@src/pages/OrderDetail/helper';
+import { useTitle } from 'ahooks';
 
 const { Step } = Steps;
 
 const OrderDetail: FC = () => {
+  useTitle('个人中心 - 订单详情');
+
   return (
     <div className={styles.orderDetailContainer}>
       <div className="detail-content">
