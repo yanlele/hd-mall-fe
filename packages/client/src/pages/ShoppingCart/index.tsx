@@ -3,6 +3,7 @@ import AdminContainer from '@src/components/biz/AdminContainer';
 import styles from './style.less';
 import { columns } from '@src/pages/ShoppingCart/helper';
 import { Affix, Button, Table } from 'antd';
+import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 
 const data: any[] = [];
 for (let i = 0; i < 46; i++) {
@@ -29,7 +30,7 @@ const ShoppingCart: FC = () => {
 
   return (
     <AdminContainer>
-      <div> 后无车 </div>
+      <AdminTitleBar>购物车</AdminTitleBar>
 
       <div className={styles.shoppingCartContainer}>
         <div className="content">
