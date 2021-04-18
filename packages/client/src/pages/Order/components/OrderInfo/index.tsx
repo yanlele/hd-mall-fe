@@ -12,7 +12,7 @@ const OrderInfo: FC = () => {
 
   const createOrder = usePersistFn(() => {
     message.success('下单成功');
-    history.goBack();
+    history.push('/admin/order-detail');
   });
 
   return (
