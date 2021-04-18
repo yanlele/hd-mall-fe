@@ -1,6 +1,13 @@
 import React, { FC, useMemo } from 'react';
 import { Menu, Affix } from 'antd';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import {
+  SettingOutlined,
+  EnvironmentOutlined,
+  ProfileOutlined,
+  ShoppingCartOutlined,
+  ShoppingOutlined,
+  StarOutlined,
+} from '@ant-design/icons';
 import { find, get } from 'lodash';
 import staticRotes from '@src/routers/pageRouteConfig';
 import { useHistory } from 'react-router';
@@ -24,19 +31,19 @@ const AdminSubMenu: FC = () => {
   return (
     <Affix>
       <Menu mode="inline" defaultSelectedKeys={defaultSelectedKeys} style={{ width: 168 }}>
-        <Menu.Item onClick={onOpenChange} key="/admin/my" icon={<MailOutlined />}>
+        <Menu.Item onClick={onOpenChange} key="/admin/my" icon={<ProfileOutlined />}>
           个人中心
         </Menu.Item>
-        <Menu.Item onClick={onOpenChange} key="/admin/shopping-cart" icon={<AppstoreOutlined />}>
+        <Menu.Item onClick={onOpenChange} key="/admin/shopping-cart" icon={<ShoppingCartOutlined />}>
           我的购物车
         </Menu.Item>
-        <Menu.Item onClick={onOpenChange} key="/admin/order-list" icon={<SettingOutlined />}>
+        <Menu.Item onClick={onOpenChange} key="/admin/order-list" icon={<ShoppingOutlined />}>
           订单中心
         </Menu.Item>
-        <Menu.Item onClick={onOpenChange} key="sub5" icon={<SettingOutlined />}>
+        <Menu.Item onClick={onOpenChange} key="sub5" icon={<StarOutlined />}>
           收藏
         </Menu.Item>
-        <Menu.Item onClick={onOpenChange} key="sub6" icon={<SettingOutlined />}>
+        <Menu.Item onClick={onOpenChange} key="/admin/address" icon={<EnvironmentOutlined />}>
           地址管理
         </Menu.Item>
         <Menu.Item onClick={onOpenChange} key="sub7" icon={<SettingOutlined />}>
