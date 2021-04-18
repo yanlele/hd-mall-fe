@@ -1,13 +1,11 @@
 import React, { FC, useMemo } from 'react';
 import { Menu, Affix } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { useTitle } from 'ahooks';
 import { find, get } from 'lodash';
 import staticRotes from '@src/routers/pageRouteConfig';
 import { useHistory } from 'react-router';
 
 const AdminSubMenu: FC = () => {
-  useTitle('个人中心');
   const history = useHistory();
 
   const onOpenChange = (value: any) => {
@@ -17,6 +15,9 @@ const AdminSubMenu: FC = () => {
   const defaultSelectedKeys = useMemo(() => {
     const pathname = window.location.pathname;
     const currentStateRoute = find(staticRotes, item => pathname === item.path);
+
+    document.title = get(currentStateRoute, 'title', '个人中心');
+
     return [get(currentStateRoute, 'path') as string];
   }, [window.location.pathname]);
 

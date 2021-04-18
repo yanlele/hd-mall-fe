@@ -38,13 +38,13 @@ const staticRotes: StaticRoutes[] = [
     path: '/admin/shopping-cart',
     component: pages.ShoppingCart,
     exact: true,
-    title: '购物车',
+    title: '个人中心 - 购物车',
   },
   {
     path: '/admin/order-detail',
     component: pages.OrderDetail,
     exact: true,
-    title: '订单',
+    title: '个人中心 - 订单详情',
   },
 ];
 
