@@ -11,7 +11,7 @@ export const handleGetColumnsHelper = (options: HandleGetColumnsHelperOptions) =
       title: '订单号',
       dataIndex: 'order_id',
       key: 'order_id',
-      render: () => <span>136786809865</span>,
+      render: () => <Link to="/admin/order-detail?id=123456789">136786809865</Link>,
     },
     {
       title: '商品信息',
@@ -61,15 +61,11 @@ export const handleGetColumnsHelper = (options: HandleGetColumnsHelperOptions) =
       render: () => {
         return (
           <div className={styles.info}>
-            <p>
-              <a>交易完成</a>
-            </p>
+            <p>交易完成</p>
             <p>
               <a>订单详情</a>
             </p>
-            <p>
-              <a>已评价</a>
-            </p>
+            <p>已评价</p>
           </div>
         );
       },
