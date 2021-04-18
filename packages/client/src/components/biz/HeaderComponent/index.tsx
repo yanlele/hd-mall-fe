@@ -22,7 +22,7 @@ const HeaderComponent: FC = () => {
           <Divider type="vertical" />
           <a>消息通知</a>
           <Divider type="vertical" />
-          <Link to="/admin-shopping-cart">购物车</Link>
+          <Link to="/admin/shopping-cart">购物车</Link>
         </div>
       </div>
     </Header>
