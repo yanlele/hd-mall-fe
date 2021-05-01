@@ -5,7 +5,7 @@ import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
 import { usePersistFn } from 'ahooks';
 import { produce } from 'immer';
 import { defaultUserInfoModelState } from '@src/components/biz/UserLoginComponent/model/consts';
-import { getUserInfoRequest, loginRequest } from '@src/service';
+import { getUserInfoRequest, loginRequest, registerRequest } from '@src/service';
 import { get } from 'lodash';
 
 const layout = {
@@ -24,25 +24,27 @@ const UserLoginComponent: FC = () => {
   const handleOnSubmit = usePersistFn(() => {
     const { validateFields } = form;
     validateFields().then(async res => {
+      const requestFunction = type === 'login' ? loginRequest : registerRequest;
+
       try {
         setState(
           produce(draft => {
             draft.modalControl.loading = true;
           }),
         );
-        await loginRequest(res);
+        await requestFunction(res);
+        if (type === 'register') await loginRequest(res);
         const userResponse = await getUserInfoRequest();
-        console.log('userResponse', userResponse);
         setState(
           produce(draft => {
             draft.userInfo = get(userResponse, 'data', {});
             draft.modalControl.loading = false;
           }),
         );
-        message.success('登录成功');
+        message.success(`${useTitle}成功`);
         handleOnChancel();
       } catch (e) {
-        message.error('登录失败, 请检测用户名和密码的正确性');
+        message.error(`${useTitle}失败, 请检测用户名和密码的正确性`);
         setState(
           produce(draft => {
             draft.modalControl.loading = false;
