@@ -1,3 +1,5 @@
+@import "~@src/style/main";
+
 .searchTypeContainer {
   display: flex;
   align-items: center;
@@ -22,6 +24,11 @@
       .item {
         width: 120px;
         margin: unset;
+      }
+      .active {
+        a {
+          color: @primary-color;
+        }
       }
     }
   }

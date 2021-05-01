@@ -1,10 +1,22 @@
 import React, { FC } from 'react';
 import styles from './style.less';
 import { Row, Col } from 'antd';
-import { map } from 'lodash';
-import { Link } from 'react-router-dom';
+import { get, map } from 'lodash';
+import useGetQuery from '@src/common/hooks/useGetQuery';
+import useHandleQuery from '@src/common/hooks/useHandleQuery';
+import { usePersistFn } from 'ahooks';
+import cn from 'classnames';
 
 const SearchType: FC = () => {
+  const query = useGetQuery();
+  const type = get(query, 'type', '');
+  const { handleAddQuery, handleRemoveQuery } = useHandleQuery();
+
+  const handleOnReplace = usePersistFn((currentType: number) => {
+    if (currentType == type) handleRemoveQuery(['type']);
+    else handleAddQuery({ type: currentType });
+  });
+
   return (
     <Row className={styles.searchTypeContainer}>
       <Col span={2}>
@@ -13,8 +25,8 @@ const SearchType: FC = () => {
       <Col className="content" span={22}>
         {map(['仅看有货', '促销商品', '热卖'], (item, index) => {
           return (
-            <p className="item" key={index}>
-              <Link to="list">{item}</Link>
+            <p className={cn('item', type == index + 1 && 'active')} key={index}>
+              <a onClick={() => handleOnReplace(index + 1)}>{item}</a>
             </p>
           );
         })}

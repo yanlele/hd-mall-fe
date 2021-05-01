@@ -4,10 +4,11 @@ import { map, get } from 'lodash';
 import styles from './style.less';
 import { useRecoilValue } from 'recoil';
 import { categoryListModel } from '@src/pages/Home/model';
-import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { ClassifyProps } from '@src/pages/List/ListSearchHeader/Classify/interface';
 import useGetQuery from '@src/common/hooks/useGetQuery';
+import useHandleQuery from '@src/common/hooks/useHandleQuery';
+import { usePersistFn } from 'ahooks';
 
 const Classify: FC<ClassifyProps> = props => {
   const { title = '分类' } = props;
@@ -15,11 +16,18 @@ const Classify: FC<ClassifyProps> = props => {
   const query = useGetQuery();
   const categoryId = get(query, 'id', '');
 
+  const { handleAddQuery, handleRemoveQuery } = useHandleQuery();
+
+  const handleOnReplace = usePersistFn((id: number) => {
+    if (categoryId == id) handleRemoveQuery(['id']);
+    else handleAddQuery({ id });
+  });
+
   const handleRenderClassifyItem = useMemo(() => {
     return map(list, item => {
       return (
         <p className={cn('item', categoryId == item.id && 'active')}>
-          <Link to={`/list?id=${item.id}`}>{item.name}</Link>
+          <a onClick={() => handleOnReplace(item.id)}>{item.name}</a>
         </p>
       );
     });
