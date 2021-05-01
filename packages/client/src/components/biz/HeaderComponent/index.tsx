@@ -12,7 +12,7 @@ const { Header } = Layout;
 
 const HeaderComponent: FC = () => {
   const [{ userInfo }, setUserState] = useRecoilState(userInfoModel);
-  const { user_id } = userInfo;
+  const { user_id, user_name } = userInfo;
 
   const handleLogin = usePersistFn(() => {
     setUserState(
@@ -36,8 +36,11 @@ const HeaderComponent: FC = () => {
     if (user_id) {
       return (
         <>
+          <a>{user_name}</a>
+          <Divider type="vertical" />
           <a>退出登录</a>
           <Divider type="vertical" />
+          <Link to="/admin/shopping-cart">购物车</Link>
         </>
       );
     }
@@ -46,8 +49,18 @@ const HeaderComponent: FC = () => {
         <a onClick={handleRegister}>注册</a>
         <Divider type="vertical" />
         <a onClick={handleLogin}>登录</a>
-        <Divider type="vertical" />
       </>
+    );
+  }, [user_id]);
+
+  const handleRenderOrder = useMemo(() => {
+    return (
+      user_id && (
+        <>
+          <Divider type="vertical" />
+          <Link to="/admin/order-list">我的订单</Link>
+        </>
+      )
     );
   }, [user_id]);
 
@@ -57,14 +70,10 @@ const HeaderComponent: FC = () => {
         <div className="header-content">
           <div className="left">
             <span>在线商城</span>
-            <Divider type="vertical" />
-            <Link to="/admin/order-list">我的订单</Link>
+            {handleRenderOrder}
           </div>
 
-          <div className="right">
-            {handleRenderUser}
-            <Link to="/admin/shopping-cart">购物车</Link>
-          </div>
+          <div className="right">{handleRenderUser}</div>
         </div>
       </Header>
 
