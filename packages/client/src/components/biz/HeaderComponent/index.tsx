@@ -12,7 +12,7 @@ const HeaderComponent: FC = () => {
         <div className="left">
           <span>在线商城</span>
           <Divider type="vertical" />
-          <a>我的订单</a>
+          <Link to="/admin/order-list">我的订单</Link>
         </div>
 
         <div className="right">
