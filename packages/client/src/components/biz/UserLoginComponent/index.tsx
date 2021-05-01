@@ -31,7 +31,8 @@ const UserLoginComponent: FC = () => {
           }),
         );
         await loginRequest(res);
-        const userResponse = getUserInfoRequest();
+        const userResponse = await getUserInfoRequest();
+        console.log('userResponse', userResponse);
         setState(
           produce(draft => {
             draft.userInfo = get(userResponse, 'data', {});
