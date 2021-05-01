@@ -4,6 +4,7 @@ export const defaultUserInfoModelState: UserInfoModelState = {
   modalControl: {
     visible: false,
     type: 'login',
+    loading: false,
   },
   userInfo: {},
 };

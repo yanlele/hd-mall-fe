@@ -1,7 +1,6 @@
 import request from '@src/utils/axios';
 import { getUserInfoApiUrl, loginApiUrl, registerApiUrl, logoutApiUrl } from '@hd/common/service/consts';
 import { RegisterParams } from '@src/service/interface';
-import { logoutApiUrl } from '../../../admin/src/pages/User/service/consts';
 
 // 获取用户信息
 export const getUserInfoRequest = () => request({ url: getUserInfoApiUrl }, { tipMessage: false });
@@ -16,11 +15,16 @@ export const registerRequest = (data: RegisterParams) =>
 
 // 登录请求
 export const loginRequest = (data: RegisterParams) =>
-  request({
-    url: loginApiUrl,
-    method: 'post',
-    data,
-  });
+  request(
+    {
+      url: loginApiUrl,
+      method: 'post',
+      data,
+    },
+    {
+      tipMessage: false,
+    },
+  );
 
 // 退出登录
 export const logoutRequest = () => request({ url: logoutApiUrl });
