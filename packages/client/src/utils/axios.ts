@@ -1,7 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { Config } from '@src/utils/interface';
 import { message } from 'antd';
 
-export default function<T = any>(options: AxiosRequestConfig) {
+export default function<T = any>(options: AxiosRequestConfig, config?: Config) {
   const DefaultParams = {
     url: '',
     method: 'get',
@@ -13,7 +14,7 @@ export default function<T = any>(options: AxiosRequestConfig) {
     const contentType = headers['content-type'];
     if (contentType && contentType.indexOf('application/json') !== -1) {
       if (data.code != 0) {
-        message.error({ content: data.message, key: data.code });
+        if (config?.tipMessage) message.error({ content: data.message, key: data.code });
         return Promise.reject<T>(data);
       }
       return Promise.resolve<T>(data);

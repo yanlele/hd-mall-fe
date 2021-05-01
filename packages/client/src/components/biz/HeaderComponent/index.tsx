@@ -1,13 +1,14 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, Suspense } from 'react';
 import { Layout, Divider } from 'antd';
 import styles from './style.less';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
-import { usePersistFn } from 'ahooks';
+import { usePersistFn, useRequest } from 'ahooks';
 import { produce } from 'immer';
 import UserLoginComponent from '@src/components/biz/UserLoginComponent';
-// import { getUserInfoRequest } from '@src/service/consts';
+import { getUserInfoRequest } from '@src/service/consts';
+import { get } from 'lodash';
 
 const { Header } = Layout;
 
@@ -15,11 +16,18 @@ const HeaderComponent: FC = () => {
   const [{ userInfo }, setUserState] = useRecoilState(userInfoModel);
   const { user_id, user_name } = userInfo;
 
-  const handleLogin = usePersistFn(() => {
-    // getUserInfoRequest().then(res => {
-    //   console.log('res', res);
-    // });
+  useRequest(getUserInfoRequest, {
+    onSuccess: res => {
+      if (res)
+        setUserState(
+          produce(draft => {
+            draft.userInfo = get(res, 'data');
+          }),
+        );
+    },
+  });
 
+  const handleLogin = usePersistFn(() => {
     setUserState(
       produce(draft => {
         draft.modalControl.visible = true;
@@ -70,7 +78,7 @@ const HeaderComponent: FC = () => {
   }, [user_id]);
 
   return (
-    <>
+    <Suspense fallback={<></>}>
       <Header className={styles.header}>
         <div className="header-content">
           <div className="left">
@@ -83,7 +91,7 @@ const HeaderComponent: FC = () => {
       </Header>
 
       <UserLoginComponent />
-    </>
+    </Suspense>
   );
 };
 

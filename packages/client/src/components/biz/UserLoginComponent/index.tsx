@@ -20,7 +20,7 @@ const UserLoginComponent: FC = () => {
 
   const handleOnSubmit = usePersistFn(() => {
     const { validateFields } = form;
-    validateFields().then(res => {
+    validateFields().then(async res => {
       console.log(res);
       message.success(`${useTitle}成功`);
       handleOnChancel();
