@@ -1,41 +1,39 @@
 import { ColumnsType } from 'antd/lib/table/interface';
 import React from 'react';
+import { Divider } from 'antd';
 
 const getColumnsHelper = (): ColumnsType<any> => {
   return [
     {
       title: '收货人',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'addressee_name',
+      key: 'addressee_name',
     },
     {
       title: '电话号码',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'mobile',
+      key: 'mobile',
     },
     {
       title: '省市区',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'province',
+      key: 'province',
     },
     {
       title: '详情地址',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'address_detail',
+      key: 'address_detail',
     },
     {
       title: '操作',
       key: 'action',
       render: () => {
         return (
-          <>
-            <p>
-              <a>删除</a>
-            </p>
-            <p>
-              <a>修改</a>
-            </p>
-          </>
+          <div>
+            <a>删除</a>
+            <Divider type="vertical" />
+            <a>修改</a>
+          </div>
         );
       },
     },
