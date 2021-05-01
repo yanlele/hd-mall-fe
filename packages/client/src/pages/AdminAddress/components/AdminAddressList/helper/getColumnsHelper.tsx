@@ -1,13 +1,30 @@
 import { ColumnsType } from 'antd/lib/table/interface';
 import React from 'react';
 import { Divider } from 'antd';
+import deleteItemHelper from '@src/pages/AdminAddress/components/AdminAddressList/helper/deleteItemHelper';
+import { useSetRecoilState } from 'recoil';
+import { usePersistFn } from 'ahooks';
+import { produce } from 'immer';
+import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
 
 const getColumnsHelper = (): ColumnsType<any> => {
+  const setState = useSetRecoilState(clientAddressModalModel);
+
+  const handleUpdate = usePersistFn((item: any) => {
+    setState(
+      produce(draft => {
+        draft.addressInfo = item;
+        draft.type = 'edit';
+        draft.visible = true;
+      }),
+    );
+  });
+
   return [
     {
       title: '收货人',
-      dataIndex: 'addressee_name',
-      key: 'addressee_name',
+      dataIndex: 'address_name',
+      key: 'address_name',
     },
     {
       title: '电话号码',
@@ -27,12 +44,12 @@ const getColumnsHelper = (): ColumnsType<any> => {
     {
       title: '操作',
       key: 'action',
-      render: () => {
+      render: (_, item) => {
         return (
           <div>
-            <a>删除</a>
+            <a onClick={() => deleteItemHelper(item)}>删除</a>
             <Divider type="vertical" />
-            <a>修改</a>
+            <a onClick={() => handleUpdate(item)}>修改</a>
           </div>
         );
       },

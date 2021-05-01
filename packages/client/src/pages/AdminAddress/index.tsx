@@ -8,6 +8,9 @@ import { Button, Row, Col, message } from 'antd';
 import { usePersistFn } from 'ahooks';
 import { useRecoilValue } from 'recoil';
 import AdminAddressList from '@src/pages/AdminAddress/components/AdminAddressList';
+import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
+import { defaultClientAddressModalModelState } from '@src/components/biz/AddressModal/model/consts';
+import AddressModal from '@src/components/biz/AddressModal';
 
 const AdminAddress: FC = () => {
   const { actions } = useRecoilValue(addressFormModel);
@@ -46,6 +49,8 @@ const AdminAddress: FC = () => {
           <AdminAddressList />
         </div>
       </div>
+
+      <AddressModal model={clientAddressModalModel} defaultModelState={defaultClientAddressModalModelState} />
     </AdminContainer>
   );
 };
