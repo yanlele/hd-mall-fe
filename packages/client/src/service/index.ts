@@ -1,5 +1,5 @@
 import request from '@src/utils/axios';
-import { getUserInfoApiUrl, loginApiUrl, registerApiUrl } from '@hd/common/service/consts';
+import { getUserInfoApiUrl, loginApiUrl, registerApiUrl, logoutApiUrl } from '@hd/common/service/consts';
 import { RegisterParams } from '@src/service/interface';
 import { logoutApiUrl } from '../../../admin/src/pages/User/service/consts';
 

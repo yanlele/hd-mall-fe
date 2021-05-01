@@ -21,8 +21,11 @@ export const getUserInfoApiUrl = `${ApiClientPrefix}/user/info`;
 // 更新用户信息
 export const updateUserInfoApiUrl = `${ApiClientPrefix}/user/update`;
 
+// 注册
+export const registerApiUrl = `${ApiClientPrefix}/user/create`;
+
 // 登录
 export const loginApiUrl = `${ApiClientPrefix}/auth/login`;
 
-// 注册
-export const registerApiUrl = `${ApiClientPrefix}/auth/register`;
+// 退出登录
+export const logoutApiUrl = `${ApiClientPrefix}/auth/logout`
