@@ -7,6 +7,7 @@ import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
 import { usePersistFn } from 'ahooks';
 import { produce } from 'immer';
 import UserLoginComponent from '@src/components/biz/UserLoginComponent';
+// import { getUserInfoRequest } from '@src/service/consts';
 
 const { Header } = Layout;
 
@@ -15,6 +16,10 @@ const HeaderComponent: FC = () => {
   const { user_id, user_name } = userInfo;
 
   const handleLogin = usePersistFn(() => {
+    // getUserInfoRequest().then(res => {
+    //   console.log('res', res);
+    // });
+
     setUserState(
       produce(draft => {
         draft.modalControl.visible = true;

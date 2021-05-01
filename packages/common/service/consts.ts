@@ -19,7 +19,7 @@ export const getBannerListApiUrl = `${ApiClientPrefix}/banner/list`;
 export const getUserInfoApiUrl = `${ApiClientPrefix}/user/info`;
 
 // 更新用户信息
-export const updateUserInfoApiUrl = `￥${ApiClientPrefix}/user/update`;
+export const updateUserInfoApiUrl = `${ApiClientPrefix}/user/update`;
 
 // 登录
 export const loginApiUrl = `${ApiClientPrefix}/auth/login`;

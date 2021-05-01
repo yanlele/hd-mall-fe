@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
+import { message } from 'antd';
 
-export default function(options: object) {
+export default function<T = any>(options: AxiosRequestConfig) {
   const DefaultParams = {
     url: '',
     method: 'get',
@@ -11,7 +12,11 @@ export default function(options: object) {
     const { headers, data } = response;
     const contentType = headers['content-type'];
     if (contentType && contentType.indexOf('application/json') !== -1) {
-      return Promise.resolve(data);
+      if (data.code != 0) {
+        message.error({ content: data.message, key: data.code });
+        return Promise.reject<T>(data);
+      }
+      return Promise.resolve<T>(data);
     }
     return Promise.reject(new Error('the response is not JSON'));
   });
