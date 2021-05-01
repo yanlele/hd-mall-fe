@@ -4,7 +4,6 @@ import AddressForm from '@src/components/biz/AddressModal/AddressForm';
 import { useRecoilState } from 'recoil';
 import { usePersistFn } from 'ahooks';
 import { AddressModalProps } from '@src/components/biz/AddressModal/interface';
-import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
 
 const AddressModal: FC<AddressModalProps> = props => {
   const { model, defaultModelState } = props;
@@ -35,7 +34,7 @@ const AddressModal: FC<AddressModalProps> = props => {
       width={'640px'}
       confirmLoading={false}
       onCancel={handleCancel}>
-      <AddressForm model={clientAddressModalModel} />
+      <AddressForm model={model} />
     </Modal>
   );
 };
