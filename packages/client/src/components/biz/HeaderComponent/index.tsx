@@ -7,7 +7,7 @@ import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
 import { usePersistFn, useRequest } from 'ahooks';
 import { produce } from 'immer';
 import UserLoginComponent from '@src/components/biz/UserLoginComponent';
-import { getUserInfoRequest } from '@src/service/consts';
+import { getUserInfoRequest } from '@src/service';
 import { get } from 'lodash';
 
 const { Header } = Layout;
