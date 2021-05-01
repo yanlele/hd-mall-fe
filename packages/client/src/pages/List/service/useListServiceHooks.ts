@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 import { GetProductListRequestParams } from '@src/pages/List/service/interface';
+import { productListModelState } from '@src/pages/List/model/consts';
 
 export const useGetProductList = () => {
   const location = useLocation();
@@ -39,5 +40,9 @@ export const useGetProductList = () => {
           }),
         );
       });
+
+    return () => {
+      setState(productListModelState);
+    };
   }, [location.search]);
 };
