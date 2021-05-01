@@ -22,6 +22,7 @@ const AddressForm: FC<Pick<AddressModalProps, 'model'>> = props => {
     setModalState(
       produce(draft => {
         draft.actions.onSubmit = form.validateFields;
+        draft.actions.resetFields = form.resetFields;
       }),
     );
   });
