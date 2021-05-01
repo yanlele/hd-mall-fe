@@ -1,7 +1,7 @@
 import React from 'react';
 import { ColumnsType } from 'antd/lib/table/interface';
 import { concat, slice } from 'lodash';
-import { baseProductColumns } from '@src/common/baseProductColumns';
+import { baseProductColumns } from '@src/common/consts/baseProductColumns';
 
 export const columns: ColumnsType<any> = concat(
   slice(baseProductColumns, 0, 2),

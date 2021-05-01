@@ -8,7 +8,7 @@ const SearchType: FC = () => {
   return (
     <Row className={styles.searchTypeContainer}>
       <Col span={2}>
-        <p className="label">分类：</p>
+        <p className="label">商品类型：</p>
       </Col>
       <Col className="content" span={22}>
         {map(['仅看有货', '促销商品', '热卖'], (item, index) => {
