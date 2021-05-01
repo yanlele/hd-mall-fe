@@ -14,7 +14,7 @@ const { Header } = Layout;
 
 const HeaderComponent: FC = () => {
   const [{ userInfo }, setUserState] = useRecoilState(userInfoModel);
-  const { user_id, user_name } = userInfo;
+  const { name } = userInfo;
 
   useRequest(getUserInfoRequest, {
     onSuccess: res => {
@@ -46,10 +46,10 @@ const HeaderComponent: FC = () => {
   });
 
   const handleRenderUser = useMemo(() => {
-    if (user_id) {
+    if (name) {
       return (
         <>
-          <a>{user_name}</a>
+          <a>{name}</a>
           <Divider type="vertical" />
           <a>退出登录</a>
           <Divider type="vertical" />
@@ -64,18 +64,18 @@ const HeaderComponent: FC = () => {
         <a onClick={handleLogin}>登录</a>
       </>
     );
-  }, [user_id]);
+  }, [name]);
 
   const handleRenderOrder = useMemo(() => {
     return (
-      user_id && (
+      name && (
         <>
           <Divider type="vertical" />
           <Link to="/admin/order-list">我的订单</Link>
         </>
       )
     );
-  }, [user_id]);
+  }, [name]);
 
   return (
     <Suspense fallback={<></>}>
