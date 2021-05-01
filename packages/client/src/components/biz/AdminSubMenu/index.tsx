@@ -6,7 +6,6 @@ import {
   ProfileOutlined,
   ShoppingCartOutlined,
   ShoppingOutlined,
-  StarOutlined,
 } from '@ant-design/icons';
 import { find, get } from 'lodash';
 import staticRotes from '@src/routers/pageRouteConfig';
@@ -40,15 +39,15 @@ const AdminSubMenu: FC = () => {
         <Menu.Item onClick={onOpenChange} key="/admin/order-list" icon={<ShoppingOutlined />}>
           订单中心
         </Menu.Item>
-        <Menu.Item onClick={onOpenChange} key="sub5" icon={<StarOutlined />}>
+        {/*<Menu.Item onClick={onOpenChange} key="sub5" icon={<StarOutlined />}>
           收藏
-        </Menu.Item>
+        </Menu.Item>*/}
         <Menu.Item onClick={onOpenChange} key="/admin/address" icon={<EnvironmentOutlined />}>
           地址管理
         </Menu.Item>
-        <Menu.Item onClick={onOpenChange} key="sub7" icon={<SettingOutlined />}>
+        {/*<Menu.Item onClick={onOpenChange} key="sub7" icon={<SettingOutlined />}>
           商品评价
-        </Menu.Item>
+        </Menu.Item>*/}
         <Menu.Item onClick={onOpenChange} key="sub8" icon={<SettingOutlined />}>
           个人信息
         </Menu.Item>

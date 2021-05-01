@@ -49,7 +49,7 @@ const HeaderComponent: FC = () => {
     if (name) {
       return (
         <>
-          <a>{name}</a>
+          <Link to="/admin/my">{name}</Link>
           <Divider type="vertical" />
           <a>退出登录</a>
           <Divider type="vertical" />
