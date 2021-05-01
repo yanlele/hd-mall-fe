@@ -56,6 +56,7 @@ const HeaderComponent: FC = () => {
         message.success('退出登录成功');
         window.location.href = '/';
       },
+      okType: 'danger',
     });
   });
 
