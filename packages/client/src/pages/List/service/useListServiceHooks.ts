@@ -1,6 +1,6 @@
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { productListModel } from '@src/pages/List/model';
-import { isEmpty, get } from 'lodash';
+import { get } from 'lodash';
 import { getProductListRequest } from '@src/pages/List/service/index';
 import { produce } from 'immer';
 import { useEffect } from 'react';
@@ -10,7 +10,7 @@ import { GetProductListRequestParams } from '@src/pages/List/service/interface';
 
 export const useGetProductList = () => {
   const location = useLocation();
-  const [{ list }, setState] = useRecoilState(productListModel);
+  const setState = useSetRecoilState(productListModel);
 
   useEffect(() => {
     const search = parse(location.search);
