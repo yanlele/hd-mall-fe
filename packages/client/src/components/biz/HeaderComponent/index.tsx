@@ -15,8 +15,6 @@ const { Header } = Layout;
 const HeaderComponent: FC = () => {
   const [{ userInfo }, setUserState] = useRecoilState(userInfoModel);
   const { name } = userInfo;
-  console.log('name: ', name);
-  console.log('userInfo', userInfo);
 
   useRequest(getUserInfoRequest, {
     onSuccess: res => {

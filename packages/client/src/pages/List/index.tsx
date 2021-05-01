@@ -7,8 +7,11 @@ import ListSearchHeader from '@src/pages/List/ListSearchHeader';
 import SortType from '@src/pages/List/SortType';
 import ProductList from '@src/pages/List/ProductList';
 import { useGetProductList } from '@src/pages/List/service/useListServiceHooks';
+import { useTitle } from 'ahooks';
 
 const List: FC = () => {
+  useTitle('玩具商城列表');
+
   // 获取主要分类
   useGetPrimaryCategoryList(primaryCategoryListModel);
 
