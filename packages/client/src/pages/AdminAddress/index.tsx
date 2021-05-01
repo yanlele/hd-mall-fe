@@ -4,7 +4,7 @@ import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 import AddressForm from '@src/components/biz/AddressModal/AddressForm';
 import styles from './style.less';
 import { addressFormModel } from '@src/pages/AdminAddress/model/addressFormModel';
-import { Button, Row, Col } from 'antd';
+import { Button, Row, Col, message } from 'antd';
 import { usePersistFn } from 'ahooks';
 import { useRecoilValue } from 'recoil';
 
@@ -14,7 +14,13 @@ const AdminAddress: FC = () => {
   const handleOnSubmit = usePersistFn(() => {
     actions.onSubmit().then(res => {
       console.log('res', res);
+      message.success('添加新地址成功');
+      handleResetFields();
     });
+  });
+
+  const handleResetFields = usePersistFn(() => {
+    actions.resetFields();
   });
 
   return (
@@ -29,7 +35,7 @@ const AdminAddress: FC = () => {
               <Button type="primary" onClick={handleOnSubmit}>
                 提交
               </Button>
-              <Button>清空</Button>
+              <Button onClick={handleResetFields}>清空</Button>
             </Col>
           </Row>
         </div>
