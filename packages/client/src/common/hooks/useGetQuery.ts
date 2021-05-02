@@ -4,9 +4,10 @@ import { parse } from 'query-string';
 
 // 获取query参数
 const useGetQuery = () => {
-  const [query, setQuery] = useState({});
   const location = useLocation();
   const { search } = location;
+
+  const [query, setQuery] = useState<any>(parse(decodeURIComponent(search)));
 
   useEffect(() => {
     const searchQuery = parse(decodeURIComponent(search));

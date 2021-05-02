@@ -6,9 +6,12 @@ import ProductInfo from '@src/pages/ProductDetail/components/ProductInfo';
 import { RenderComponent } from '@src/components/biz/CustomTabs/interface';
 import CustomTabs from '@src/components/biz/CustomTabs';
 import DetailImage from '@src/pages/ProductDetail/components/DetailImage';
-import { useTitle } from 'ahooks';
+import { useMount, useTitle } from 'ahooks';
 import { useGetPrimaryCategoryList } from '@src/pages/Home/service/useHomeService';
 import { primaryCategoryListModel } from '@src/pages/Home/model';
+import { getDetailRequest } from '@src/pages/ProductDetail/service';
+import useGetQuery from '@src/common/hooks/useGetQuery';
+import { get } from 'lodash';
 
 /**
  * 详情页面
@@ -16,19 +19,19 @@ import { primaryCategoryListModel } from '@src/pages/Home/model';
  */
 const ProductDetail: FC = () => {
   useTitle('详情页面');
+  const query = useGetQuery();
 
   // 获取主要分类和产品
   useGetPrimaryCategoryList(primaryCategoryListModel);
+
+  useMount(() => {
+    getDetailRequest(get(query, 'id'));
+  });
 
   const componentListRef = useRef<RenderComponent[]>([
     {
       title: '商品详情',
       component: <DetailImage />,
-    },
-
-    {
-      title: '用户评价（233）',
-      component: <span>用户评价</span>,
     },
   ]);
 

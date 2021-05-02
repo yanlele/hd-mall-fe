@@ -6,7 +6,7 @@ export const getCategoryListApiUrl = `${ApiClientPrefix}/category/list`;
 // 获取商品列表
 export const getProductListApiUrl = `${ApiClientPrefix}/product/list`;
 
-// 获取主要分类的商品
+// 获取主要分类的商品 - 用于渲染首页
 export const getCategoryPrimaryListApiUrl = `${ApiClientPrefix}/product/primary`;
 
 // 获取打折商品
@@ -29,3 +29,6 @@ export const loginApiUrl = `${ApiClientPrefix}/auth/login`;
 
 // 退出登录
 export const logoutApiUrl = `${ApiClientPrefix}/auth/logout`
+
+// 获取商品详情
+export const getProductDetailApiUrl = `${ApiClientPrefix}/product/get_detail`
