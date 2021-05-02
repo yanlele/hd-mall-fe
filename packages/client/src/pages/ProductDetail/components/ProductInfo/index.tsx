@@ -1,18 +1,21 @@
 import React, { FC, useState } from 'react';
 import styles from './style.less';
-import { map, range, get } from 'lodash';
+import { get } from 'lodash';
 import { Button } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import cn from 'classnames';
 import { usePersistFn } from 'ahooks';
 import { useHistory } from 'react-router';
 import query from 'query-string';
+import { useRecoilValue } from 'recoil';
+import getDetailInfoModel from '@src/pages/ProductDetail/model/getDetailInfoModel';
 
 const ProductInfo: FC = () => {
   const history = useHistory();
+  const { detail } = useRecoilValue(getDetailInfoModel);
+  console.log('detaill', detail);
 
   const [purchaseQuantity, setPurchaseQuantity] = useState(1);
-  const [type, setType] = useState(0);
+  // const [type, setType] = useState(0);
 
   // 跳转到 order 页面
   const handleOnClickBuy = usePersistFn(() => {
@@ -20,7 +23,6 @@ const ProductInfo: FC = () => {
 
     const toOrderQuery = {
       productId,
-      type,
       purchaseQuantity,
     };
 
@@ -29,21 +31,21 @@ const ProductInfo: FC = () => {
 
   return (
     <div className={styles.productInfoContainer}>
-      <h2 className="title">乐高什么仙女玩具外级逆回购傻逼大傻子</h2>
-      <p className="desc-info">品质好物 优先选购</p>
+      <h2 className="title">{get(detail, 'name')}</h2>
+      <p className="desc-info">{get(detail, 'desc')}</p>
 
       {/* 价格板块 */}
       <div className="price-content">
         <p className="line">
           <span className="label">原价</span>
           <span className="price">
-            <del>￥880.00</del>
+            <del>￥{get(detail, 'original_cost', 0).toFixed(2)}</del>
           </span>
         </p>
 
         <p className="line">
           <span className="label">价格</span>
-          <span className="price">￥580.00</span>
+          <span className="price">￥{get(detail, 'price', 0).toFixed(2)}</span>
         </p>
 
         <p className="line">
@@ -64,17 +66,17 @@ const ProductInfo: FC = () => {
       <div className="product-information">
         <p className="info">
           月销量
-          <span className="price"> 100+</span>
+          <span className="price"> {get(detail, 'sales')}</span>
         </p>
         <span className="split" />
         <p className="info">
           累计评价
-          <span className="price"> 589</span>
+          <span className="price">0</span>
         </p>
       </div>
 
       {/* 商品销售分类 */}
-      <div className="sell-category">
+      {/*<div className="sell-category">
         <span className="label">选择分类</span>
         <div className="category-container">
           {map(range(0, 5), (item, index) => {
@@ -93,15 +95,27 @@ const ProductInfo: FC = () => {
             );
           })}
         </div>
-      </div>
+      </div>*/}
 
       {/* 商品数量 */}
       <div className="sell-count">
         <span className="label">数量</span>
         <div className="input-number-container">
-          <input type="number" max={99} value={purchaseQuantity} min={1} className="input-number" />
+          <input
+            type="number"
+            max={get(detail, 'inventory')}
+            value={purchaseQuantity}
+            min={1}
+            className="input-number"
+          />
           <div className="input-number-buttons">
-            <span className="add" onClick={() => setPurchaseQuantity(purchaseQuantity + 1)}>
+            <span
+              className="add"
+              onClick={() => {
+                if (purchaseQuantity < get(detail, 'inventory')) {
+                  setPurchaseQuantity(purchaseQuantity + 1);
+                }
+              }}>
               +
             </span>
             <span
@@ -116,7 +130,7 @@ const ProductInfo: FC = () => {
           </div>
         </div>
 
-        <span className="inventory">库存1000件</span>
+        <span className="inventory">库存{get(detail, 'inventory')}件</span>
       </div>
 
       {/* handle - 操作 */}
