@@ -36,7 +36,9 @@ const HomeHeader: FC = () => {
     <header className={styles.homeHeader}>
       <div className="content">
         <div className="left">
-          <div className="title">大熊商城</div>
+          <Link className="title" to="/list">
+            大熊商城
+          </Link>
 
           <div className="link">
             <Link to="/">首页</Link>
