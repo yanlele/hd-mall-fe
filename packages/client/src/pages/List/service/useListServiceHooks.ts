@@ -16,6 +16,8 @@ export const useGetProductList = () => {
   useEffect(() => {
     const search = parse(location.search);
     const category_id = get(search, 'id') as string;
+    const max = get(search, 'max') as string;
+    const min = get(search, 'min') as string;
 
     setState(
       produce(draft => {
@@ -23,8 +25,10 @@ export const useGetProductList = () => {
       }),
     );
 
-    const reqParams: GetProductListRequestParams = { page: 1, page_size: 100, ...omit(search, 'id') };
+    const reqParams: GetProductListRequestParams = { page: 1, page_size: 100, ...omit(search, ['id', 'max', 'min']) };
     if (category_id) reqParams.category_id = parseInt(category_id, 10);
+    if (max) reqParams.max = parseInt(max, 10);
+    if (min) reqParams.min = parseInt(min, 10);
 
     getProductListRequest(reqParams)
       .then(res => {

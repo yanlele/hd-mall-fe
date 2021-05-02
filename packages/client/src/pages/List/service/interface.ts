@@ -14,7 +14,7 @@ export interface GetProductListRequestParams {
   // 3 - 新品
   sort_type?: string;
 
-  max?: string; // 最高价格
-  min?: string; // 最低价格
+  max?: number; // 最高价格
+  min?: number; // 最低价格
   query?: string; // 搜索条件
 }
