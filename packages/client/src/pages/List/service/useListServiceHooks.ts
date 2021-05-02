@@ -24,7 +24,7 @@ export const useGetProductList = () => {
     );
 
     const reqParams: GetProductListRequestParams = { page: 1, page_size: 100 };
-    if (category_id) reqParams.category_id = parseInt(category_id, 10);
+    if (category_id) reqParams.category_id = category_id;
 
     getProductListRequest(reqParams)
       .then(res => {
