@@ -22,7 +22,7 @@ const ProductInfo: FC = () => {
   // 跳转到 order 页面
   const handleOnClickBuy = usePersistFn(() => {
     if (!userInfo.name) {
-      message.warn('请登录之后再下单');
+      message.warn('请登录之后再购买');
       setUserModel(
         produce(draft => {
           draft.modalControl.visible = true;
@@ -40,6 +40,20 @@ const ProductInfo: FC = () => {
     };
 
     history.push(`/order?${query.stringify(toOrderQuery)}`);
+  });
+
+  // 加入购物车
+  const handleAddShopCar = usePersistFn(() => {
+    if (!userInfo.name) {
+      message.warn('请登录之后再加入购物车');
+      setUserModel(
+        produce(draft => {
+          draft.modalControl.visible = true;
+          draft.modalControl.type = 'login';
+        }),
+      );
+      return;
+    }
   });
 
   return (
@@ -151,7 +165,7 @@ const ProductInfo: FC = () => {
         <Button className="buy" onClick={handleOnClickBuy}>
           立即购买
         </Button>
-        <Button className="add-car">
+        <Button onClick={handleAddShopCar} className="add-car">
           <ShoppingCartOutlined style={{ fontSize: 18, verticalAlign: 'sub' }} /> 加入购物车
         </Button>
       </div>
