@@ -22,7 +22,7 @@ const SortType: FC = () => {
   const { handleAddQuery, handleRemoveQuery } = useHandleQuery();
 
   useEffect(() => {
-    if (min || max) setPriceLimit({ min, max });
+    setPriceLimit({ min, max });
   }, [min, max]);
 
   const sortType = get(query, 'sort_type', '');
