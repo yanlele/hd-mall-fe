@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import styles from './style.less';
 import { Divider, InputNumber, Button } from 'antd';
 import { map } from 'lodash';
@@ -7,8 +7,14 @@ import useGetQuery from '@src/common/hooks/useGetQuery';
 import { get } from 'lodash';
 import useHandleQuery from '@src/common/hooks/useHandleQuery';
 
+const defaultPrice = {
+  min: undefined,
+  max: undefined,
+};
+
 const SortType: FC = () => {
   const query = useGetQuery();
+  const [priceLimit, setPriceLimit] = useState(defaultPrice);
   const { handleAddQuery, handleRemoveQuery } = useHandleQuery();
 
   const sortType = get(query, 'sortType', '');
@@ -30,20 +36,39 @@ const SortType: FC = () => {
     });
   }, []);
 
+  const handleSetMin = usePersistFn(value => {
+    setPriceLimit({ ...priceLimit, min: value });
+  });
+
+  const handleSetMax = usePersistFn(value => {
+    setPriceLimit({ ...priceLimit, max: value });
+  });
+
+  const handlePriceConfirm = usePersistFn(() => {
+    if (priceLimit.min && priceLimit.min) handleAddQuery(priceLimit);
+    else if (priceLimit.max && !priceLimit.min) handleAddQuery({ max: priceLimit.max });
+    else if (priceLimit.min && !priceLimit.max) handleAddQuery({ min: priceLimit.min });
+  });
+
+  const handleResetPrice = usePersistFn(() => {
+    setPriceLimit(defaultPrice);
+    handleRemoveQuery(['max', 'min']);
+  });
+
   return (
     <div className={styles.sortTypeContainer}>
       {handleRenderType}
       <span className="item item-price">
         价格区间：
         <div>
-          <InputNumber min={1} size="small" />
+          <InputNumber onChange={handleSetMin} value={priceLimit?.min} min={1} size="small" />
           {' ~ '}
-          <InputNumber max={999999} size="small" />
+          <InputNumber onChange={handleSetMax} value={priceLimit?.max} max={999999} size="small" />
         </div>
-        <Button style={{ marginLeft: 8 }} size={'small'}>
+        <Button onClick={handlePriceConfirm} style={{ marginLeft: 8 }} size={'small'}>
           确定
         </Button>
-        <Button style={{ marginLeft: 8 }} size={'small'}>
+        <Button onClick={handleResetPrice} style={{ marginLeft: 8 }} size={'small'}>
           重置
         </Button>
       </span>

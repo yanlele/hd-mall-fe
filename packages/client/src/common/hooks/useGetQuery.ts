@@ -9,7 +9,7 @@ const useGetQuery = () => {
   const { search } = location;
 
   useEffect(() => {
-    const searchQuery = parse(search);
+    const searchQuery = parse(decodeURIComponent(search));
     setQuery(searchQuery);
   }, [location.search]);
 
