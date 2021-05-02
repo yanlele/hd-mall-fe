@@ -1,8 +1,8 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import styles from './style.less';
 import { Divider, InputNumber, Button } from 'antd';
 import { map } from 'lodash';
-import { usePersistFn } from 'ahooks';
+import { useMount, usePersistFn } from 'ahooks';
 import useGetQuery from '@src/common/hooks/useGetQuery';
 import { get } from 'lodash';
 import useHandleQuery from '@src/common/hooks/useHandleQuery';
@@ -15,8 +15,15 @@ const defaultPrice = {
 
 const SortType: FC = () => {
   const query = useGetQuery();
-  const [priceLimit, setPriceLimit] = useState(defaultPrice);
+  const min = get(query, 'min') ? parseInt(get(query, 'min'), 10) : undefined;
+  const max = get(query, 'max') ? parseInt(get(query, 'max'), 10) : undefined;
+
+  const [priceLimit, setPriceLimit] = useState({ min, max });
   const { handleAddQuery, handleRemoveQuery } = useHandleQuery();
+
+  useEffect(() => {
+    if (min || max) setPriceLimit({ min, max });
+  }, [min, max]);
 
   const sortType = get(query, 'sort_type', '');
 
