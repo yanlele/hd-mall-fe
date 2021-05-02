@@ -20,8 +20,8 @@ const SortType: FC = () => {
   const sortType = get(query, 'sortType', '');
 
   const handleSortClick = usePersistFn((type: number) => {
-    if (sortType == type) handleRemoveQuery(['sortType']);
-    else handleAddQuery({ sortType: type });
+    if (sortType == type) handleRemoveQuery(['sort_type']);
+    else handleAddQuery({ sort_type: type });
   });
   const handleRenderType = useMemo(() => {
     return map(['综合', '销量', '新品'], (item, index) => {
