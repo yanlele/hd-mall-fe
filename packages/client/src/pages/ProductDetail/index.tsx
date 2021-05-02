@@ -6,12 +6,13 @@ import ProductInfo from '@src/pages/ProductDetail/components/ProductInfo';
 import { RenderComponent } from '@src/components/biz/CustomTabs/interface';
 import CustomTabs from '@src/components/biz/CustomTabs';
 import DetailImage from '@src/pages/ProductDetail/components/DetailImage';
-import { useMount, useTitle } from 'ahooks';
+import { useTitle } from 'ahooks';
 import { useGetPrimaryCategoryList } from '@src/pages/Home/service/useHomeService';
 import { primaryCategoryListModel } from '@src/pages/Home/model';
-import { getDetailRequest } from '@src/pages/ProductDetail/service';
-import useGetQuery from '@src/common/hooks/useGetQuery';
-import { get } from 'lodash';
+import useGetDetailInfo from '@src/pages/ProductDetail/hooks/useGetDetailInfo';
+import { Spin } from 'antd';
+import { useRecoilValue } from 'recoil';
+import getDetailInfoModel from '@src/pages/ProductDetail/model/getDetailInfoModel';
 
 /**
  * 详情页面
@@ -19,14 +20,13 @@ import { get } from 'lodash';
  */
 const ProductDetail: FC = () => {
   useTitle('详情页面');
-  const query = useGetQuery();
-
   // 获取主要分类和产品
   useGetPrimaryCategoryList(primaryCategoryListModel);
 
-  useMount(() => {
-    getDetailRequest(get(query, 'id'));
-  });
+  // 获取列表数据信息
+  useGetDetailInfo();
+
+  const { loading } = useRecoilValue(getDetailInfoModel);
 
   const componentListRef = useRef<RenderComponent[]>([
     {
@@ -38,19 +38,20 @@ const ProductDetail: FC = () => {
   return (
     <div className={styles.productDetailContainer}>
       <HomeHeader />
+      <Spin spinning={loading}>
+        <div className="detail-content">
+          <div className="main-content">
+            <MainImageContainer />
 
-      <div className="detail-content">
-        <div className="main-content">
-          <MainImageContainer />
-
-          <ProductInfo />
+            <ProductInfo />
+          </div>
         </div>
-      </div>
-      <hr className="hr-line" />
+        <hr className="hr-line" />
 
-      <div className="detail-content">
-        <CustomTabs components={componentListRef.current} />
-      </div>
+        <div className="detail-content">
+          <CustomTabs components={componentListRef.current} />
+        </div>
+      </Spin>
     </div>
   );
 };
