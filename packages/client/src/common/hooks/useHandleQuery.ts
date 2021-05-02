@@ -16,6 +16,7 @@ const useHandleQuery = () => {
 
   const handleAddQuery = (params: any) => {
     const addQuery = Object.assign({}, query, params);
+
     const addQueryString = stringify(addQuery);
     history.replace(`${location.pathname}?${addQueryString}`);
   };
