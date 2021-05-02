@@ -1,13 +1,14 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import { Divider } from 'antd';
-import { map } from 'lodash';
+import { map, get } from 'lodash';
 import { useRecoilValue } from 'recoil';
 import { primaryCategoryListModel } from '@src/pages/Home/model';
 import { Link } from 'react-router-dom';
 import styles from './style.less';
 import useHandleQuery from '@src/common/hooks/useHandleQuery';
+import useGetQuery from '@src/common/hooks/useGetQuery';
 
 /**
  * header
@@ -15,8 +16,14 @@ import useHandleQuery from '@src/common/hooks/useHandleQuery';
  */
 const HomeHeader: FC = () => {
   const list = useRecoilValue(primaryCategoryListModel);
+  const query = useGetQuery();
   const { handleAddQuery, handleRemoveQuery } = useHandleQuery();
   const [search, setSearch] = useState('');
+  const querySearchString = get(query, 'query', '');
+
+  useEffect(() => {
+    if (querySearchString) setSearch(querySearchString);
+  }, [querySearchString]);
 
   const handleRenderPrimaryCategory = useMemo(() => {
     return map(list, item => {
