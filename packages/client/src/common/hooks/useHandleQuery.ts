@@ -1,7 +1,7 @@
 import useGetQuery from '@src/common/hooks/useGetQuery';
 import { useHistory, useLocation } from 'react-router';
 import { stringify } from 'query-string';
-import { omit } from 'lodash';
+import { omit, isEmpty } from 'lodash';
 
 // 处理 query history
 const useHandleQuery = () => {
@@ -10,6 +10,10 @@ const useHandleQuery = () => {
   const location = useLocation();
 
   const handleRemoveQuery = (removeKey: string[]) => {
+    if (isEmpty(removeKey)) {
+      history.replace(location.pathname);
+      return;
+    }
     const removeResult = omit(query, removeKey);
     history.replace(`${location.pathname}?${stringify(removeResult)}`);
   };

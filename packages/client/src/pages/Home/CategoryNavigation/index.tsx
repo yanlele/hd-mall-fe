@@ -14,7 +14,7 @@ const CategoryNavigation: FC = () => {
 
   const handleClick = (value: any) => {
     const categoryId = get(value, 'key');
-    history.push(`/list?category_id=${categoryId}`);
+    history.push(`/list?id=${categoryId}`);
   };
 
   return (
