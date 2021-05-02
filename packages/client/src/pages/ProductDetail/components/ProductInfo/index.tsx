@@ -1,24 +1,37 @@
 import React, { FC, useState } from 'react';
 import styles from './style.less';
 import { get } from 'lodash';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { usePersistFn } from 'ahooks';
 import { useHistory } from 'react-router';
 import query from 'query-string';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import getDetailInfoModel from '@src/pages/ProductDetail/model/getDetailInfoModel';
+import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
+import produce from 'immer';
 
 const ProductInfo: FC = () => {
   const history = useHistory();
   const { detail } = useRecoilValue(getDetailInfoModel);
-  console.log('detaill', detail);
+  const [{ userInfo }, setUserModel] = useRecoilState(userInfoModel);
 
   const [purchaseQuantity, setPurchaseQuantity] = useState(1);
   // const [type, setType] = useState(0);
 
   // 跳转到 order 页面
   const handleOnClickBuy = usePersistFn(() => {
+    if (!userInfo.name) {
+      message.warn('请登录之后再下单');
+      setUserModel(
+        produce(draft => {
+          draft.modalControl.visible = true;
+          draft.modalControl.type = 'login';
+        }),
+      );
+      return;
+    }
+
     const productId = get(query.parse(history.location.search), 'id');
 
     const toOrderQuery = {
