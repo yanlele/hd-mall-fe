@@ -1,6 +1,6 @@
 import { useSetRecoilState } from 'recoil';
 import { productListModel } from '@src/pages/List/model';
-import { get } from 'lodash';
+import { get, omit } from 'lodash';
 import { getProductListRequest } from '@src/pages/List/service/index';
 import { produce } from 'immer';
 import { useEffect } from 'react';
@@ -23,8 +23,8 @@ export const useGetProductList = () => {
       }),
     );
 
-    const reqParams: GetProductListRequestParams = { page: 1, page_size: 100 };
-    if (category_id) reqParams.category_id = category_id;
+    const reqParams: GetProductListRequestParams = { page: 1, page_size: 100, ...omit(search, 'id') };
+    if (category_id) reqParams.category_id = parseInt(category_id, 10);
 
     getProductListRequest(reqParams)
       .then(res => {

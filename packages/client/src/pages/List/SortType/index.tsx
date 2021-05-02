@@ -6,6 +6,7 @@ import { usePersistFn } from 'ahooks';
 import useGetQuery from '@src/common/hooks/useGetQuery';
 import { get } from 'lodash';
 import useHandleQuery from '@src/common/hooks/useHandleQuery';
+import cn from 'classnames';
 
 const defaultPrice = {
   min: undefined,
@@ -17,24 +18,28 @@ const SortType: FC = () => {
   const [priceLimit, setPriceLimit] = useState(defaultPrice);
   const { handleAddQuery, handleRemoveQuery } = useHandleQuery();
 
-  const sortType = get(query, 'sortType', '');
+  const sortType = get(query, 'sort_type', '');
 
   const handleSortClick = usePersistFn((type: number) => {
     if (sortType == type) handleRemoveQuery(['sort_type']);
     else handleAddQuery({ sort_type: type });
   });
+
   const handleRenderType = useMemo(() => {
     return map(['综合', '销量', '新品'], (item, index) => {
       return (
         <>
-          <a onClick={() => handleSortClick(index + 1)} key={item} className="item">
+          <a
+            onClick={() => handleSortClick(index + 1)}
+            key={item}
+            className={cn('item', sortType == index + 1 && 'active')}>
             {item}
           </a>
           <Divider key={item} type="vertical" />
         </>
       );
     });
-  }, []);
+  }, [sortType]);
 
   const handleSetMin = usePersistFn(value => {
     setPriceLimit({ ...priceLimit, min: value });

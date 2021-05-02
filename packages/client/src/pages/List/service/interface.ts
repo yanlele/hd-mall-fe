@@ -1,7 +1,7 @@
 export interface GetProductListRequestParams {
   page: number;
   page_size: number;
-  category_id?: string; // 商品分类id
+  category_id?: number; // 商品分类id
   // 商品类型
   // 1 - 仅看有货
   // 2 - 促销商品
