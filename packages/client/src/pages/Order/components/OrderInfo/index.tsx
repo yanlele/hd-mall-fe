@@ -11,12 +11,8 @@ const { TextArea } = Input;
 const OrderInfo: FC = () => {
   const history = useHistory();
   const { data: res, loading } = useMountRequest();
-  const data = get(res, 'data');
-  const infoList = useMemo(() => {
-    if (isNil(data)) return [];
-    if (isArray(data)) return data;
-    return [data];
-  }, [data]);
+  const data = get(res, 'data', []);
+  const infoList = useMemo(() => data, [data]);
 
   const createOrder = usePersistFn(() => {
     message.success('下单成功');
@@ -25,7 +21,7 @@ const OrderInfo: FC = () => {
 
   const totalPrice = useMemo(() => {
     const priceList = map(infoList, item => {
-      return get(item, 'count') * get(item, 'product_info.price');
+      return get(item, 'count', 0) * get(item, 'price', 0);
     });
 
     return reduce(priceList, (pre, current) => {
@@ -46,17 +42,15 @@ const OrderInfo: FC = () => {
             return (
               <div key={item} className="order-info-item">
                 <div className="info-content">
-                  <img className="order-info-image" src={get(item, 'product_info.primary_image')} alt="" />
+                  <img className="order-info-image" src={get(item, 'primary_image')} alt="" />
                   <div>
-                    <span className="content-desc">{get(item, 'product_info.name')}</span>
-                    <p className="content-desc">{get(item, 'product_info.desc')}</p>
+                    <span className="content-desc">{get(item, 'name')}</span>
+                    <p className="content-desc">{get(item, 'desc')}</p>
                   </div>
                 </div>
                 <div className="price-content">
                   <span className="count">X {get(item, 'count')}</span>
-                  <span className="price">
-                    $ {(get(item, 'product_info.price', 0) * get(item, 'count', 0)).toFixed(2)}
-                  </span>
+                  <span className="price">$ {get(item, 'price', 0).toFixed(2)}</span>
                 </div>
               </div>
             );

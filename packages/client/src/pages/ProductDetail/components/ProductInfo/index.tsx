@@ -37,7 +37,7 @@ const ProductInfo: FC = () => {
       Object.assign({ product_id: parseInt(productId, 10), count: purchaseQuantity, type: 2 }, omit(detail, ['id'])),
     );
 
-    history.push(`/order?temp_id=${res.data}`);
+    history.push(`/order?temp_order_id=${res.data}`);
   });
 
   // 加入购物车
