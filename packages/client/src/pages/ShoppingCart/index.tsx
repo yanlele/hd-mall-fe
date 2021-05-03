@@ -4,6 +4,7 @@ import styles from './style.less';
 import { columns } from '@src/pages/ShoppingCart/helper';
 import { Affix, Button, Table } from 'antd';
 import AdminTitleBar from '@src/components/biz/AdminTitleBar';
+import { usePersistFn } from 'ahooks';
 
 const data: any[] = [];
 for (let i = 0; i < 46; i++) {
@@ -17,16 +18,21 @@ for (let i = 0; i < 46; i++) {
 
 const ShoppingCart: FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<any[]>([]);
+  const [selectedRowState, setSelectedRowState] = useState<any[]>([]);
 
-  const onSelectChange = (selectedRowKeys: any[]) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
+  const onSelectChange = usePersistFn((selectedRowKeys: any[], value: any[]) => {
     setSelectedRowKeys(selectedRowKeys);
-  };
+    setSelectedRowState(value);
+  });
 
   const rowSelection = {
     selectedRowKeys,
     onChange: onSelectChange,
   };
+
+  const handleOnSubmit = usePersistFn(() => {
+    console.log(selectedRowState);
+  });
 
   return (
     <AdminContainer>
@@ -42,7 +48,7 @@ const ShoppingCart: FC = () => {
               showTitle: true,
             }}
             rowSelection={rowSelection}
-            columns={columns}
+            columns={columns()}
             dataSource={data}
           />
         </div>
@@ -58,7 +64,7 @@ const ShoppingCart: FC = () => {
             <p>
               合计：<span className="price">0.00</span>
             </p>
-            <Button>结算</Button>
+            <Button onClick={handleOnSubmit}>结算</Button>
           </div>
         </footer>
       </Affix>

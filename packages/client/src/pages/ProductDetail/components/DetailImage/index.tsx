@@ -18,7 +18,7 @@ const DetailImage: FC = () => {
     }
   }, [params]);
 
-  const getDetailImageList = useMemo(() => detailImageList, [detailImageList.length]);
+  const getDetailImageList = useMemo(() => detailImageList, [get(detailImageList, 'length')]);
 
   return (
     <div className={styles.detailImageContainer}>
