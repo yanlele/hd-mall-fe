@@ -5,18 +5,12 @@ import { columns } from '@src/pages/ShoppingCart/helper';
 import { Affix, Button, Table } from 'antd';
 import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 import { usePersistFn } from 'ahooks';
-
-const data: any[] = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
+import useMountRequest from '@src/pages/ShoppingCart/useHooks/useMountRequest';
+import { map } from 'lodash';
 
 const ShoppingCart: FC = () => {
+  const { list, useRequestResult } = useMountRequest();
+  const { loading } = useRequestResult;
   const [selectedRowKeys, setSelectedRowKeys] = useState<any[]>([]);
   const [selectedRowState, setSelectedRowState] = useState<any[]>([]);
 
@@ -41,15 +35,11 @@ const ShoppingCart: FC = () => {
       <div className={styles.shoppingCartContainer}>
         <div className="content">
           <Table
-            pagination={{
-              current: 1,
-              pageSize: 20,
-              total: 46,
-              showTitle: true,
-            }}
+            pagination={false}
+            loading={loading}
             rowSelection={rowSelection}
             columns={columns()}
-            dataSource={data}
+            dataSource={map(list, item => Object.assign({}, item, { key: item.id }))}
           />
         </div>
       </div>

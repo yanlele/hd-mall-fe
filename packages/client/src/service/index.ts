@@ -114,4 +114,11 @@ export const getDetailListByTempOrderIdRequest = (temp_order_id: string) =>
     url: shoppingCartApiUrl.getDetailListByTempOrderId,
     params: { temp_order_id },
   });
+
+// 获取列表
+export const getShoppingCartDetailListRequest = (params: any) =>
+  request({
+    url: shoppingCartApiUrl.get,
+    params,
+  });
 /* ==============================  购物车 - End   ============================== */

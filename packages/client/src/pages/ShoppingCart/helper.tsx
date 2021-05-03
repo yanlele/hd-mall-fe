@@ -4,6 +4,7 @@ import { ColumnsType } from 'antd/lib/table/interface';
 import styles from '@src/common/consts/baseProductColumns/style.less';
 import { Link } from 'react-router-dom';
 import CountComponent from '@src/components/dataEntry/CountComponent';
+import { get, toNumber } from 'lodash';
 
 export const columns = (props?: any): ColumnsType<any> => {
   return [
@@ -12,15 +13,13 @@ export const columns = (props?: any): ColumnsType<any> => {
       dataIndex: 'name',
       key: 'name',
       width: 350,
-      render: () => {
+      render: (_, row) => {
         return (
           <div className={styles.productInfoItem}>
-            <Image
-              src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2283764985,3861992003&fm=26&gp=0.jpg"
-              alt=""
-            />
-            <Link to="/detail?id=9" className="desc">
-              乐高哈利沙特森美城堡魔法世界男 女孩拼积木益智玩具乐高哈利沙特森美城堡魔法世界男 女孩拼积木益智玩具
+            <Image src={get(row, 'primary_image')} alt="" />
+            <Link to={`/detail?id=${get(row, 'product_id')}`} className="desc">
+              <p>{get(row, 'name')}</p>
+              <p>{get(row, 'desc')}</p>
             </Link>
           </div>
         );
@@ -30,17 +29,18 @@ export const columns = (props?: any): ColumnsType<any> => {
       title: '单价',
       dataIndex: 'price',
       key: 'price',
-      render: () => {
-        return <span>￥2899.00</span>;
+      render: price => {
+        return <span>￥{toNumber(price).toFixed(2)}</span>;
       },
     },
     {
       title: '数量',
       dataIndex: 'count',
       key: 'count',
-      render: () => {
+      render: count => {
         return (
           <CountComponent
+            value={count}
             onChange={value => {
               console.log(value);
             }}
@@ -52,8 +52,8 @@ export const columns = (props?: any): ColumnsType<any> => {
       title: '金额',
       dataIndex: 'totalPrice',
       key: 'totalPrice',
-      render: () => {
-        return <span>￥2899.00</span>;
+      render: (_, row) => {
+        return <span>￥{(toNumber(get(row, 'price')) * toNumber(get(row, 'count'))).toFixed(2)}</span>;
       },
     },
     {
