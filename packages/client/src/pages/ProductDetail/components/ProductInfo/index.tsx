@@ -18,6 +18,8 @@ const ProductInfo: FC = () => {
   const [{ userInfo }, setUserModel] = useRecoilState(userInfoModel);
   const [purchaseQuantity, setPurchaseQuantity] = useState(1);
 
+  const productId = get(query.parse(history.location.search), 'id') as string;
+
   // 跳转到 order 页面
   const handleOnClickBuy = usePersistFn(async () => {
     if (!userInfo.name) {
@@ -31,15 +33,13 @@ const ProductInfo: FC = () => {
       return;
     }
 
-    const productId = get(query.parse(history.location.search), 'id') as string;
-
     const res = await shoppingCartCreate([{ product_id: parseInt(productId, 10), count: purchaseQuantity, type: 2 }]);
 
     history.push(`/order?temp_id=${res.data}`);
   });
 
   // 加入购物车
-  const handleAddShopCar = usePersistFn(() => {
+  const handleAddShopCar = usePersistFn(async () => {
     if (!userInfo.name) {
       message.warn('请登录之后再加入购物车');
       setUserModel(
@@ -50,6 +50,9 @@ const ProductInfo: FC = () => {
       );
       return;
     }
+
+    await shoppingCartCreate([{ product_id: parseInt(productId, 10), count: purchaseQuantity, type: 1 }]);
+    message.success('加入购物车成功');
   });
 
   return (
