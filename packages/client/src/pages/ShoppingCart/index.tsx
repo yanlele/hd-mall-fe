@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import AdminContainer from '@src/components/biz/AdminContainer';
 import styles from './style.less';
 import { columns } from '@src/pages/ShoppingCart/helper';
@@ -6,7 +6,7 @@ import { Affix, Button, Table } from 'antd';
 import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 import { usePersistFn } from 'ahooks';
 import useMountRequest from '@src/pages/ShoppingCart/useHooks/useMountRequest';
-import { map, forEach } from 'lodash';
+import { map, sum } from 'lodash';
 import produce from 'immer';
 
 const ShoppingCart: FC = () => {
@@ -29,19 +29,25 @@ const ShoppingCart: FC = () => {
     console.log(selectedRowState);
   });
 
-  console.log(list);
-
   const handleChangeCount = usePersistFn((row: any, value: number) => {
     setList(
       produce(draft => {
-        forEach(draft, item => {
+        draft.forEach(item => {
           if (item.id === row.id) {
-            row.count = value;
+            item.count = value;
           }
         });
       }),
     );
   });
+
+  const handleTotalPrice = useMemo(() => {
+    const valueList = map(selectedRowState, item => {
+      return item.count * item.price;
+    });
+
+    return sum(valueList);
+  }, [selectedRowState?.length]) as number;
 
   return (
     <AdminContainer>
@@ -67,7 +73,7 @@ const ShoppingCart: FC = () => {
               已选择商品 <span className="count">{selectedRowKeys.length}</span> 件
             </p>
             <p>
-              合计：<span className="price">0.00</span>
+              合计：<span className="price">{handleTotalPrice?.toFixed(2)}</span>
             </p>
             <Button onClick={handleOnSubmit}>结算</Button>
           </div>
