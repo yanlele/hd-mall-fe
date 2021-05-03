@@ -6,10 +6,11 @@ import { Affix, Button, Table } from 'antd';
 import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 import { usePersistFn } from 'ahooks';
 import useMountRequest from '@src/pages/ShoppingCart/useHooks/useMountRequest';
-import { map } from 'lodash';
+import { map, forEach } from 'lodash';
+import produce from 'immer';
 
 const ShoppingCart: FC = () => {
-  const { list, useRequestResult } = useMountRequest();
+  const { list, useRequestResult, setList } = useMountRequest();
   const { loading } = useRequestResult;
   const [selectedRowKeys, setSelectedRowKeys] = useState<any[]>([]);
   const [selectedRowState, setSelectedRowState] = useState<any[]>([]);
@@ -28,6 +29,20 @@ const ShoppingCart: FC = () => {
     console.log(selectedRowState);
   });
 
+  console.log(list);
+
+  const handleChangeCount = usePersistFn((row: any, value: number) => {
+    setList(
+      produce(draft => {
+        forEach(draft, item => {
+          if (item.id === row.id) {
+            row.count = value;
+          }
+        });
+      }),
+    );
+  });
+
   return (
     <AdminContainer>
       <AdminTitleBar>购物车</AdminTitleBar>
@@ -38,7 +53,7 @@ const ShoppingCart: FC = () => {
             pagination={false}
             loading={loading}
             rowSelection={rowSelection}
-            columns={columns()}
+            columns={columns({ handleChangeCount })}
             dataSource={map(list, item => Object.assign({}, item, { key: item.id }))}
           />
         </div>

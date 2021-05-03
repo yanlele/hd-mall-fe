@@ -5,8 +5,10 @@ import styles from '@src/common/consts/baseProductColumns/style.less';
 import { Link } from 'react-router-dom';
 import CountComponent from '@src/components/dataEntry/CountComponent';
 import { get, toNumber } from 'lodash';
+import { ColumnsProps } from '@src/pages/ShoppingCart/interface';
 
-export const columns = (props?: any): ColumnsType<any> => {
+export const columns = (props: ColumnsProps): ColumnsType<any> => {
+  const { handleChangeCount } = props;
   return [
     {
       title: '商品信息',
@@ -37,15 +39,8 @@ export const columns = (props?: any): ColumnsType<any> => {
       title: '数量',
       dataIndex: 'count',
       key: 'count',
-      render: count => {
-        return (
-          <CountComponent
-            value={count}
-            onChange={value => {
-              console.log(value);
-            }}
-          />
-        );
+      render: (count, row) => {
+        return <CountComponent value={count} onChange={value => handleChangeCount(row, value)} />;
       },
     },
     {
