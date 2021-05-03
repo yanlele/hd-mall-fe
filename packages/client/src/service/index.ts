@@ -2,6 +2,8 @@ import request from '@src/utils/axios';
 import { getUserInfoApiUrl, loginApiUrl, registerApiUrl, logoutApiUrl } from '@hd/common/service/consts';
 import { RegisterParams } from '@src/service/interface';
 
+// 公共接口逻辑部分
+
 // 获取用户信息
 export const getUserInfoRequest = () => request({ url: getUserInfoApiUrl }, { tipMessage: false });
 

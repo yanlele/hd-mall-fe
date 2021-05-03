@@ -28,7 +28,13 @@ export const registerApiUrl = `${ApiClientPrefix}/user/create`;
 export const loginApiUrl = `${ApiClientPrefix}/auth/login`;
 
 // 退出登录
-export const logoutApiUrl = `${ApiClientPrefix}/auth/logout`
+export const logoutApiUrl = `${ApiClientPrefix}/auth/logout`;
 
 // 获取商品详情
-export const getProductDetailApiUrl = `${ApiClientPrefix}/product/get_detail`
+export const getProductDetailApiUrl = `${ApiClientPrefix}/product/get_detail`;
+
+// 获取地址
+export const getAddressListApiUrl = `${ApiClientPrefix}/address/list`;
+
+// 设置默认地址
+export const setDefaultAddressApiUrl = `${ApiClientPrefix}/address/set_default`;

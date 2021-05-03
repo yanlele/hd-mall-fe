@@ -22,11 +22,6 @@ const OrderDetail: FC = () => {
               icon={<CheckCircleOutlined className="step-icon" />}
             />
             <Step
-              title="付款成功"
-              description={'2021-04-18 12:12:12'}
-              icon={<CheckCircleOutlined className="step-icon" />}
-            />
-            <Step
               title="卖家发货"
               description={'YYYY-MM-DD hh:mm:ss'}
               icon={<CheckCircleOutlined className="step-icon" />}
