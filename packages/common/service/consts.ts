@@ -38,3 +38,13 @@ export const getAddressListApiUrl = `${ApiClientPrefix}/address/list`;
 
 // 设置默认地址
 export const setDefaultAddressApiUrl = `${ApiClientPrefix}/address/set_default`;
+
+// 修改地址
+export const updateAddressApiUrl = `${ApiClientPrefix}/address/update`;
+
+// 创建新地址
+export const createAddressApiUrl = `${ApiClientPrefix}/address/create`;
+
+// 删除地址
+export const deleteAddressApiUrl = `${ApiClientPrefix}/address/delete`;
+

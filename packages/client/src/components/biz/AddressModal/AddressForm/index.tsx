@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { useMount } from 'ahooks';
 import produce from 'immer';
 import { AddressModalProps } from '@src/components/biz/AddressModal/interface';
+import { get } from 'lodash';
 
 const { TextArea } = Input;
 
@@ -30,8 +31,8 @@ const AddressForm: FC<Pick<AddressModalProps, 'model'>> = props => {
   return (
     <Form {...layout} form={form} name="control-hooks">
       <Form.Item
-        initialValue={addressInfo.address_name}
-        name="address_name"
+        initialValue={get(addressInfo, 'addressee_name')}
+        name="addressee_name"
         label="姓名"
         rules={[{ required: true, message: '请输入姓名' }]}>
         <Input placeholder="请输入姓名" />

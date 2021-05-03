@@ -3,19 +3,21 @@ import { map, get } from 'lodash';
 import styles from './style.less';
 import { PlusOutlined } from '@ant-design/icons';
 import AddressModal from '@src/components/biz/AddressModal';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
 import { useRequest, useUnmount } from 'ahooks';
 import { defaultClientAddressModalModelState } from '@src/components/biz/AddressModal/model/consts';
 import { handleOpenAddressModalHelper } from '@src/pages/Order/components/OrderAddress/helper';
-import { getAddressListRequest } from '@src/pages/Order/service';
+import { getAddressListRequest } from '@src/service';
 import { Spin } from 'antd';
+import cn from 'classnames';
+import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
 
 const OrderAddress: FC = () => {
   const setModalState = useSetRecoilState(clientAddressModalModel);
+  const { userInfo } = useRecoilValue(userInfoModel);
   const { data: res, loading, refresh } = useRequest(getAddressListRequest);
   const addressList = get(res, 'data', []);
-  console.log(addressList);
 
   // 注销组件的时候， 清空数据
   useUnmount(() => {
@@ -31,7 +33,10 @@ const OrderAddress: FC = () => {
             {/* address - item */}
             {map(addressList, item => {
               return (
-                <div key={item.id} className="address-item">
+                // <div key={item.id} className="address-item address-default">
+                <div
+                  key={item.id}
+                  className={cn('address-item', userInfo.default_address_id === item.id && 'address-default')}>
                   <p className="info">
                     <span className="name">{get(item, 'addressee_name')}</span>
                     <span className="handle">
@@ -42,7 +47,7 @@ const OrderAddress: FC = () => {
                             params: {
                               title: '修改',
                               type: 'edit',
-                              addressInfo: { ...item, address_name: get(item, 'addressee_name') },
+                              addressInfo: item,
                             },
                             setModalState,
                           })

@@ -4,12 +4,13 @@ import AddressForm from '@src/components/biz/AddressModal/AddressForm';
 import { useRecoilState } from 'recoil';
 import { usePersistFn } from 'ahooks';
 import { AddressModalProps } from '@src/components/biz/AddressModal/interface';
+import { updateAddressRequest } from '@src/service';
 
 const AddressModal: FC<AddressModalProps> = props => {
   const { model, defaultModelState } = props;
 
   const [modalState, setModalState] = useRecoilState(model);
-  const { visible, title, actions } = modalState;
+  const { visible, title, actions, type, addressInfo } = modalState;
   const { onSubmit } = actions;
 
   // 关闭模态框
@@ -19,7 +20,14 @@ const AddressModal: FC<AddressModalProps> = props => {
 
   // 提交
   const handleSubmit = () => {
-    onSubmit().then(values => {
+    onSubmit().then(async values => {
+      if (type === 'edit') {
+        // 更新场景
+        await updateAddressRequest({ ...values, id: addressInfo.id });
+      } else {
+        // 创建场景
+        await
+      }
       console.log(values);
     });
   };
