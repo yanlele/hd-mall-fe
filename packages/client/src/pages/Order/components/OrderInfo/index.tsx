@@ -1,7 +1,7 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import styles from './style.less';
 import { Button, Input, message, Spin } from 'antd';
-import { reduce, map, get, isArray, isNil } from 'lodash';
+import { reduce, map, get } from 'lodash';
 import { usePersistFn } from 'ahooks';
 import { useHistory } from 'react-router';
 import useMountRequest from '@src/pages/Order/useHooks/useMountRequest';
@@ -11,6 +11,8 @@ const { TextArea } = Input;
 const OrderInfo: FC = () => {
   const history = useHistory();
   const { data: res, loading } = useMountRequest();
+  const [remark, setRemark] = useState('');
+
   const data = get(res, 'data', []);
   const infoList = useMemo(() => data, [data]);
 
@@ -73,6 +75,8 @@ const OrderInfo: FC = () => {
           <div className="remark">
             <span className="label">留言：</span>
             <TextArea
+              value={remark}
+              onChange={e => setRemark(e.target.value)}
               style={{ width: '60%' }}
               rows={6}
               autoSize={{ maxRows: 6, minRows: 6 }}
