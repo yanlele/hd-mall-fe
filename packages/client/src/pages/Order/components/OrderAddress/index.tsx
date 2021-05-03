@@ -8,14 +8,16 @@ import { clientAddressModalModel } from '@src/components/biz/AddressModal/model'
 import { usePersistFn, useRequest, useUnmount } from 'ahooks';
 import { defaultClientAddressModalModelState } from '@src/components/biz/AddressModal/model/consts';
 import { handleOpenAddressModalHelper } from '@src/pages/Order/components/OrderAddress/helper';
-import { deleteAddressRequest, getAddressListRequest } from '@src/service';
+import { deleteAddressRequest, getAddressListRequest, setDefaultAddressRequest } from '@src/service';
 import { message, Modal, Spin } from 'antd';
 import cn from 'classnames';
 import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
+import useGetUserInfo from '@src/common/hooks/useGetUserInfo';
 
 const OrderAddress: FC = () => {
   const setModalState = useSetRecoilState(clientAddressModalModel);
   const { userInfo } = useRecoilValue(userInfoModel);
+  const { refresh: getUserInfoRefresh } = useGetUserInfo();
   const { data: res, loading, refresh } = useRequest(getAddressListRequest);
   const addressList = get(res, 'data', []);
 
@@ -33,6 +35,12 @@ const OrderAddress: FC = () => {
         message.success('删除地址成功');
       },
     });
+  });
+
+  const handleSetDefault = usePersistFn(async id => {
+    await setDefaultAddressRequest(id);
+    await getUserInfoRefresh();
+    message.success('设置默认地址成功');
   });
 
   return (
@@ -70,7 +78,7 @@ const OrderAddress: FC = () => {
                         删除
                       </a>
 
-                      <a>设为默认</a>
+                      <a onClick={() => handleSetDefault(item.id)}>设为默认</a>
                     </span>
                   </p>
                   <p className="phone">{get(item, 'mobile')}</p>
