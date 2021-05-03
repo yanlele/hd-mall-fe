@@ -4,11 +4,11 @@ import styles from './style.less';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
-import { usePersistFn, useRequest } from 'ahooks';
+import { usePersistFn } from 'ahooks';
 import { produce } from 'immer';
 import UserLoginComponent from '@src/components/biz/UserLoginComponent';
-import { getUserInfoRequest, logoutRequest } from '@src/service';
-import { get } from 'lodash';
+import { logoutRequest } from '@src/service';
+import useGetUserInfo from '@src/common/hooks/useGetUserInfo';
 
 const { Header } = Layout;
 
@@ -16,16 +16,7 @@ const HeaderComponent: FC = () => {
   const [{ userInfo }, setUserState] = useRecoilState(userInfoModel);
   const { name } = userInfo;
 
-  useRequest(getUserInfoRequest, {
-    onSuccess: res => {
-      if (res)
-        setUserState(
-          produce(draft => {
-            draft.userInfo = get(res, 'data');
-          }),
-        );
-    },
-  });
+  useGetUserInfo();
 
   const handleLogin = usePersistFn(() => {
     setUserState(

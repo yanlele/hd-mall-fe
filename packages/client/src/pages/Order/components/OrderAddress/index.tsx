@@ -5,11 +5,11 @@ import { PlusOutlined } from '@ant-design/icons';
 import AddressModal from '@src/components/biz/AddressModal';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
-import { useRequest, useUnmount } from 'ahooks';
+import { usePersistFn, useRequest, useUnmount } from 'ahooks';
 import { defaultClientAddressModalModelState } from '@src/components/biz/AddressModal/model/consts';
 import { handleOpenAddressModalHelper } from '@src/pages/Order/components/OrderAddress/helper';
-import { getAddressListRequest } from '@src/service';
-import { Spin } from 'antd';
+import { deleteAddressRequest, getAddressListRequest } from '@src/service';
+import { message, Modal, Spin } from 'antd';
 import cn from 'classnames';
 import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
 
@@ -22,6 +22,17 @@ const OrderAddress: FC = () => {
   // 注销组件的时候， 清空数据
   useUnmount(() => {
     setModalState(defaultClientAddressModalModelState);
+  });
+
+  const handleDelete = usePersistFn(async id => {
+    Modal.confirm({
+      title: '确认删除该收货地址？',
+      onOk: async () => {
+        await deleteAddressRequest(id);
+        await refresh();
+        message.success('删除地址成功');
+      },
+    });
   });
 
   return (
@@ -55,7 +66,9 @@ const OrderAddress: FC = () => {
                         修改
                       </a>
 
-                      <a style={{ marginRight: 6, color: '#ef7575' }}>删除</a>
+                      <a style={{ marginRight: 6, color: '#ef7575' }} onClick={() => handleDelete(item.id)}>
+                        删除
+                      </a>
 
                       <a>设为默认</a>
                     </span>
