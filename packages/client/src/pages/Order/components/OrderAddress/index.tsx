@@ -41,9 +41,8 @@ const OrderAddress: FC = () => {
                   </span>
                 </p>
                 <p className="phone">15213498872</p>
-                <p className="address-desc">
-                  说到缴罚了开始就拉开激动啊偶尔不见阿尔里看不见拉开东方既白奥地利飞机杯拉肯德基封闭欧文人
-                </p>
+                <p className="address-desc">四川省成都市</p>
+                <p className="address-desc">嘉年华时代惊着小区</p>
               </div>
             );
           })}
