@@ -130,4 +130,10 @@ export const updateShoppingCartRequest = (data: any) =>
     method: 'post',
   });
 
+export const deleteShoppingCartRequest = (data: any) =>
+  request({
+    url: shoppingCartApiUrl.delete,
+    data,
+    method: 'post',
+  });
 /* ==============================  购物车 - End   ============================== */

@@ -5,7 +5,9 @@ import { get } from 'lodash';
 
 const useMountRequest = () => {
   const [list, setList] = useState<any[]>([]);
-  const useRequestResult = useRequest(() => getShoppingCartDetailListRequest({ type: 2 }), {
+
+  // type = 1 购物车
+  const useRequestResult = useRequest(() => getShoppingCartDetailListRequest({ type: 1 }), {
     onSuccess: res => {
       setList(get(res, 'data', []));
     },

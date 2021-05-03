@@ -2,17 +2,17 @@ import React, { FC, useMemo, useState } from 'react';
 import AdminContainer from '@src/components/biz/AdminContainer';
 import styles from './style.less';
 import { columns } from '@src/pages/ShoppingCart/helper';
-import { Affix, Button, Table } from 'antd';
+import { Affix, Button, message, Table } from 'antd';
 import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 import { usePersistFn } from 'ahooks';
 import useMountRequest from '@src/pages/ShoppingCart/useHooks/useMountRequest';
 import { map, sum } from 'lodash';
 import produce from 'immer';
-import { updateShoppingCartRequest } from '@src/service';
+import { deleteShoppingCartRequest, updateShoppingCartRequest } from '@src/service';
 
 const ShoppingCart: FC = () => {
   const { list, useRequestResult, setList } = useMountRequest();
-  const { loading } = useRequestResult;
+  const { loading, refresh } = useRequestResult;
   const [selectedRowKeys, setSelectedRowKeys] = useState<any[]>([]);
   const [selectedRowState, setSelectedRowState] = useState<any[]>([]);
 
@@ -40,7 +40,6 @@ const ShoppingCart: FC = () => {
         });
       }),
     );
-
     updateShoppingCartRequest({ id: row.id, count: value });
   });
 
@@ -51,6 +50,13 @@ const ShoppingCart: FC = () => {
 
     return sum(valueList);
   }, [selectedRowState?.length]) as number;
+
+  const handleDelete = usePersistFn(async () => {
+    console.log(selectedRowKeys);
+    await deleteShoppingCartRequest(selectedRowKeys);
+    await refresh();
+    message.success('删除成功');
+  });
 
   return (
     <AdminContainer>
@@ -70,7 +76,7 @@ const ShoppingCart: FC = () => {
 
       <Affix offsetBottom={12}>
         <footer className={styles.settlement}>
-          <div>{selectedRowKeys.length > 0 && <a>删除全部</a>}</div>
+          <div>{selectedRowKeys.length > 0 && <a onClick={handleDelete}>删除全部</a>}</div>
           <div className="handle-settlement">
             <p>
               已选择商品 <span className="count">{selectedRowKeys.length}</span> 件
