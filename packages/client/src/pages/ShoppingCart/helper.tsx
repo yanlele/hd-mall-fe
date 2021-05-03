@@ -8,7 +8,7 @@ import { get, toNumber } from 'lodash';
 import { ColumnsProps } from '@src/pages/ShoppingCart/interface';
 
 export const columns = (props: ColumnsProps): ColumnsType<any> => {
-  const { handleChangeCount } = props;
+  const { handleChangeCount, handleDeleteItem } = props;
   return [
     {
       title: '商品信息',
@@ -54,10 +54,10 @@ export const columns = (props: ColumnsProps): ColumnsType<any> => {
     {
       title: '操作',
       key: 'action',
-      render: () => {
+      render: (_, row) => {
         return (
           <div>
-            <Button size="small" danger>
+            <Button onClick={() => handleDeleteItem(row.id)} size="small" danger>
               删除
             </Button>
           </div>
