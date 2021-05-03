@@ -105,6 +105,13 @@ export const shoppingCartCreate = (data: any) =>
 export const shoppingCartGetByTempIdRequest = (id: string) =>
   request({
     url: shoppingCartApiUrl.getDetailByTempId,
-    params: { temp_id: id },
+    params: { id },
+  });
+
+// 根据 tempOrderId 查询， 获取列表
+export const getDetailListByTempOrderIdRequest = (temp_order_id: string) =>
+  request({
+    url: shoppingCartApiUrl.getDetailListByTempOrderId,
+    params: { temp_order_id },
   });
 /* ==============================  购物车 - End   ============================== */
