@@ -17,7 +17,7 @@ import useGetUserInfo from '@src/common/hooks/useGetUserInfo';
 const OrderAddress: FC = () => {
   const setModalState = useSetRecoilState(clientAddressModalModel);
   const { userInfo } = useRecoilValue(userInfoModel);
-  const { refresh: getUserInfoRefresh } = useGetUserInfo();
+  const { refresh: getUserInfoRefresh, loading: userFetchLoading } = useGetUserInfo();
   const { data: res, loading, refresh } = useRequest(getAddressListRequest);
   const addressList = get(res, 'data', []);
 
@@ -47,7 +47,7 @@ const OrderAddress: FC = () => {
     <>
       <div className={styles.orderAddressContainer}>
         <h3>收获地址</h3>
-        <Spin spinning={loading}>
+        <Spin spinning={loading || userFetchLoading}>
           <div className="address-list">
             {/* address - item */}
             {map(addressList, item => {

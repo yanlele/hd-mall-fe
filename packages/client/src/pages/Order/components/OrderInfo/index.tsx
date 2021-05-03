@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import styles from './style.less';
 import { Button, Input, message, Spin } from 'antd';
-import { range, map, get, isArray, isNil } from 'lodash';
+import { reduce, map, get, isArray, isNil } from 'lodash';
 import { usePersistFn } from 'ahooks';
 import { useHistory } from 'react-router';
 import useMountRequest from '@src/pages/Order/useHooks/useMountRequest';
@@ -22,6 +22,16 @@ const OrderInfo: FC = () => {
     message.success('下单成功');
     history.push('/admin/order-detail');
   });
+
+  const totalPrice = useMemo(() => {
+    const priceList = map(infoList, item => {
+      return get(item, 'count') * get(item, 'product_info.price');
+    });
+
+    return reduce(priceList, (pre, current) => {
+      return pre + current;
+    });
+  }, [infoList]) as number;
 
   return (
     <Spin spinning={loading}>
@@ -44,7 +54,9 @@ const OrderInfo: FC = () => {
                 </div>
                 <div className="price-content">
                   <span className="count">X {get(item, 'count')}</span>
-                  <span className="price">$ {get(item, 'product_info.price', 0).toFixed(2)}</span>
+                  <span className="price">
+                    $ {(get(item, 'product_info.price', 0) * get(item, 'count', 0)).toFixed(2)}
+                  </span>
                 </div>
               </div>
             );
@@ -79,7 +91,7 @@ const OrderInfo: FC = () => {
         <div className="pay-info">
           <p className="text">
             <span className="label">商品总金额：</span>
-            <span className="value">￥2899.00</span>
+            <span className="value">￥{totalPrice && totalPrice.toFixed(2)}</span>
           </p>
 
           <p className="text">
@@ -94,7 +106,7 @@ const OrderInfo: FC = () => {
 
           <p className="text">
             <span className="label">应付金额：</span>
-            <span className="value price">￥2899.00</span>
+            <span className="value price">￥{totalPrice && totalPrice.toFixed(2)}</span>
           </p>
 
           <Button onClick={createOrder} className="confirm-order-button">
