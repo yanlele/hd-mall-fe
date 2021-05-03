@@ -16,7 +16,7 @@ for (let i = 0; i < 46; i++) {
 }
 
 const AdminOrderList: FC = () => {
-  const columns = handleGetColumnsHelper({});
+  const columns = handleGetColumnsHelper();
 
   return (
     <AdminContainer>

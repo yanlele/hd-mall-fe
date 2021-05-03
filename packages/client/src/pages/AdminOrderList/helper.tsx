@@ -2,10 +2,8 @@ import styles from './style.less';
 import { Image } from 'antd';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { HandleGetColumnsHelperOptions } from '@src/pages/AdminOrderList/interface';
 
-export const handleGetColumnsHelper = (options: HandleGetColumnsHelperOptions) => {
-  console.log(options);
+export const handleGetColumnsHelper = () => {
   return [
     {
       title: '订单号',
