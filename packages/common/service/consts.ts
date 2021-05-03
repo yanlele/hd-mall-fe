@@ -48,3 +48,11 @@ export const createAddressApiUrl = `${ApiClientPrefix}/address/create`;
 // 删除地址
 export const deleteAddressApiUrl = `${ApiClientPrefix}/address/delete`;
 
+// shoppingCart
+export const shoppingCartApiUrl = {
+  create: `${ApiClientPrefix}/shopping_cart/create`,
+  get: `${ApiClientPrefix}/shopping_cart/get`,
+  delete: `${ApiClientPrefix}/shopping_cart/delete`,
+  update: `${ApiClientPrefix}/shopping_cart/update`,
+};
+

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import styles from './style.less';
 import { get } from 'lodash';
 import { Button, message } from 'antd';
@@ -10,17 +10,16 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import getDetailInfoModel from '@src/pages/ProductDetail/model/getDetailInfoModel';
 import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
 import produce from 'immer';
+import { shoppingCartCreate } from '@src/service';
 
 const ProductInfo: FC = () => {
   const history = useHistory();
   const { detail } = useRecoilValue(getDetailInfoModel);
   const [{ userInfo }, setUserModel] = useRecoilState(userInfoModel);
-
   const [purchaseQuantity, setPurchaseQuantity] = useState(1);
-  // const [type, setType] = useState(0);
 
   // 跳转到 order 页面
-  const handleOnClickBuy = usePersistFn(() => {
+  const handleOnClickBuy = usePersistFn(async () => {
     if (!userInfo.name) {
       message.warn('请登录之后再购买');
       setUserModel(
@@ -32,14 +31,11 @@ const ProductInfo: FC = () => {
       return;
     }
 
-    const productId = get(query.parse(history.location.search), 'id');
+    const productId = get(query.parse(history.location.search), 'id') as string;
 
-    const toOrderQuery = {
-      productId,
-      purchaseQuantity,
-    };
+    const res = await shoppingCartCreate([{ product_id: parseInt(productId, 10), count: purchaseQuantity, type: 2 }]);
 
-    history.push(`/order?${query.stringify(toOrderQuery)}`);
+    history.push(`/order?temp_id=${res.data}`);
   });
 
   // 加入购物车

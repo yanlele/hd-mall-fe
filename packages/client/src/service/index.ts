@@ -9,10 +9,13 @@ import {
   createAddressApiUrl,
   setDefaultAddressApiUrl,
   deleteAddressApiUrl,
+  shoppingCartApiUrl,
 } from '@hd/common/service/consts';
 import { RegisterParams } from '@src/service/interface';
 
 // 公共接口逻辑部分
+
+/* ==============================  用户信息系与登录信息 - Start ============================== */
 
 // 获取用户信息
 export const getUserInfoRequest = () => request({ url: getUserInfoApiUrl }, { tipMessage: false });
@@ -40,6 +43,10 @@ export const loginRequest = (data: RegisterParams) =>
 
 // 退出登录
 export const logoutRequest = () => request({ url: logoutApiUrl });
+
+/* ==============================  用户信息与登录信息 - Start ============================== */
+
+/* ==============================  地址信息 - Start ============================== */
 
 // 地址 - 获取地址列表
 export const getAddressListRequest = () => request({ url: getAddressListApiUrl });
@@ -75,3 +82,22 @@ export const deleteAddressRequest = (id: number) =>
     method: 'post',
     data: { id },
   });
+/* ==============================  地址信息 - End   ============================== */
+
+/* ==============================  购物车 - Start ============================== */
+/**
+ * 创建
+ * @param list
+ *
+ * 参数：
+ *  product_id
+ *  count
+ *  type 1 - 购物车；2 - 临时订单信息
+ */
+export const shoppingCartCreate = (list: any[]) =>
+  request({
+    url: shoppingCartApiUrl.create,
+    data: list,
+    method: 'post',
+  });
+/* ==============================  购物车 - End   ============================== */
