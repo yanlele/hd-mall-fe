@@ -8,6 +8,7 @@ import { usePersistFn } from 'ahooks';
 import useMountRequest from '@src/pages/ShoppingCart/useHooks/useMountRequest';
 import { map, sum } from 'lodash';
 import produce from 'immer';
+import { updateShoppingCartRequest } from '@src/service';
 
 const ShoppingCart: FC = () => {
   const { list, useRequestResult, setList } = useMountRequest();
@@ -39,6 +40,8 @@ const ShoppingCart: FC = () => {
         });
       }),
     );
+
+    updateShoppingCartRequest({ id: row.id, count: value });
   });
 
   const handleTotalPrice = useMemo(() => {

@@ -101,10 +101,10 @@ export const shoppingCartCreate = (data: any) =>
     method: 'post',
   });
 
-// 用户直接购买页面的跳转
-export const shoppingCartGetByTempIdRequest = (id: string) =>
+// 根据id获取详情
+export const shoppingCartGetByIdRequest = (id: string) =>
   request({
-    url: shoppingCartApiUrl.getDetailByTempId,
+    url: shoppingCartApiUrl.getDetailById,
     params: { id },
   });
 
@@ -121,4 +121,13 @@ export const getShoppingCartDetailListRequest = (params: any) =>
     url: shoppingCartApiUrl.get,
     params,
   });
+
+// 更新 - 实际上只能更新数量
+export const updateShoppingCartRequest = (data: any) =>
+  request({
+    url: shoppingCartApiUrl.update,
+    data,
+    method: 'post',
+  });
+
 /* ==============================  购物车 - End   ============================== */
