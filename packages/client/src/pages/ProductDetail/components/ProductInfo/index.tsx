@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './style.less';
 import { get } from 'lodash';
 import { Button, message } from 'antd';

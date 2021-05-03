@@ -54,5 +54,6 @@ export const shoppingCartApiUrl = {
   get: `${ApiClientPrefix}/shopping_cart/get`,
   delete: `${ApiClientPrefix}/shopping_cart/delete`,
   update: `${ApiClientPrefix}/shopping_cart/update`,
+  getDetailByTempId: `${ApiClientPrefix}/shopping_cart/get_by_id`,
 };
 

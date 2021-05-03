@@ -100,4 +100,11 @@ export const shoppingCartCreate = (list: any[]) =>
     data: list,
     method: 'post',
   });
+
+// 用户直接购买页面的跳转
+export const shoppingCartGetByTempIdRequest = (id: string) =>
+  request({
+    url: shoppingCartApiUrl.getDetailByTempId,
+    params: { temp_id: id },
+  });
 /* ==============================  购物车 - End   ============================== */
