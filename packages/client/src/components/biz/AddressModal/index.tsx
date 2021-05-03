@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import { Modal } from 'antd';
+import { message, Modal } from 'antd';
 import AddressForm from '@src/components/biz/AddressModal/AddressForm';
 import { useRecoilState } from 'recoil';
 import { usePersistFn } from 'ahooks';
 import { AddressModalProps } from '@src/components/biz/AddressModal/interface';
-import { updateAddressRequest } from '@src/service';
+import { createAddressRequest, updateAddressRequest } from '@src/service';
 
 const AddressModal: FC<AddressModalProps> = props => {
-  const { model, defaultModelState } = props;
+  const { model, defaultModelState, onSubmitCallback } = props;
 
   const [modalState, setModalState] = useRecoilState(model);
   const { visible, title, actions, type, addressInfo } = modalState;
@@ -26,9 +26,11 @@ const AddressModal: FC<AddressModalProps> = props => {
         await updateAddressRequest({ ...values, id: addressInfo.id });
       } else {
         // 创建场景
-        await
+        await createAddressRequest(values);
       }
-      console.log(values);
+      message.success(`${title}收货地址成功`);
+      handleCancel();
+      if (onSubmitCallback) onSubmitCallback();
     });
   };
 

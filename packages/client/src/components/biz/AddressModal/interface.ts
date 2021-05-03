@@ -4,4 +4,5 @@ import { ClientAddressModalModelState } from '@src/components/biz/AddressModal/m
 export interface AddressModalProps {
   model: RecoilState<ClientAddressModalModelState>;
   defaultModelState: ClientAddressModalModelState;
+  onSubmitCallback: () => Promise<any>;
 }

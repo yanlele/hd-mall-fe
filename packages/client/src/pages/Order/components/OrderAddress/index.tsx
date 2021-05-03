@@ -80,7 +80,11 @@ const OrderAddress: FC = () => {
         </Spin>
       </div>
 
-      <AddressModal model={clientAddressModalModel} defaultModelState={defaultClientAddressModalModelState} />
+      <AddressModal
+        onSubmitCallback={refresh}
+        model={clientAddressModalModel}
+        defaultModelState={defaultClientAddressModalModelState}
+      />
     </>
   );
 };
