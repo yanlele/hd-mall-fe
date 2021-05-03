@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import styles from './style.less';
-import { get } from 'lodash';
+import { get, omit } from 'lodash';
 import { Button, message } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { usePersistFn } from 'ahooks';
@@ -33,7 +33,9 @@ const ProductInfo: FC = () => {
       return;
     }
 
-    const res = await shoppingCartCreate([{ product_id: parseInt(productId, 10), count: purchaseQuantity, type: 2 }]);
+    const res = await shoppingCartCreate(
+      Object.assign({ product_id: parseInt(productId, 10), count: purchaseQuantity, type: 2 }, omit(detail, ['id'])),
+    );
 
     history.push(`/order?temp_id=${res.data}`);
   });
@@ -51,7 +53,9 @@ const ProductInfo: FC = () => {
       return;
     }
 
-    await shoppingCartCreate([{ product_id: parseInt(productId, 10), count: purchaseQuantity, type: 1 }]);
+    await shoppingCartCreate(
+      Object.assign({ product_id: parseInt(productId, 10), count: purchaseQuantity, type: 1 }, omit(detail, ['id'])),
+    );
     message.success('加入购物车成功');
   });
 

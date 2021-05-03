@@ -94,10 +94,10 @@ export const deleteAddressRequest = (id: number) =>
  *  count
  *  type 1 - 购物车；2 - 临时订单信息
  */
-export const shoppingCartCreate = (list: any[]) =>
+export const shoppingCartCreate = (data: any) =>
   request({
     url: shoppingCartApiUrl.create,
-    data: list,
+    data,
     method: 'post',
   });
 
