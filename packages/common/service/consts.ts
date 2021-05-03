@@ -56,5 +56,6 @@ export const shoppingCartApiUrl = {
   update: `${ApiClientPrefix}/shopping_cart/update`,
   getDetailById: `${ApiClientPrefix}/shopping_cart/get_by_id`,
   getDetailListByTempOrderId: `${ApiClientPrefix}/shopping_cart/get_by_temp_order_id`,
+  settleAccounts: `${ApiClientPrefix}/shopping_cart/settle_accounts`,
 };
 

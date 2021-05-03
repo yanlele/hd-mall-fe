@@ -130,9 +130,18 @@ export const updateShoppingCartRequest = (data: any) =>
     method: 'post',
   });
 
+// 删除购物车
 export const deleteShoppingCartRequest = (data: any) =>
   request({
     url: shoppingCartApiUrl.delete,
+    data,
+    method: 'post',
+  });
+
+// 购物车结账
+export const settleAccountsRequest = (data: any[]) =>
+  request({
+    url: shoppingCartApiUrl.settleAccounts,
     data,
     method: 'post',
   });

@@ -8,17 +8,17 @@ import { usePersistFn } from 'ahooks';
 import useMountRequest from '@src/pages/ShoppingCart/useHooks/useMountRequest';
 import { map, sum, filter, includes } from 'lodash';
 import produce from 'immer';
-import { deleteShoppingCartRequest, updateShoppingCartRequest } from '@src/service';
+import { deleteShoppingCartRequest, settleAccountsRequest, updateShoppingCartRequest } from '@src/service';
+import { useHistory } from 'react-router';
 
 const ShoppingCart: FC = () => {
+  const history = useHistory();
   const { list, useRequestResult, setList } = useMountRequest();
   const { loading, refresh } = useRequestResult;
   const [selectedRowKeys, setSelectedRowKeys] = useState<any[]>([]);
-  const [selectedRowState, setSelectedRowState] = useState<any[]>([]);
 
-  const onSelectChange = usePersistFn((selectedRowKeys: any[], value: any[]) => {
+  const onSelectChange = usePersistFn((selectedRowKeys: any[]) => {
     setSelectedRowKeys(selectedRowKeys);
-    setSelectedRowState(value);
   });
 
   const rowSelection = {
@@ -26,8 +26,10 @@ const ShoppingCart: FC = () => {
     onChange: onSelectChange,
   };
 
-  const handleOnSubmit = usePersistFn(() => {
-    console.log(selectedRowState);
+  const handleOnSubmit = usePersistFn(async () => {
+    const selectedRow = filter(list, item => includes(selectedRowKeys, item.id));
+    const res = await settleAccountsRequest(selectedRow);
+    history.push(`/order?temp_order_id=${res.data}`);
   });
 
   const handleChangeCount = usePersistFn((row: any, value: number) => {
