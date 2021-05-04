@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, useCallback } from 'react';
 import styles from './style.less';
 import { Spin, Steps, Table } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
@@ -33,8 +33,8 @@ const OrderDetail: FC = () => {
   );
 
   return (
-    <Spin spinning={loading}>
-      <div className={styles.orderDetailContainer}>
+    <div className={styles.orderDetailContainer}>
+      <Spin spinning={loading}>
         <div className="detail-content">
           <div className="detail-step">
             <Steps current={get(stateInfo, 'orderDetail.status', 0) - 1}>
@@ -92,7 +92,7 @@ const OrderDetail: FC = () => {
                     订单状态
                   </>
                 }
-                value="已完成"
+                value={get(stateInfo, 'orderDetail.status')}
               />
               <LabelValue label="物流" value="圆通快递" />
               <LabelValue label="运单号" value={`YT127${orderId}`} />
@@ -110,8 +110,8 @@ const OrderDetail: FC = () => {
             <LabelValue label="实际付款: " value={<b>￥258.00</b>} />
           </div>
         </div>
-      </div>
-    </Spin>
+      </Spin>
+    </div>
   );
 };
 

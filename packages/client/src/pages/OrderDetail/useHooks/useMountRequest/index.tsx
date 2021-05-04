@@ -7,7 +7,7 @@ import handleMountHelper from '@src/pages/OrderDetail/useHooks/helper/handleMoun
 
 const useMountRequest = () => {
   const { userInfo } = useRecoilValue(userInfoModel);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [stateInfo, setStateInfo] = useState({});
   const { id, order_id: orderId } = useGetQuery();
 
