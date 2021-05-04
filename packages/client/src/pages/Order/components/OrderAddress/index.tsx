@@ -17,7 +17,7 @@ import useGetUserInfo from '@src/common/hooks/useGetUserInfo';
 const OrderAddress: FC = () => {
   const setModalState = useSetRecoilState(clientAddressModalModel);
   const { userInfo } = useRecoilValue(userInfoModel);
-  const { refresh: getUserInfoRefresh, loading: userFetchLoading } = useGetUserInfo();
+  const { run: getUserInfoRefresh, loading: userFetchLoading } = useGetUserInfo({ manual: true });
   const { data: res, loading, refresh } = useRequest(getAddressListRequest);
   const addressList = get(res, 'data', []);
 
