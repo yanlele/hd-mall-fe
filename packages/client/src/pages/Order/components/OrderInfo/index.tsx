@@ -5,10 +5,14 @@ import { reduce, map, get } from 'lodash';
 import { usePersistFn } from 'ahooks';
 import { useHistory } from 'react-router';
 import useMountRequest from '@src/pages/Order/useHooks/useMountRequest';
+import useGetQuery from '@src/common/hooks/useGetQuery';
+import { orderCreateRequest } from '@src/service';
+import { stringify } from 'query-string';
 
 const { TextArea } = Input;
 
 const OrderInfo: FC = () => {
+  const query = useGetQuery();
   const history = useHistory();
   const { data: res, loading } = useMountRequest();
   const [remark, setRemark] = useState('');
@@ -16,9 +20,19 @@ const OrderInfo: FC = () => {
   const data = get(res, 'data', []);
   const infoList = useMemo(() => data, [data]);
 
-  const createOrder = usePersistFn(() => {
+  const createOrder = usePersistFn(async () => {
+    const params = {
+      order_id: parseInt(get(query, 'temp_order_id', 0), 10),
+      remark,
+      total_count: totalCount,
+      total_price: totalPrice,
+    };
+
+    const res = await orderCreateRequest(params);
+    const queryString = stringify(get(res, 'data', {}));
+
     message.success('下单成功');
-    history.push('/admin/order-detail');
+    history.push(`/admin/order-detail?${queryString}`);
   });
 
   const totalPrice = useMemo(() => {
@@ -29,6 +43,11 @@ const OrderInfo: FC = () => {
     return reduce(priceList, (pre, current) => {
       return pre + current;
     });
+  }, [infoList]) as number;
+
+  const totalCount = useMemo(() => {
+    const countList = map(infoList, item => get(item, 'count', 0));
+    return reduce(countList, (pre, current) => pre + current);
   }, [infoList]) as number;
 
   return (
