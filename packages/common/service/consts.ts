@@ -62,5 +62,7 @@ export const shoppingCartApiUrl = {
 // 订单
 export const orderApiUrl = {
   create: `${ApiClientPrefix}/order/create`,
+  getById: `${ApiClientPrefix}/order/get_detail`,
+  getList: `${ApiClientPrefix}/order/get_list`,
 }
 

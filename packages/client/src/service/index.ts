@@ -156,4 +156,7 @@ export const orderCreateRequest = (data: any) =>
     data,
     method: 'post',
   });
+
+// 获取详情
+export const getOrderDetailRequest = (id: string) => request({ url: orderApiUrl.getById, params: { id } });
 /* ==============================  订单 - End   ============================== */
