@@ -36,6 +36,9 @@ export const getProductDetailApiUrl = `${ApiClientPrefix}/product/get_detail`;
 // 获取地址
 export const getAddressListApiUrl = `${ApiClientPrefix}/address/list`;
 
+// 获取单个地址
+export const getAddressByIdApiUrl = `${ApiClientPrefix}/address/get`;
+
 // 设置默认地址
 export const setDefaultAddressApiUrl = `${ApiClientPrefix}/address/set_default`;
 

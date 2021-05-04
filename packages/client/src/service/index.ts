@@ -11,6 +11,7 @@ import {
   deleteAddressApiUrl,
   shoppingCartApiUrl,
   orderApiUrl,
+  getAddressByIdApiUrl,
 } from '@hd/common/service/consts';
 import { RegisterParams } from '@src/service/interface';
 
@@ -48,6 +49,8 @@ export const logoutRequest = () => request({ url: logoutApiUrl });
 /* ==============================  用户信息与登录信息 - Start ============================== */
 
 /* ==============================  地址信息 - Start ============================== */
+
+export const getAddressByIdRequest = (id: number) => request({ url: getAddressByIdApiUrl, params: { id } });
 
 // 地址 - 获取地址列表
 export const getAddressListRequest = () => request({ url: getAddressListApiUrl });
