@@ -10,6 +10,7 @@ import {
   setDefaultAddressApiUrl,
   deleteAddressApiUrl,
   shoppingCartApiUrl,
+  orderApiUrl,
 } from '@hd/common/service/consts';
 import { RegisterParams } from '@src/service/interface';
 
@@ -146,3 +147,13 @@ export const settleAccountsRequest = (data: any[]) =>
     method: 'post',
   });
 /* ==============================  购物车 - End   ============================== */
+
+/* ==============================  订单 - Start ============================== */
+// 创建订单接口
+export const orderCreateRequest = (data: any) =>
+  request({
+    url: orderApiUrl.create,
+    data,
+    method: 'post',
+  });
+/* ==============================  订单 - End   ============================== */

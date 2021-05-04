@@ -59,3 +59,8 @@ export const shoppingCartApiUrl = {
   settleAccounts: `${ApiClientPrefix}/shopping_cart/settle_accounts`,
 };
 
+// 订单
+export const orderApiUrl = {
+  create: `${ApiClientPrefix}/order/create`,
+}
+
