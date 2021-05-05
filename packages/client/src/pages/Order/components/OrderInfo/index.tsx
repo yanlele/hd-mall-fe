@@ -8,12 +8,15 @@ import useMountRequest from '@src/pages/Order/useHooks/useMountRequest';
 import useGetQuery from '@src/common/hooks/useGetQuery';
 import { orderCreateRequest } from '@src/service';
 import { stringify } from 'query-string';
+import { useRecoilValue } from 'recoil';
+import { userInfoModel } from '@src/components/biz/UserLoginComponent/model';
 
 const { TextArea } = Input;
 
 const OrderInfo: FC = () => {
   const query = useGetQuery();
   const history = useHistory();
+  const { userInfo } = useRecoilValue(userInfoModel);
   const { data: res, loading } = useMountRequest();
   const [remark, setRemark] = useState('');
 
@@ -26,6 +29,7 @@ const OrderInfo: FC = () => {
       remark,
       total_count: totalCount,
       total_price: totalPrice,
+      address_id: get(userInfo, 'default_address_id'),
     };
 
     const res = await orderCreateRequest(params);
