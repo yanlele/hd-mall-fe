@@ -19,7 +19,6 @@ const useMountRequest = () => {
       handleMountHelper({
         orderId,
         id,
-        defaultAddressId,
       })
         .then(res => {
           setStateInfo(res);

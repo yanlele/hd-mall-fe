@@ -3,14 +3,15 @@ import { getAddressByIdRequest, getDetailListByTempOrderIdRequest, getOrderDetai
 import { get } from 'lodash';
 
 const handleMountHelper = async (options: HandleMountHelperOptions) => {
-  const { id, orderId, defaultAddressId } = options;
+  const { id, orderId } = options;
 
   try {
-    const [orderDetailRes, productListRes, currentAddressRes] = await Promise.all([
+    const [orderDetailRes, productListRes] = await Promise.all([
       getOrderDetailRequest(id),
       getDetailListByTempOrderIdRequest(orderId),
-      getAddressByIdRequest(defaultAddressId),
     ]);
+    const addressId = get(orderDetailRes, 'data.address_id');
+    const currentAddressRes = await getAddressByIdRequest(addressId);
 
     return {
       orderDetail: get(orderDetailRes, 'data'),
