@@ -9,6 +9,7 @@ import useMountRequest from '@src/pages/OrderDetail/useHooks/useMountRequest';
 import { get } from 'lodash';
 import day from 'dayjs';
 import useGetQuery from '@src/common/hooks/useGetQuery';
+import { orderStatus } from '@src/pages/OrderDetail/consts';
 
 const { Step } = Steps;
 
@@ -92,7 +93,7 @@ const OrderDetail: FC = () => {
                     订单状态
                   </>
                 }
-                value={get(stateInfo, 'orderDetail.status')}
+                value={orderStatus[get(stateInfo, 'orderDetail.status')]}
               />
               <LabelValue label="物流" value="圆通快递" />
               <LabelValue label="运单号" value={`YT127${orderId}`} />
