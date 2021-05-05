@@ -24,6 +24,10 @@ const OrderInfo: FC = () => {
   const infoList = useMemo(() => data, [data]);
 
   const createOrder = usePersistFn(async () => {
+    if (remark.length > 100) {
+      message.error('留言请限制在100字以内。');
+      return;
+    }
     const params = {
       order_id: parseInt(get(query, 'temp_order_id', 0), 10),
       remark,
@@ -103,7 +107,7 @@ const OrderInfo: FC = () => {
               style={{ width: '60%' }}
               rows={6}
               autoSize={{ maxRows: 6, minRows: 6 }}
-              placeholder="给商家留言"
+              placeholder="给商家留言, 请限制在100字以内"
             />
           </div>
         </div>

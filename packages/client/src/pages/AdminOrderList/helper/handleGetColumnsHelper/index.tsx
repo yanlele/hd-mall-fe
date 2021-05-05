@@ -40,7 +40,7 @@ export const handleGetColumnsHelper = () => {
       dataIndex: 'created_at',
       key: 'created_at',
       render: (item: string) => {
-        return <span>{day(item).format('YYYY-MM-DD hh:mm:ss')}</span>;
+        return <span>{day(item).format('YYYY-MM-DD HH:mm:ss')}</span>;
       },
     },
     {

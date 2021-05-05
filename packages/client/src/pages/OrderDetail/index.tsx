@@ -25,7 +25,7 @@ const OrderDetail: FC = () => {
 
   const getTime = useCallback(
     (time: string) => {
-      if (time && day(time).valueOf() !== 0) return day(time).format('YYYY-MM-DD hh:mm:ss');
+      if (time && day(time).valueOf() !== 0) return day(time).format('YYYY-MM-DD HH:mm:ss');
       return '时间待定';
     },
     [
