@@ -162,4 +162,7 @@ export const orderCreateRequest = (data: any) =>
 
 // 获取详情
 export const getOrderDetailRequest = (id: string) => request({ url: orderApiUrl.getById, params: { id } });
+
+// 获取订单列表
+export const getOrderList = () => request({ url: orderApiUrl.getList });
 /* ==============================  订单 - End   ============================== */
