@@ -12,7 +12,6 @@ import { get } from 'lodash';
 const AdminOrderList: FC = () => {
   const { data: res, loading } = useRequest(getOrderList);
   const orderList = get(res, 'data', []);
-  console.log(orderList);
 
   const columns = handleGetColumnsHelper();
 

@@ -12,7 +12,7 @@ export const handleGetColumnsHelper = () => {
       title: '订单号',
       dataIndex: 'order_id',
       key: 'order_id',
-      render: (_, { id, order_id }: any) => {
+      render: (_: any, { id, order_id }: any) => {
         return <Link to={`/admin/order-detail?${stringify({ order_id, id })}`}>{order_id}</Link>;
       },
     },
@@ -47,7 +47,7 @@ export const handleGetColumnsHelper = () => {
       title: '购买数量',
       dataIndex: 'total_count',
       key: 'total_count',
-      render: (total_count: number) => <span>X{total_count}</span>,
+      render: (total_count: number) => <span>X {total_count}</span>,
     },
     {
       title: '实付款',

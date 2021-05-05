@@ -36,7 +36,7 @@ export const getColumnsHelper = (): ColumnsType<any> => {
       title: '数量',
       dataIndex: 'count',
       key: 'count',
-      render: item => `${item}`,
+      render: item => `X ${item}`,
     },
     {
       title: '金额',
