@@ -68,5 +68,6 @@ export const orderApiUrl = {
   getById: `${ApiClientPrefix}/order/get_detail`,
   getList: `${ApiClientPrefix}/order/get_list`,
   delete: `${ApiClientPrefix}/order/delete`,
+  update: `${ApiClientPrefix}/order/update`,
 }
 

@@ -6,7 +6,7 @@ import { message, Modal, Spin, Table } from 'antd';
 import handleGetColumnsHelper from '@src/pages/AdminOrderList/helper/handleGetColumnsHelper';
 import handleExpandedRowRenderHelper from '@src/pages/AdminOrderList/helper/handleExpandedRowRenderHelper';
 import { usePersistFn, useRequest } from 'ahooks';
-import { deleteOrderRequest, getOrderList } from '@src/service';
+import { deleteOrderRequest, getOrderList, updateOrderRequest } from '@src/service';
 import { get, map } from 'lodash';
 
 const AdminOrderList: FC = () => {
@@ -24,7 +24,18 @@ const AdminOrderList: FC = () => {
     });
   });
 
-  const columns = handleGetColumnsHelper({ handleDelete });
+  const handleConfirmOrder = usePersistFn(async id => {
+    Modal.confirm({
+      title: '确认收货',
+      onOk: async () => {
+        await updateOrderRequest({ id, status: 4 });
+        await refresh();
+        message.success('确认收货成功');
+      },
+    });
+  });
+
+  const columns = handleGetColumnsHelper({ handleDelete, handleConfirmOrder });
 
   return (
     <AdminContainer>
