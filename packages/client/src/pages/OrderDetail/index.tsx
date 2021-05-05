@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import styles from './style.less';
 import { Spin, Steps, Table } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
@@ -9,7 +9,7 @@ import useMountRequest from '@src/pages/OrderDetail/useHooks/useMountRequest';
 import { get } from 'lodash';
 import day from 'dayjs';
 import useGetQuery from '@src/common/hooks/useGetQuery';
-import { orderStatus } from '@src/pages/OrderDetail/consts';
+import { orderStatusMenu } from '@src/pages/OrderDetail/consts';
 
 const { Step } = Steps;
 
@@ -19,6 +19,8 @@ const OrderDetail: FC = () => {
   const { order_id: orderId } = useGetQuery();
 
   const { loading, stateInfo } = useMountRequest();
+
+  const orderStatus = get(stateInfo, 'orderDetail.status');
 
   const getTime = useCallback(
     (time: string) => {
@@ -32,6 +34,21 @@ const OrderDetail: FC = () => {
       get(stateInfo, 'orderDetail.complete_time'),
     ],
   );
+
+  const transportationStatusString = useMemo(() => {
+    switch (orderStatus) {
+      case 1:
+        return '等待卖家发货。';
+      case 2:
+        return '卖家已发货,正在运输过程中.';
+      case 3:
+        return '您已经确认收到改商品';
+      case 4:
+        return '订单已经完成';
+      default:
+        return '';
+    }
+  }, [orderStatus]);
 
   return (
     <div className={styles.orderDetailContainer}>
@@ -93,11 +110,11 @@ const OrderDetail: FC = () => {
                     订单状态
                   </>
                 }
-                value={orderStatus[get(stateInfo, 'orderDetail.status')]}
+                value={orderStatusMenu[orderStatus]}
               />
               <LabelValue label="物流" value="圆通快递" />
               <LabelValue label="运单号" value={`YT127${orderId}`} />
-              <LabelValue className="transportation-status" label="运输状态" value="正在运输过程中。" />
+              <LabelValue className="transportation-status" label="运输状态" value={transportationStatusString} />
             </div>
           </div>
 
