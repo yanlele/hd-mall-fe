@@ -1,5 +1,4 @@
-import styles from './style.less';
-import { Image } from 'antd';
+import styles from './../../style.less';
 import { Link } from 'react-router-dom';
 import React from 'react';
 
@@ -11,31 +10,31 @@ export const handleGetColumnsHelper = () => {
       key: 'order_id',
       render: () => <Link to="/admin/order-detail?id=123456789">136786809865</Link>,
     },
+    // {
+    //   title: '商品信息',
+    //   dataIndex: 'name',
+    //   key: 'name',
+    //   width: 350,
+    //   render: () => {
+    //     return (
+    //       <div className={styles.productInfoItem}>
+    //         <Image
+    //           src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2283764985,3861992003&fm=26&gp=0.jpg"
+    //           alt=""
+    //         />
+    //         <Link to="/detail?id=9" className="desc">
+    //           乐高哈利沙特森美城堡魔法世界男 女孩拼积木益智玩具乐高哈利沙特森美城堡魔法世界男 女孩拼积木益智玩具
+    //         </Link>
+    //       </div>
+    //     );
+    //   },
+    // },
     {
-      title: '商品信息',
-      dataIndex: 'name',
-      key: 'name',
-      width: 350,
+      title: '创建时间',
+      dataIndex: 'created_at',
+      key: 'created_at',
       render: () => {
-        return (
-          <div className={styles.productInfoItem}>
-            <Image
-              src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2283764985,3861992003&fm=26&gp=0.jpg"
-              alt=""
-            />
-            <Link to="/detail?id=9" className="desc">
-              乐高哈利沙特森美城堡魔法世界男 女孩拼积木益智玩具乐高哈利沙特森美城堡魔法世界男 女孩拼积木益智玩具
-            </Link>
-          </div>
-        );
-      },
-    },
-    {
-      title: '单价',
-      dataIndex: 'price',
-      key: 'price',
-      render: () => {
-        return <span>￥2899.00</span>;
+        return <span>2020-02-12 12:12:12</span>;
       },
     },
     {
@@ -90,3 +89,5 @@ export const handleGetColumnsHelper = () => {
     },
   ];
 };
+
+export default handleGetColumnsHelper;
