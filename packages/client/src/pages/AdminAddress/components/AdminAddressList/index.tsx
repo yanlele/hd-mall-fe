@@ -15,8 +15,8 @@ for (let i = 0; i < 46; i++) {
 }
 
 const AdminAddressList: FC<AdminAddressListProps> = props => {
-  const { dataSource } = props;
-  const columns = getColumnsHelper();
+  const { dataSource, handleDelete } = props;
+  const columns = getColumnsHelper({ handleDelete });
 
   return <Table bordered pagination={false} dataSource={dataSource} columns={columns} />;
 };

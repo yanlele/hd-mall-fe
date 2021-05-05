@@ -4,14 +4,14 @@ import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 import AddressForm from '@src/components/biz/AddressModal/AddressForm';
 import styles from './style.less';
 import { addressFormModel } from '@src/pages/AdminAddress/model/addressFormModel';
-import { Button, Row, Col, message, Spin } from 'antd';
+import { Button, Row, Col, message, Spin, Modal } from 'antd';
 import { usePersistFn, useRequest } from 'ahooks';
 import { useRecoilValue } from 'recoil';
 import AdminAddressList from '@src/pages/AdminAddress/components/AdminAddressList';
 import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
 import { defaultClientAddressModalModelState } from '@src/components/biz/AddressModal/model/consts';
 import AddressModal from '@src/components/biz/AddressModal';
-import { createAddressRequest, getAddressListRequest } from '@src/service';
+import { createAddressRequest, deleteAddressRequest, getAddressListRequest } from '@src/service';
 import { get } from 'lodash';
 
 const AdminAddress: FC = () => {
@@ -26,6 +26,17 @@ const AdminAddress: FC = () => {
       await createAddressRequest(res);
       message.success('添加新地址成功');
       refresh();
+    });
+  });
+
+  const handleDelete = usePersistFn(id => {
+    Modal.confirm({
+      title: '确认删除该收货地址？',
+      onOk: async () => {
+        await deleteAddressRequest(id);
+        await refresh();
+        message.success('删除地址成功');
+      },
     });
   });
 
@@ -53,7 +64,7 @@ const AdminAddress: FC = () => {
 
         <div className="address-list-info">
           <Spin spinning={loading}>
-            <AdminAddressList dataSource={addressList} />
+            <AdminAddressList handleDelete={handleDelete} dataSource={addressList} />
           </Spin>
         </div>
       </div>
