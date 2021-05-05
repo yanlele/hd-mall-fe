@@ -16,6 +16,7 @@ const getColumnsHelper = (): ColumnsType<any> => {
         draft.addressInfo = item;
         draft.type = 'edit';
         draft.visible = true;
+        draft.title = '修改';
       }),
     );
   });
@@ -23,8 +24,8 @@ const getColumnsHelper = (): ColumnsType<any> => {
   return [
     {
       title: '收货人',
-      dataIndex: 'address_name',
-      key: 'address_name',
+      dataIndex: 'addressee_name',
+      key: 'addressee_name',
     },
     {
       title: '电话号码',

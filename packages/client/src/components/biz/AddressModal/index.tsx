@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { message, Modal } from 'antd';
 import AddressForm from '@src/components/biz/AddressModal/AddressForm';
 import { useRecoilState } from 'recoil';
@@ -8,6 +8,7 @@ import { createAddressRequest, updateAddressRequest } from '@src/service';
 
 const AddressModal: FC<AddressModalProps> = props => {
   const { model, defaultModelState, onSubmitCallback } = props;
+  const [loading, setLoading] = useState(false);
 
   const [modalState, setModalState] = useRecoilState(model);
   const { visible, title, actions, type, addressInfo } = modalState;
@@ -20,17 +21,23 @@ const AddressModal: FC<AddressModalProps> = props => {
 
   // 提交
   const handleSubmit = () => {
+    setLoading(true);
     onSubmit().then(async values => {
-      if (type === 'edit') {
-        // 更新场景
-        await updateAddressRequest({ ...values, id: addressInfo.id });
-      } else {
-        // 创建场景
-        await createAddressRequest(values);
+      try {
+        if (type === 'edit') {
+          // 更新场景
+          await updateAddressRequest({ ...values, id: addressInfo.id });
+        } else {
+          // 创建场景
+          await createAddressRequest(values);
+        }
+        message.success(`${title}收货地址成功`);
+        setLoading(false);
+        handleCancel();
+        if (onSubmitCallback) onSubmitCallback();
+      } catch (e) {
+        setLoading(false);
       }
-      message.success(`${title}收货地址成功`);
-      handleCancel();
-      if (onSubmitCallback) onSubmitCallback();
     });
   };
 
@@ -42,7 +49,7 @@ const AddressModal: FC<AddressModalProps> = props => {
       visible={visible}
       onOk={handleSubmit}
       width={'640px'}
-      confirmLoading={false}
+      confirmLoading={loading}
       onCancel={handleCancel}>
       <AddressForm model={model} />
     </Modal>

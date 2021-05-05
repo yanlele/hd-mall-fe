@@ -4,22 +4,28 @@ import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 import AddressForm from '@src/components/biz/AddressModal/AddressForm';
 import styles from './style.less';
 import { addressFormModel } from '@src/pages/AdminAddress/model/addressFormModel';
-import { Button, Row, Col, message } from 'antd';
-import { usePersistFn } from 'ahooks';
+import { Button, Row, Col, message, Spin } from 'antd';
+import { usePersistFn, useRequest } from 'ahooks';
 import { useRecoilValue } from 'recoil';
 import AdminAddressList from '@src/pages/AdminAddress/components/AdminAddressList';
 import { clientAddressModalModel } from '@src/components/biz/AddressModal/model';
 import { defaultClientAddressModalModelState } from '@src/components/biz/AddressModal/model/consts';
 import AddressModal from '@src/components/biz/AddressModal';
+import { createAddressRequest, getAddressListRequest } from '@src/service';
+import { get } from 'lodash';
 
 const AdminAddress: FC = () => {
   const { actions } = useRecoilValue(addressFormModel);
 
+  const { data: res, loading, refresh } = useRequest(getAddressListRequest);
+  const addressList = get(res, 'data', []);
+
   const handleOnSubmit = usePersistFn(() => {
-    actions.onSubmit().then(res => {
-      console.log('res', res);
-      message.success('添加新地址成功');
+    actions.onSubmit().then(async res => {
       handleResetFields();
+      await createAddressRequest(res);
+      message.success('添加新地址成功');
+      refresh();
     });
   });
 
@@ -46,11 +52,17 @@ const AdminAddress: FC = () => {
         </div>
 
         <div className="address-list-info">
-          <AdminAddressList />
+          <Spin spinning={loading}>
+            <AdminAddressList dataSource={addressList} />
+          </Spin>
         </div>
       </div>
 
-      <AddressModal model={clientAddressModalModel} defaultModelState={defaultClientAddressModalModelState} />
+      <AddressModal
+        onSubmitCallback={refresh}
+        model={clientAddressModalModel}
+        defaultModelState={defaultClientAddressModalModelState}
+      />
     </AdminContainer>
   );
 };
