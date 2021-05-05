@@ -1,6 +1,10 @@
 import styles from './../../style.less';
 import { Link } from 'react-router-dom';
 import React from 'react';
+import { stringify } from 'query-string';
+import day from 'dayjs';
+import { toNumber } from 'lodash';
+import { orderStatusMenu } from '@src/pages/OrderDetail/consts';
 
 export const handleGetColumnsHelper = () => {
   return [
@@ -8,7 +12,9 @@ export const handleGetColumnsHelper = () => {
       title: '订单号',
       dataIndex: 'order_id',
       key: 'order_id',
-      render: () => <Link to="/admin/order-detail?id=123456789">136786809865</Link>,
+      render: (_, { id, order_id }: any) => {
+        return <Link to={`/admin/order-detail?${stringify({ order_id, id })}`}>{order_id}</Link>;
+      },
     },
     // {
     //   title: '商品信息',
@@ -33,36 +39,35 @@ export const handleGetColumnsHelper = () => {
       title: '创建时间',
       dataIndex: 'created_at',
       key: 'created_at',
-      render: () => {
-        return <span>2020-02-12 12:12:12</span>;
+      render: (item: string) => {
+        return <span>{day(item).format('YYYY-MM-DD hh:mm:ss')}</span>;
       },
     },
     {
-      title: '数量',
-      dataIndex: 'count',
-      key: 'count',
-      render: () => <span>X1</span>,
+      title: '购买数量',
+      dataIndex: 'total_count',
+      key: 'total_count',
+      render: (total_count: number) => <span>X{total_count}</span>,
     },
     {
       title: '实付款',
-      dataIndex: 'totalPrice',
-      key: 'totalPrice',
-      render: () => {
-        return <span>￥2899.00</span>;
+      dataIndex: 'total_price',
+      key: 'total_price',
+      render: (total_price: number) => {
+        return <span>￥{toNumber(total_price).toFixed(2)}</span>;
       },
     },
     {
       title: '订单状态',
-      dataIndex: 'totalPrice',
-      key: 'totalPrice',
-      render: () => {
+      dataIndex: 'status',
+      key: 'status',
+      render: (status: number, { order_id, id }: any) => {
         return (
           <div className={styles.info}>
-            <p>交易完成</p>
+            <p>{orderStatusMenu[status]}</p>
             <p>
-              <a>订单详情</a>
+              <Link to={`/admin/order-detail?${stringify({ order_id, id })}`}>订单详情</Link>
             </p>
-            <p>已评价</p>
           </div>
         );
       },
@@ -78,10 +83,10 @@ export const handleGetColumnsHelper = () => {
               <a>删除</a>
             </p>
             <p>
-              <a>申请售后</a>
+              <span>申请售后</span>
             </p>
             <p>
-              <a>退款</a>
+              <span>退款</span>
             </p>
           </div>
         );
