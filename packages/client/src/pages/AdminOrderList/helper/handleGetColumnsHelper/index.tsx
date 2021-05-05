@@ -6,7 +6,7 @@ import day from 'dayjs';
 import { toNumber } from 'lodash';
 import { orderStatusMenu } from '@src/pages/OrderDetail/consts';
 
-export const handleGetColumnsHelper = () => {
+export const handleGetColumnsHelper = ({ handleDelete }: { handleDelete: (id: number) => void }) => {
   return [
     {
       title: '订单号',
@@ -76,11 +76,11 @@ export const handleGetColumnsHelper = () => {
       title: '交易操作',
       dataIndex: 'totalPrice',
       key: 'totalPrice',
-      render: () => {
+      render: (_: any, row: any) => {
         return (
           <div className={styles.info}>
             <p>
-              <a>删除</a>
+              <a onClick={() => handleDelete(row.id)}>删除</a>
             </p>
             <p>
               <span>申请售后</span>

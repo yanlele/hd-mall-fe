@@ -2,18 +2,29 @@ import React, { FC } from 'react';
 import AdminContainer from '@src/components/biz/AdminContainer';
 import AdminTitleBar from '@src/components/biz/AdminTitleBar';
 import styles from './style.less';
-import { Spin, Table } from 'antd';
+import { message, Modal, Spin, Table } from 'antd';
 import handleGetColumnsHelper from '@src/pages/AdminOrderList/helper/handleGetColumnsHelper';
 import handleExpandedRowRenderHelper from '@src/pages/AdminOrderList/helper/handleExpandedRowRenderHelper';
-import { useRequest } from 'ahooks';
-import { getOrderList } from '@src/service';
+import { usePersistFn, useRequest } from 'ahooks';
+import { deleteOrderRequest, getOrderList } from '@src/service';
 import { get, map } from 'lodash';
 
 const AdminOrderList: FC = () => {
-  const { data: res, loading } = useRequest(getOrderList);
+  const { data: res, loading, refresh } = useRequest(getOrderList);
   const orderList = get(res, 'data', []);
 
-  const columns = handleGetColumnsHelper();
+  const handleDelete = usePersistFn(async id => {
+    Modal.confirm({
+      title: '确认删除该订单信息',
+      onOk: async () => {
+        await deleteOrderRequest({ id });
+        await refresh();
+        message.success('删除订单信息成功');
+      },
+    });
+  });
+
+  const columns = handleGetColumnsHelper({ handleDelete });
 
   return (
     <AdminContainer>

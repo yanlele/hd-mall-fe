@@ -165,4 +165,7 @@ export const getOrderDetailRequest = (id: string) => request({ url: orderApiUrl.
 
 // 获取订单列表
 export const getOrderList = () => request({ url: orderApiUrl.getList });
+
+// 删除订单
+export const deleteOrderRequest = (data: any) => request({ url: orderApiUrl.delete, data, method: 'post' });
 /* ==============================  订单 - End   ============================== */
