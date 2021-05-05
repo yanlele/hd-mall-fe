@@ -86,6 +86,16 @@ const OrderDetail: FC = () => {
               <div className="info-detail">
                 <LabelValue
                   className="info-detail-item"
+                  label="收件人"
+                  value={get(stateInfo, 'address.addressee_name', '')}
+                />
+                <LabelValue
+                  className="info-detail-item"
+                  label="收件电话"
+                  value={get(stateInfo, 'address.mobile', '')}
+                />
+                <LabelValue
+                  className="info-detail-item"
                   label="收货地址"
                   value={`
                   ${get(stateInfo, 'address.province', '')}
