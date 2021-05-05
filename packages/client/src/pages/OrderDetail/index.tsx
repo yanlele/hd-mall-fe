@@ -3,10 +3,10 @@ import styles from './style.less';
 import { Spin, Steps, Table } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import LabelValue from '@src/components/layout/LabelValue';
-import { columns } from '@src/pages/OrderDetail/helper';
+import { getColumnsHelper } from '@src/pages/OrderDetail/helper';
 import { useTitle } from 'ahooks';
 import useMountRequest from '@src/pages/OrderDetail/useHooks/useMountRequest';
-import { get } from 'lodash';
+import { get, toNumber } from 'lodash';
 import day from 'dayjs';
 import useGetQuery from '@src/common/hooks/useGetQuery';
 import { orderStatusMenu } from '@src/pages/OrderDetail/consts';
@@ -21,6 +21,7 @@ const OrderDetail: FC = () => {
   const { loading, stateInfo } = useMountRequest();
 
   const orderStatus = get(stateInfo, 'orderDetail.status');
+  const totalPrice = get(stateInfo, 'orderDetail.total_price');
 
   const getTime = useCallback(
     (time: string) => {
@@ -119,13 +120,13 @@ const OrderDetail: FC = () => {
           </div>
 
           <div className="detail-table">
-            <Table pagination={false} columns={columns} dataSource={[{}]} />
+            <Table pagination={false} columns={getColumnsHelper()} dataSource={get(stateInfo, 'productList', [])} />
           </div>
 
           <div className="extend-info">
-            <LabelValue label="商品总价: " value="￥258.00" />
-            <LabelValue label="运费: " value="￥258.00" />
-            <LabelValue label="实际付款: " value={<b>￥258.00</b>} />
+            <LabelValue label="商品总价: " value={`￥${toNumber(totalPrice).toFixed(2)}`} />
+            <LabelValue label="运费: " value="￥0.00" />
+            <LabelValue label="实际付款: " value={<b>￥{toNumber(totalPrice).toFixed(2)}</b>} />
           </div>
         </div>
       </Spin>
