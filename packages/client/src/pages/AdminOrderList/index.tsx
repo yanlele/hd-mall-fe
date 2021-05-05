@@ -7,7 +7,7 @@ import handleGetColumnsHelper from '@src/pages/AdminOrderList/helper/handleGetCo
 import handleExpandedRowRenderHelper from '@src/pages/AdminOrderList/helper/handleExpandedRowRenderHelper';
 import { useRequest } from 'ahooks';
 import { getOrderList } from '@src/service';
-import { get } from 'lodash';
+import { get, map } from 'lodash';
 
 const AdminOrderList: FC = () => {
   const { data: res, loading } = useRequest(getOrderList);
@@ -26,7 +26,11 @@ const AdminOrderList: FC = () => {
             className="order-table"
             pagination={false}
             columns={columns}
-            dataSource={orderList}
+            dataSource={map(orderList, item =>
+              Object.assign({}, item, {
+                key: item.id,
+              }),
+            )}
           />
         </Spin>
       </div>
