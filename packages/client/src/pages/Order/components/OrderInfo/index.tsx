@@ -34,6 +34,10 @@ const OrderInfo: FC = () => {
       total_count: totalCount,
       total_price: totalPrice,
       address_id: get(userInfo, 'default_address_id'),
+      list: map(infoList, (item: any) => ({
+        product_id: item.product_id,
+        count: item.count,
+      })),
     };
 
     const res = await orderCreateRequest(params);
