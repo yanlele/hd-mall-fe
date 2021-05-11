@@ -17,6 +17,11 @@ const staticRotes: StaticRoutes[] = [
     component: pages.Category,
     title: '商品分类管理',
   },
+  {
+    path: '/user',
+    component: pages.User,
+    title: '管理员信息',
+  },
 ];
 
 export default staticRotes;

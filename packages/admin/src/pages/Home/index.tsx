@@ -5,6 +5,7 @@ import { Tabs } from 'antd';
 import { SmileTwoTone } from '@ant-design/icons';
 import BannerImage from '@src/pages/Home/components/BannerImage';
 import BannerModal from '@src/pages/Home/components/BannerModal';
+import loginWrapper from '@src/components/HOC/loginWrapper';
 
 const { TabPane } = Tabs;
 
@@ -35,4 +36,4 @@ const Home: FC = () => {
   );
 };
 
-export default Home;
+export default loginWrapper(Home);

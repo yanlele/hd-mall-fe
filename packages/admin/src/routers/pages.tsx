@@ -8,6 +8,7 @@ const pages: Pages = {
   Product: () => import('@src/pages/Product'),
   Category: () => import('@src/pages/Category'),
   Home: () => import('@src/pages/Home'),
+  User: () => import('@src/pages/User'),
 };
 
 const exportPages: ExportPages = {};

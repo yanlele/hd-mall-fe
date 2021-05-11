@@ -6,6 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import { categoryModalVisibleModelSelector } from '@src/pages/Category/models';
 import { useTitle } from 'ahooks';
 import HeaderComponent from '@src/components/biz/HeaderComponent';
+import loginWrapper from '@src/components/HOC/loginWrapper';
 
 const Category: FC = () => {
   const setVisible = useSetRecoilState(categoryModalVisibleModelSelector);
@@ -31,4 +32,4 @@ const Category: FC = () => {
   );
 };
 
-export default Category;
+export default loginWrapper(Category);
