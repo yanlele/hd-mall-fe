@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './style.less';
+import { PrimaryCategory } from '@src/pages/Home/service/interface';
+import { get } from 'lodash';
 
-const LongBanner: FC = () => {
+const LongBanner: FC<{ item: PrimaryCategory }> = ({ item }) => {
   return (
-    <Link className={styles.longBannerContainer} to="//www.baidu.com" target="_blank">
-      <img
-        src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2733011025,434524842&fm=26&gp=0.jpg"
-        alt="无法显示"
-      />
+    <Link className={styles.longBannerContainer} to={`/list?id=${item.id}`} target="_blank">
+      <img src={get(item, 'banner_image')} alt="无法显示" />
     </Link>
   );
 };

@@ -12,11 +12,11 @@ const PrimaryCategory: FC<PrimaryCategoryProps> = props => {
   const { item } = props;
   return (
     <div className={styles.primaryCategoryContainer}>
-      <LongBanner />
+      <LongBanner item={item} />
 
       <div className="header">
         <h2>{item.name}</h2>
-        <Link to="//www.baidu.com" className="more">
+        <Link to={`/list?id=${item.id}`} className="more">
           查看更多
           <RightOutlined />
         </Link>
