@@ -33,7 +33,9 @@ const ProductCard: FC<ProductCardProps> = props => {
     <div
       onClick={handlePage2Detail}
       className={cn(styles.productCardContainer, hasShadow && styles.hasHover, className)}>
-      <img className="primary-image" src={primary_image} alt="无法显示" />
+      <div id="image-container">
+        <img className="primary-image" src={primary_image} alt="无法显示" />
+      </div>
       <p className="title">{title}</p>
       <p className="desc">{desc}</p>
       <div className="price">{handleRenderDiscount}</div>
